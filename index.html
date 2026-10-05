@@ -1,24 +1,103 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LED3 Révision</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LED3 Révision</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+margin:0;
+padding:20px;
+}
+
+h1{
+    
+text-align:center;
+margin-bottom:30px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h2{
+margin-top:0;
+}
+
+.progress{
+background:#334155;
+height:20px;
+border-radius:20px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#22c55e;
+}
+</style>
 </head>
+
 <body>
 
-<h1>LED3 Révision</h1>
+<h1>⚡ LED3 Révision</h1>
 
-<ul>
-    <li><a href="sessions.html">Sessions</a></li>
-    <li><a href="revision.html">Révisions</a></li>
-    <li><a href="flashcards.html">Flashcards</a></li>
-    <li><a href="qcm.html">QCM</a></li>
-    <li><a href="examen.html">Examen blanc</a></li>
-    <li><a href="calculateur.html">Calculateur</a></li>
-</ul>
+<div class="grid">
+
+<a class="card" href="sessions.html">
+<h2>📚 Sessions</h2>
+<p>Consulter les cours.</p>
+</a>
+
+<a class="card" href="flashcards.html">
+<h2>🧠 Flashcards</h2>
+<p>Réviser rapidement.</p>
+</a>
+
+<a class="card" href="qcm.html">
+<h2>✅ QCM</h2>
+<p>Entraînement corrigé.</p>
+</a>
+
+<a class="card" href="examen.html">
+<h2>🎯 Examen Blanc</h2>
+<p>Simulation complète.</p>
+</a>
+
+<a class="card" href="calculateur.html">
+<h2>🕒 Heures Supp</h2>
+<p>Calcul automatique.</p>
+</a>
+
+<a class="card" href="revision.html">
+<h2>🔥 Révisions</h2>
+<p>Suivi de progression.</p>
+</a>
+<a href="sessions.html">
+</div>
 
 </body>
 </html>
-<a href="sessions.html">
+
+    
