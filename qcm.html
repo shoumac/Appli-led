@@ -155,7 +155,7 @@ let answered = false;
 function melanger(){
 questions = [...banque]
 .sort(()=>Math.random()-0.5)
-.slice(0,1);
+.slice(0,10);
 }
 
 function afficherQuestion(){
@@ -207,6 +207,8 @@ document.getElementById("result").innerHTML=
 
 function nextQuestion(){
 
+if(!answered) return;
+
 current++;
 
 if(current >= questions.length){
@@ -228,17 +230,8 @@ document.querySelector(".card").innerHTML = `
 
 `;
 
-return;
-}
 
-afficherQuestion();
 
-}
-
-return;
-}
-
-afficherQuestion();
 }
 
 melanger();
