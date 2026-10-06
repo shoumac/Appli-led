@@ -1,24 +1,53 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta name="theme-color" content="#0f172a">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QCM LED3</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+max-width:700px;
+margin:auto;
+}
+
+button{
+padding:12px 20px;
+margin:8px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.rep{
+display:block;
+width:100%;
+}
+
+#result{
+font-size:20px;
+font-weight:bold;
+}
+</style>
+
 </head>
-
 <body>
-
-<div class="logo">
-✅ QCM LED3
-</div>
 
 <div class="card">
 
 <h1>✅ QCM LED3</h1>
-
-<div class="card">
 
 <h2 id="question"></h2>
 
@@ -35,115 +64,37 @@
 <script>
 
 const banque = [
-{q:"Une LED transforme principalement ?",a:["Électricité en lumière","Chaleur en lumière","Lumière en électricité"],c:0},
-
-{q:"Quel composant alimente un module LED ?",a:["Driver","Fusible","Interrupteur"],c:0},
-
-{q:"Une alimentation CV est souvent utilisée avec ?",a:["Rubans LED","LED haute puissance CC","Batteries"],c:0},
-
-{q:"Un driver CC est souvent utilisé avec ?",a:["Modules LED","Rubans LED 12V","Prises secteur"],c:0},
-
-{q:"Si la tension driver est trop faible ?",a:["La LED ne fonctionne pas correctement","La LED éclaire plus","Le courant augmente toujours"],c:0},
-
-{q:"Si un câble est trop fin ?",a:["Chute de tension","Augmentation des lumens","Baisse de température"],c:0},
-
-{q:"Une température de jonction élevée réduit ?",a:["La durée de vie","La tension secteur","Le nombre de LED"],c:0},
-
-{q:"Le dissipateur doit être ?",a:["Bien fixé","Peint en blanc obligatoirement","Isolé thermiquement"],c:0},
-
-{q:"Une mauvaise dissipation thermique provoque ?",a:["Surchauffe","Gain lumineux","Baisse du courant réseau"],c:0},
-
-{q:"La pâte thermique remplace le dissipateur ?",a:["Non","Oui","Parfois"],c:0},
-
-{q:"Une mesure sous charge permet ?",a:["De détecter les défauts","De mesurer l'IRC","De calculer l'UGR"],c:0},
-
-{q:"Un point chaud est souvent visible par ?",a:["Une coloration anormale","Une augmentation de l'IRC","Une baisse du PF"],c:0},
-
-{q:"Un connecteur mal serré provoque souvent ?",a:["Échauffement","Refroidissement","Augmentation du flux"],c:0},
-
-{q:"Le courant se mesure en ?",a:["Ampère","Volt","Watt"],c:0},
-
-{q:"La tension se mesure en ?",a:["Volt","Ampère","Lux"],c:0},
-
-{q:"La puissance se mesure en ?",a:["Watt","Volt","Lux"],c:0},
-
-{q:"Une LED ouverte dans une chaîne série provoque ?",a:["Extinction complète","Fonctionnement normal","Plus de lumière"],c:0},
-
-{q:"L'objectif principal d'un diagnostic ?",a:["Trouver la cause réelle","Changer les pièces au hasard","Augmenter les lumens"],c:0},
-
-{q:"L'IRC idéal pour un bon rendu couleur ?",a:["Élevé","Faible","Nul"],c:0},
-
-{q:"Le blanc neutre correspond à ?",a:["4000K","3000K","6500K"],c:0},
-
-{q:"Le blanc chaud correspond à ?",a:["3000K","4000K","6500K"],c:0},
-
-{q:"Le blanc froid correspond à ?",a:["6500K","3000K","4000K"],c:0},
-
-{q:"Dans un montage parallèle chaque branche reçoit ?",a:["La même tension","Le même courant","La même puissance"],c:0},
-
-{q:"Dans un montage série chaque LED reçoit ?",a:["Le même courant","La même tension","La même puissance"],c:0},
-
-{q:"Le facteur de puissance idéal est proche de ?",a:["1","0","10"],c:0},
-
-{q:"Une valeur THD faible est ?",a:["Préférable","Mauvaise","Sans importance"],c:0},
-
-{q:"Une LED qui clignote peut être causée par ?",a:["Un driver défectueux","Un IRC élevé","Un dissipateur trop grand"],c:0},
-
-{q:"Plus un câble est long ?",a:["Plus la résistance augmente","Moins la résistance augmente","Aucun effet"],c:0},
-
-{q:"Plus la section est grande ?",a:["Moins la résistance est élevée","Plus la résistance est élevée","Aucun effet"],c:0},
-
-{q:"La sécurité SELV concerne ?",a:["La basse tension","La puissance","La couleur de lumière"],c:0},
 
 {q:"En série, que reste-t-il identique ?",a:["La tension","Le courant","La puissance"],c:1},
-
 {q:"En parallèle, que reste-t-il identique ?",a:["La tension","Le courant","La résistance"],c:0},
-
 {q:"Formule de la puissance ?",a:["P = U × I","P = E × t","P = R × I"],c:0},
-
 {q:"Formule de l'énergie ?",a:["E = P × t","E = U × I","E = R × I"],c:0},
-
 {q:"Que signifie CC ?",a:["Constant Cable","Constant Current","Current Control"],c:1},
-
 {q:"Que signifie CV ?",a:["Constant Voltage","Current Voltage","Cable Voltage"],c:0},
-
 {q:"Température 3000K ?",a:["Blanc froid","Blanc neutre","Blanc chaud"],c:2},
-
 {q:"Température 4000K ?",a:["Blanc neutre","Blanc chaud","Blanc froid"],c:0},
-
 {q:"Température 6500K ?",a:["Blanc chaud","Blanc froid","Blanc neutre"],c:1},
-
 {q:"Unité du flux lumineux ?",a:["Lux","Lumen","Watt"],c:1},
-
 {q:"Unité de l'éclairement ?",a:["Lux","Lumen","Volt"],c:0},
-
-{q:"Que signifie IRC ?",a:["Indice de rendu des couleurs","Indice de résistance courant","Intensité résistive calculée"],c:0},
-
-{q:"Que signifie UGR ?",a:["Unified Glare Rating","Ultra Green Ratio","Universal Grid Resistance"],c:0},
-
-{q:"Que régule un driver CC ?",a:["La tension","Le courant","La puissance"],c:1},
-
-{q:"Que régule un driver CV ?",a:["La tension","Le courant","La température"],c:0},
-
-{q:"Montage série ?",a:["Courant identique","Tension identique","Puissance identique"],c:0},
-
-{q:"Montage parallèle ?",a:["Courant identique","Tension identique","Résistance identique"],c:1},
-
-{q:"Les tensions en série ?",a:["S'additionnent","Restent identiques","Disparaissent"],c:0},
-
-{q:"Les courants en parallèle ?",a:["Restent identiques","S'additionnent","Diminuent"],c:1},
-
-{q:"Cause fréquente d'un ruban LED qui clignote ?",a:["Driver ou chute de tension","IRC faible","Température couleur"],c:0},
-
-{q:"Que signifie IP ?",a:["Indice de protection","Indice de puissance","Indice de pilotage"],c:0},
-
+{q:"Que signifie IRC ?",a:["Indice de rendu des couleurs","Indice de résistance","Indice courant"],c:0},
+{q:"Que signifie IP ?",a:["Indice de protection","Indice puissance","Indice pilotage"],c:0},
 {q:"Que signifie IK ?",a:["Résistance aux chocs","Indice Kelvin","Intensité connue"],c:0},
-
 {q:"Que signifie PF ?",a:["Facteur de puissance","Puissance finale","Protection fusible"],c:0},
-
-{q:"Que signifie THD ?",a:["Distorsion harmonique totale","Thermal Heat Driver","Tension Haute Distribution"],c:0},
-
-{q:"Principal risque d'un montage série-parallèle ?",a:["Mauvais partage du courant","Tension trop faible","IRC faible"],c:0}
+{q:"Que signifie THD ?",a:["Distorsion harmonique totale","Thermal Driver","Tension harmonique"],c:0},
+{q:"Montage série ?",a:["Courant identique","Tension identique","Puissance identique"],c:0},
+{q:"Montage parallèle ?",a:["Courant identique","Tension identique","Résistance identique"],c:1},
+{q:"Les tensions en série ?",a:["S'additionnent","Restent identiques","Diminuent"],c:0},
+{q:"Les courants en parallèle ?",a:["S'additionnent","Restent identiques","Diminuent"],c:0},
+{q:"Que régule un driver CC ?",a:["Le courant","La tension","La température"],c:0},
+{q:"Que régule un driver CV ?",a:["La tension","Le courant","La puissance"],c:0},
+{q:"Le blanc chaud correspond à ?",a:["3000K","4000K","6500K"],c:0},
+{q:"Le blanc neutre correspond à ?",a:["4000K","3000K","6500K"],c:0},
+{q:"Le blanc froid correspond à ?",a:["6500K","4000K","3000K"],c:0},
+{q:"Une LED ouverte provoque ?",a:["Extinction de la chaîne","Plus de lumière","Aucun effet"],c:0},
+{q:"Le courant se mesure en ?",a:["Ampère","Volt","Watt"],c:0},
+{q:"La tension se mesure en ?",a:["Volt","Ampère","Lux"],c:0},
+{q:"La puissance se mesure en ?",a:["Watt","Volt","Lux"],c:0},
+{q:"La sécurité SELV concerne ?",a:["La basse tension","La puissance","La couleur"],c:0}
 
 ];
 
@@ -154,7 +105,7 @@ let answered = false;
 
 function melanger(){
 questions = [...banque]
-.sort(()=>Math.random()-0.5)
+.sort(() => Math.random() - 0.5)
 .slice(0,10);
 }
 
@@ -162,27 +113,27 @@ function afficherQuestion(){
 
 answered = false;
 
-document.getElementById("result").innerHTML="";
+document.getElementById("result").innerHTML = "";
 
-document.getElementById("question").innerHTML=
+document.getElementById("question").innerHTML =
 questions[current].q;
 
-let html="";
+let html = "";
 
 questions[current].a.forEach((rep,index)=>{
 
 html += `
-<button onclick="verifier(${index})">
+<button class="rep" onclick="verifier(${index})">
 ${rep}
-</button><br><br>
+</button>
 `;
 
 });
 
-document.getElementById("answers").innerHTML=html;
+document.getElementById("answers").innerHTML = html;
 
-document.getElementById("score").innerHTML=
-"Question "+(current+1)+" / 5";
+document.getElementById("score").innerHTML =
+"Question " + (current+1) + " / 10";
 }
 
 function verifier(index){
@@ -191,18 +142,19 @@ if(answered) return;
 
 answered = true;
 
-if(index===questions[current].c){
+if(index === questions[current].c){
 
 score++;
-
-document.getElementById("result").innerHTML=
+document.getElementById("result").innerHTML =
 "✅ Bonne réponse";
 
 }else{
 
-document.getElementById("result").innerHTML=
+document.getElementById("result").innerHTML =
 "❌ Mauvaise réponse";
+
 }
+
 }
 
 function nextQuestion(){
@@ -239,8 +191,8 @@ afficherQuestion();
 
 melanger();
 afficherQuestion();
-</script>
 
+</script>
 
 </body>
 </html>
