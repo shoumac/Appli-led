@@ -1,21 +1,51 @@
-<h2>QCM LED3</h2>
+<!DOCTYPE html>
+<html>
+<head>
+<title>QCM LED3</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-<p>24 V × 0,5 A = ?</p>
-<button>24 W</button>
-<button>48 W</button>
-<button>12 W ✅</button>
+<body>
 
-<p>18 W pendant 6 h = ?</p>
-<button>108 W</button>
-<button>108 Wh ✅</button>
-<button>18 Wh</button>
+<h1>✅ QCM LED3</h1>
 
-<p>Les résistances thermiques en série :</p>
-<button>Se multiplient</button>
-<button>S'additionnent ✅</button>
-<button>S'annulent</button>
+<div class="card">
 
-<p>Une poche d'air à l'interface :</p>
-<button>Améliore la conduction</button>
-<button>Augmente la résistance thermique ✅</button>
-<button>Réduit la température</button>
+<p>24V × 5A = ?</p>
+
+<button onclick="correct()">120W</button>
+<button onclick="wrong()">24W</button>
+<button onclick="wrong()">5W</button>
+
+<p>AC signifie ?</p>
+
+<button onclick="correct()">Courant alternatif</button>
+<button onclick="wrong()">Courant continu</button>
+
+<p>3000K correspond à ?</p>
+
+<button onclick="correct()">Blanc chaud</button>
+<button onclick="wrong()">Blanc froid</button>
+
+<h2 id="score">Score : 0</h2>
+
+</div>
+
+<script>
+
+let points=0;
+
+function correct(){
+points++;
+document.getElementById("score").innerText=
+"Score : "+points;
+}
+
+function wrong(){
+alert("Mauvaise réponse");
+}
+
+</script>
+
+</body>
+</html>
