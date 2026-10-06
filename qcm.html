@@ -207,35 +207,33 @@ document.getElementById("result").innerHTML=
 
 function nextQuestion(){
 
-if(!answered) return;
-
 current++;
 
-if(current>=5){
+if(current >= questions.length){
 
-let pourcentage=Math.round((score/5)*100);
+let pourcentage =
+Math.round((score/questions.length)*100);
 
-let niveau="📚 Révision";
-
-if(score>=3) niveau="👍 Correct";
-if(score>=4) niveau="🥈 Très bien";
-if(score===5) niveau="🥇 Expert";
-
-document.querySelector(".card").innerHTML=`
+document.querySelector(".card").innerHTML = `
 
 <h2>🎯 Résultat</h2>
 
-<h1>${score}/5</h1>
+<h1>${score}/${questions.length}</h1>
 
 <h2>${pourcentage}%</h2>
-
-<p>${niveau}</p>
 
 <button onclick="location.reload()">
 🔄 Nouveau QCM
 </button>
 
 `;
+
+return;
+}
+
+afficherQuestion();
+
+}
 
 return;
 }
