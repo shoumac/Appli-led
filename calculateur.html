@@ -1,1 +1,20 @@
-<a href="examen.html">
+<h2>Calculateur de puissance</h2>
+
+Tension (V)
+<input type="number" id="u">
+
+Courant (A)
+<input type="number" id="i">
+
+<button onclick="calcul()">Calculer</button>
+
+<p id="resultat"></p>
+
+<script>
+function calcul(){
+let u=parseFloat(document.getElementById('u').value);
+let i=parseFloat(document.getElementById('i').value);
+document.getElementById('resultat').innerHTML =
+"Puissance : " + (u*i) + " W";
+}
+</script>
