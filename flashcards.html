@@ -1,137 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Flashcards LED3</title>
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<h1>🧠 Flashcards LED3</h1>
-
-<div class="card">
-
-<h2 id="question"></h2>
-
-<button onclick="showAnswer()">Voir la réponse</button>
-
-<p id="answer"></p>
-
-<br>
-
-<button onclick="previousCard()">⬅️ Précédent</button>
-
-<button onclick="nextCard()">➡️ Suivant</button>
-
-<p id="counter"></p>
-
-</div>
-
-<script>
-
 const cards = [
+
 ["Loi d'Ohm ?","U = R × I"],
 ["Unité de tension ?","Volt"],
 ["Unité de courant ?","Ampère"],
 ["Unité de résistance ?","Ohm"],
 ["Unité de puissance ?","Watt"],
+
 ["Formule puissance ?","P = U × I"],
 ["Formule énergie ?","E = P × t"],
 ["Formule intensité ?","I = P ÷ U"],
 ["Formule tension ?","U = P ÷ I"],
+
 ["AC signifie ?","Courant alternatif"],
 ["DC signifie ?","Courant continu"],
+
 ["Que signifie CV ?","Constant Voltage"],
 ["Que signifie CC ?","Constant Current"],
+
 ["Driver CC régule ?","Le courant"],
 ["Driver CV régule ?","La tension"],
+
 ["Température 3000K ?","Blanc chaud"],
 ["Température 4000K ?","Blanc neutre"],
 ["Température 6500K ?","Blanc froid"],
+
 ["Unité flux lumineux ?","Lumen"],
 ["Unité éclairement ?","Lux"],
+
 ["IRC signifie ?","Indice de rendu des couleurs"],
 ["UGR signifie ?","Unified Glare Rating"],
+
 ["DALI signifie ?","Protocole de pilotage"],
 ["PWM signifie ?","Modulation largeur impulsion"],
+
 ["IP signifie ?","Indice de protection"],
 ["IK signifie ?","Résistance aux chocs"],
+
 ["PF signifie ?","Facteur de puissance"],
-["THD signifie ?","Distorsion harmonique"],
+["THD signifie ?","Distorsion harmonique totale"],
 ["SELV signifie ?","Très basse tension de sécurité"],
+
 ["PCB signifie ?","Circuit imprimé"],
+
 ["Montage série ?","Courant identique"],
 ["Montage parallèle ?","Tension identique"],
+
 ["En série les tensions ?","S'additionnent"],
 ["En parallèle les courants ?","S'additionnent"],
-["Chute de tension ?","Perte dans les câbles"],
-["Résistance augmente avec ?","Longueur"],
-["Résistance diminue avec ?","Section"],
-["Conduction ?","Transfert dans solide"],
-["Convection ?","Transfert avec air"],
-["Rayonnement ?","Transfert radiatif"],
-["Tj signifie ?","Température jonction"],
+
+["Chute de tension ?","Perte de tension dans les câbles"],
+
+["Résistance augmente avec ?","La longueur"],
+["Résistance diminue avec ?","La section"],
+
+["Conduction ?","Transfert thermique dans un solide"],
+["Convection ?","Transfert thermique par déplacement d'air"],
+["Rayonnement ?","Transfert thermique par rayonnement"],
+
+["Tj signifie ?","Température de jonction"],
 ["Ta signifie ?","Température ambiante"],
-["Rôle dissipateur ?","Évacuer chaleur"],
-["Rôle pâte thermique ?","Améliorer contact"],
+
+["Rôle du dissipateur ?","Évacuer la chaleur"],
+["Rôle de la pâte thermique ?","Améliorer le contact thermique"],
 ["Poche d'air ?","Mauvais transfert thermique"],
+
 ["LED ouverte ?","Coupe la chaîne série"],
+
 ["Mesure à vide suffisante ?","Non"],
 ["Mesure sous charge ?","Oui"],
-["Point chaud ?","Échauffement local"],
-["Cause ruban clignote ?","Chute tension ou driver"]
-["Formule de la puissance ?","P = U × I"],
-["Formule de l'énergie ?","E = P × t"],
-["AC signifie ?","Courant alternatif"],
-["DC signifie ?","Courant continu"],
-["Unité de la tension ?","Volt"],
-["Unité du courant ?","Ampère"],
-["Unité de la puissance ?","Watt"],
-["Température 3000K ?","Blanc chaud"],
-["Température 4000K ?","Blanc neutre"],
-["Température 6500K ?","Blanc froid"],
-["Que régule un driver CC ?","Le courant"],
-["Que signifie IRC ?","Indice de rendu des couleurs"],
-["Que signifie UGR ?","Unified Glare Rating"],
-["Les résistances thermiques en série ?","Elles s'additionnent"],
-["Conduction ?","Transfert thermique dans les solides"],
-["Convection ?","Transfert thermique avec l'air"],
-["Rayonnement ?","Transfert par rayonnement"],
-["Pourquoi un dissipateur ?","Évacuer la chaleur"],
-["Formule intensité ?","I = P ÷ U"],
-["Formule tension ?","U = P ÷ I"]
+
+["Point chaud ?","Échauffement localisé"],
+
+["Cause d'un ruban LED qui clignote ?","Chute de tension ou driver défectueux"]
 
 ];
-
-let current=0;
-
-function updateCard(){
-document.getElementById("question").innerText=cards[current][0];
-document.getElementById("answer").innerText="";
-document.getElementById("counter").innerText=
-"Carte "+(current+1)+" / "+cards.length;
-}
-
-function showAnswer(){
-document.getElementById("answer").innerText=
-cards[current][1];
-}
-
-function nextCard(){
-current++;
-if(current>=cards.length) current=0;
-updateCard();
-}
-
-function previousCard(){
-current--;
-if(current<0) current=cards.length-1;
-updateCard();
-}
-
-updateCard();
-
-</script>
-
-</body>
-</html>
