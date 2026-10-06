@@ -16,145 +16,178 @@
 
 <div class="card">
 
-<h2>Question 1</h2>
-
-<p>Que signifie CC ?</p>
-
-<label>
-<input type="radio" name="q1" value="0">
-Constant Color
-</label><br>
-
-<label>
-<input type="radio" name="q1" value="1">
-Constant Current
-</label><br>
-
-<label>
-<input type="radio" name="q1" value="0">
-Current Control
-</label>
-
-</div>
+<h1>✅ QCM LED3</h1>
 
 <div class="card">
 
-<h2>Question 2</h2>
+<h2 id="question"></h2>
 
-<p>Formule de la puissance ?</p>
+<div id="answers"></div>
 
-<label>
-<input type="radio" name="q2" value="1">
-P = U × I
-</label><br>
+<p id="result"></p>
 
-<label>
-<input type="radio" name="q2" value="0">
-P = U ÷ I
-</label><br>
+<button onclick="nextQuestion()">➡️ Suivant</button>
 
-<label>
-<input type="radio" name="q2" value="0">
-P = R × I
-</label>
-
-</div>
-
-<div class="card">
-
-<h2>Question 3</h2>
-
-<p>En série :</p>
-
-<label>
-<input type="radio" name="q3" value="1">
-Le courant est identique
-</label><br>
-
-<label>
-<input type="radio" name="q3" value="0">
-La tension est identique
-</label><br>
-
-<label>
-<input type="radio" name="q3" value="0">
-Le courant est nul
-</label>
-
-</div>
-
-<div class="card">
-
-<h2>Question 4</h2>
-
-<p>Unité du flux lumineux ?</p>
-
-<label>
-<input type="radio" name="q4" value="1">
-Lumen
-</label><br>
-
-<label>
-<input type="radio" name="q4" value="0">
-Lux
-</label><br>
-
-<label>
-<input type="radio" name="q4" value="0">
-Volt
-</label>
-
-</div>
-
-<div class="card">
-
-<h2>Question 5</h2>
-
-<p>Tj signifie :</p>
-
-<label>
-<input type="radio" name="q5" value="1">
-Température de jonction
-</label><br>
-
-<label>
-<input type="radio" name="q5" value="0">
-Température du câble
-</label><br>
-
-<label>
-<input type="radio" name="q5" value="0">
-Température du driver
-</label>
-
-</div>
-
-<div style="text-align:center;margin-top:30px;">
-
-<button onclick="corriger()">
-Corriger le QCM
-</button>
-
-<h2 id="resultat"></h2>
+<p id="score"></p>
 
 </div>
 
 <script>
 
-function corriger(){
+const banque = [
 
+{q:"En série, que reste-t-il identique ?",a:["La tension","Le courant","La puissance"],c:1},
+
+{q:"En parallèle, que reste-t-il identique ?",a:["La tension","Le courant","La résistance"],c:0},
+
+{q:"Formule de la puissance ?",a:["P = U × I","P = E × t","P = R × I"],c:0},
+
+{q:"Formule de l'énergie ?",a:["E = P × t","E = U × I","E = R × I"],c:0},
+
+{q:"Que signifie CC ?",a:["Constant Cable","Constant Current","Current Control"],c:1},
+
+{q:"Que signifie CV ?",a:["Constant Voltage","Current Voltage","Cable Voltage"],c:0},
+
+{q:"Température 3000K ?",a:["Blanc froid","Blanc neutre","Blanc chaud"],c:2},
+
+{q:"Température 4000K ?",a:["Blanc neutre","Blanc chaud","Blanc froid"],c:0},
+
+{q:"Température 6500K ?",a:["Blanc chaud","Blanc froid","Blanc neutre"],c:1},
+
+{q:"Unité du flux lumineux ?",a:["Lux","Lumen","Watt"],c:1},
+
+{q:"Unité de l'éclairement ?",a:["Lux","Lumen","Volt"],c:0},
+
+{q:"Que signifie IRC ?",a:["Indice de rendu des couleurs","Indice de résistance courant","Intensité résistive calculée"],c:0},
+
+{q:"Que signifie UGR ?",a:["Unified Glare Rating","Ultra Green Ratio","Universal Grid Resistance"],c:0},
+
+{q:"Que régule un driver CC ?",a:["La tension","Le courant","La puissance"],c:1},
+
+{q:"Que régule un driver CV ?",a:["La tension","Le courant","La température"],c:0},
+
+{q:"Montage série ?",a:["Courant identique","Tension identique","Puissance identique"],c:0},
+
+{q:"Montage parallèle ?",a:["Courant identique","Tension identique","Résistance identique"],c:1},
+
+{q:"Les tensions en série ?",a:["S'additionnent","Restent identiques","Disparaissent"],c:0},
+
+{q:"Les courants en parallèle ?",a:["Restent identiques","S'additionnent","Diminuent"],c:1},
+
+{q:"Cause fréquente d'un ruban LED qui clignote ?",a:["Driver ou chute de tension","IRC faible","Température couleur"],c:0},
+
+{q:"Que signifie IP ?",a:["Indice de protection","Indice de puissance","Indice de pilotage"],c:0},
+
+{q:"Que signifie IK ?",a:["Résistance aux chocs","Indice Kelvin","Intensité connue"],c:0},
+
+{q:"Que signifie PF ?",a:["Facteur de puissance","Puissance finale","Protection fusible"],c:0},
+
+{q:"Que signifie THD ?",a:["Distorsion harmonique totale","Thermal Heat Driver","Tension Haute Distribution"],c:0},
+
+{q:"Principal risque d'un montage série-parallèle ?",a:["Mauvais partage du courant","Tension trop faible","IRC faible"],c:0}
+
+];
+
+let questions = [];
+let current = 0;
 let score = 0;
+let answered = false;
 
-const reponses = document.querySelectorAll('input[type="radio"]:checked');
+function melanger(){
+questions = [...banque]
+.sort(()=>Math.random()-0.5)
+.slice(0,5);
+}
 
-reponses.forEach(rep => {
-score += Number(rep.value);
+function afficherQuestion(){
+
+answered = false;
+
+document.getElementById("result").innerHTML="";
+
+document.getElementById("question").innerHTML=
+questions[current].q;
+
+let html="";
+
+questions[current].a.forEach((rep,index)=>{
+
+html += `
+<button onclick="verifier(${index})">
+${rep}
+</button><br><br>
+`;
+
 });
 
-document.getElementById("resultat").innerHTML =
-"🏆 Score : " + score + "/5";
+document.getElementById("answers").innerHTML=html;
 
+document.getElementById("score").innerHTML=
+"Question "+(current+1)+" / 5";
 }
+
+function verifier(index){
+
+if(answered) return;
+
+answered = true;
+
+if(index===questions[current].c){
+
+score++;
+
+document.getElementById("result").innerHTML=
+"✅ Bonne réponse";
+
+}else{
+
+document.getElementById("result").innerHTML=
+"❌ Mauvaise réponse";
+}
+}
+
+function nextQuestion(){
+
+if(!answered) return;
+
+current++;
+
+if(current>=5){
+
+let pourcentage=Math.round((score/5)*100);
+
+let niveau="📚 Révision";
+
+if(score>=3) niveau="👍 Correct";
+if(score>=4) niveau="🥈 Très bien";
+if(score===5) niveau="🥇 Expert";
+
+document.querySelector(".card").innerHTML=`
+
+<h2>🎯 Résultat</h2>
+
+<h1>${score}/5</h1>
+
+<h2>${pourcentage}%</h2>
+
+<p>${niveau}</p>
+
+<button onclick="location.reload()">
+🔄 Nouveau QCM
+</button>
+
+`;
+
+return;
+}
+
+afficherQuestion();
+}
+
+melanger();
+afficherQuestion();
+
+</script>
 
 </script>
 
