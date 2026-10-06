@@ -1,8 +1,10 @@
 body{
-background:#0f172a;
+font-family:Arial,sans-serif;
+background:linear-gradient(180deg,#020617,#0f172a,#1e293b);
 color:white;
 margin:0;
 padding:20px;
+min-height:100vh;
 }
 
 h1{
