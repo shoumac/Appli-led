@@ -14,16 +14,16 @@ margin-bottom:25px;
 
 .card{
 display:block;
-background:#1e293b;
+background:linear-gradient(135deg,#1e293b,#334155);
 padding:20px;
 margin:15px 0;
-border-radius:15px;
+border-radius:20px;
 text-decoration:none;
 color:white;
-box-shadow:0 4px 12px rgba(0,0,0,0.3);
-transition:0.3s;
+box-shadow:0 8px 20px rgba(0,0,0,0.35);
+border-left:5px solid #38bdf8;
+transition:all 0.3s ease;
 }
-
 .card:hover{
 transform:translateY(-3px);
 background:#334155;
