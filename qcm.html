@@ -1,48 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>QCM LED3</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>✅ QCM LED3</h1>
+<div class="logo">
+✅ QCM LED3
+</div>
 
 <div class="card">
 
-<p>24V × 5A = ?</p>
+<h2>Question 1</h2>
 
-<button onclick="correct()">120W</button>
-<button onclick="wrong()">24W</button>
-<button onclick="wrong()">5W</button>
+<p>Que signifie CC ?</p>
 
-<p>AC signifie ?</p>
+<label>
+<input type="radio" name="q1" value="0">
+Constant Color
+</label><br>
 
-<button onclick="correct()">Courant alternatif</button>
-<button onclick="wrong()">Courant continu</button>
+<label>
+<input type="radio" name="q1" value="1">
+Constant Current
+</label><br>
 
-<p>3000K correspond à ?</p>
+<label>
+<input type="radio" name="q1" value="0">
+Current Control
+</label>
 
-<button onclick="correct()">Blanc chaud</button>
-<button onclick="wrong()">Blanc froid</button>
+</div>
 
-<h2 id="score">Score : 0</h2>
+<div class="card">
+
+<h2>Question 2</h2>
+
+<p>Formule de la puissance ?</p>
+
+<label>
+<input type="radio" name="q2" value="1">
+P = U × I
+</label><br>
+
+<label>
+<input type="radio" name="q2" value="0">
+P = U ÷ I
+</label><br>
+
+<label>
+<input type="radio" name="q2" value="0">
+P = R × I
+</label>
+
+</div>
+
+<div class="card">
+
+<h2>Question 3</h2>
+
+<p>En série :</p>
+
+<label>
+<input type="radio" name="q3" value="1">
+Le courant est identique
+</label><br>
+
+<label>
+<input type="radio" name="q3" value="0">
+La tension est identique
+</label><br>
+
+<label>
+<input type="radio" name="q3" value="0">
+Le courant est nul
+</label>
+
+</div>
+
+<div class="card">
+
+<h2>Question 4</h2>
+
+<p>Unité du flux lumineux ?</p>
+
+<label>
+<input type="radio" name="q4" value="1">
+Lumen
+</label><br>
+
+<label>
+<input type="radio" name="q4" value="0">
+Lux
+</label><br>
+
+<label>
+<input type="radio" name="q4" value="0">
+Volt
+</label>
+
+</div>
+
+<div class="card">
+
+<h2>Question 5</h2>
+
+<p>Tj signifie :</p>
+
+<label>
+<input type="radio" name="q5" value="1">
+Température de jonction
+</label><br>
+
+<label>
+<input type="radio" name="q5" value="0">
+Température du câble
+</label><br>
+
+<label>
+<input type="radio" name="q5" value="0">
+Température du driver
+</label>
+
+</div>
+
+<div style="text-align:center;margin-top:30px;">
+
+<button onclick="corriger()">
+Corriger le QCM
+</button>
+
+<h2 id="resultat"></h2>
 
 </div>
 
 <script>
 
-let points=0;
+function corriger(){
 
-function correct(){
-points++;
-document.getElementById("score").innerText=
-"Score : "+points;
-}
+let score = 0;
 
-function wrong(){
-alert("Mauvaise réponse");
+const reponses = document.querySelectorAll('input[type="radio"]:checked');
+
+reponses.forEach(rep => {
+score += Number(rep.value);
+});
+
+document.getElementById("resultat").innerHTML =
+"🏆 Score : " + score + "/5";
+
 }
 
 </script>
