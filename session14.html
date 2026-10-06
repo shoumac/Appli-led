@@ -12,23 +12,151 @@
 <h1>📚 Session 14</h1>
 
 <div class="card">
-<h2>🎯 À retenir</h2>
+<h2>🎯 Objectif</h2>
+
+<p>
+Comprendre pourquoi une LED chauffe et suivre la chaleur depuis la jonction jusqu'à l'air ambiant.
+</p>
+
+<h2>📖 À retenir</h2>
 
 <ul>
-<li>PWM</li>
-<li>DALI</li>
-<li>Variation de lumière</li>
-<li>Gestion intelligente des luminaires</li>
+<li>Toute la puissance électrique ne devient pas lumière.</li>
+<li>Une partie importante devient de la chaleur.</li>
+<li>La température de jonction (Tj) est critique pour le flux, la couleur et la durée de vie.</li>
+<li>La chaleur suit un chemin thermique jusqu'à l'air ambiant.</li>
+<li>Chaque interface thermique ajoute une résistance thermique.</li>
 </ul>
 
-<h2>⚡ Révision Express</h2>
+<h2>🧠 Chemin thermique</h2>
 
 <pre>
-PWM = variation
+Jonction
 
-DALI = pilotage
+↓
+
+Boîtier / PCB
+
+↓
+
+Interface thermique
+
+↓
+
+Dissipateur
+
+↓
+
+Air ambiant
 </pre>
 
+<h2>⚡ Formule à connaître</h2>
+
+<pre>
+Tj = Ta + Pdiss × Rθ totale
+</pre>
+
+<p>
+Exemple :
+</p>
+
+<pre>
+Ta = 40°C
+
+Pdiss = 10 W
+
+Rθ = 5 K/W
+
+Tj = 40 + (10 × 5)
+
+Tj = 90°C
+</pre>
+
+<h2>⚠️ Piège à éviter</h2>
+
+<p>
+La température du boîtier n'est pas automatiquement la température de jonction.
+</p>
+
+<h2>🧠 À savoir par cœur</h2>
+
+<ul>
+<li>Tj = température de jonction</li>
+<li>Ta = température ambiante</li>
+<li>Une Tj élevée réduit la durée de vie</li>
+<li>Une Tj élevée réduit le flux lumineux</li>
+<li>Le calcul thermique reste un pré-dimensionnement à valider</li>
+</ul>
+
+<h2>✅ Mini QCM</h2>
+
+<p>1. La chaleur part principalement de :</p>
+
+<ul>
+<li>✅ La jonction LED</li>
+<li>L'optique</li>
+<li>Le marquage CE</li>
+</ul>
+
+<p>2. Tj dépend notamment de :</p>
+
+<ul>
+<li>L'UGR</li>
+<li>La tension réseau seule</li>
+<li>✅ Ta, pertes et résistances thermiques</li>
+</ul>
+
+<p>3. Avec Ta = 40°C et 10 W dissipés à travers 5 K/W :</p>
+
+<ul>
+<li>450°C</li>
+<li>✅ 90°C</li>
+<li>50°C</li>
+</ul>
+
+<p>4. Une Tj élevée peut réduire :</p>
+
+<ul>
+<li>✅ La durée de vie et le flux</li>
+<li>La résistance du câble à zéro</li>
+<li>Le nombre de normes</li>
+</ul>
+
+<h2>🔧 Cas pratique</h2>
+
+<p>
+Un luminaire fermé dissipe 10 W avec une résistance thermique totale de 5 K/W dans une ambiance à 40°C.
+</p>
+
+<p>
+Calculer Tj puis vérifier si cette température reste compatible avec les limites du fabricant.
+</p>
+
+<h2>📚 Révision Express</h2>
+
+<pre>
+Une LED chauffe
+
+Tj = Ta + Pdiss × Rθ
+
+Plus Rθ augmente
+→ Tj augmente
+
+Plus Pdiss augmente
+→ Tj augmente
+
+Tj élevée
+→ Flux ↓
+→ Durée de vie ↓
+
+Jonction → PCB → Interface → Dissipateur → Air
+</pre>
+
+<hr>
+
+<p style="text-align:center;">
+🏁 Fin de la Session 14
+</p>
 </div>
 
 </body>
