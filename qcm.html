@@ -22,27 +22,33 @@ max-width:700px;
 margin:auto;
 }
 
-button{
-padding:12px 20px;
-margin:8px;
+.rep{
+display:block;
+width:100%;
+margin:10px 0;
+padding:12px;
 border:none;
 border-radius:10px;
 cursor:pointer;
 font-size:16px;
 }
 
-.rep{
-display:block;
-width:100%;
+.nav{
+padding:12px 20px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
 }
 
 #result{
-font-size:20px;
-font-weight:bold;
+margin-top:15px;
+font-size:18px;
 }
 </style>
-
 </head>
+
 <body>
 
 <div class="card">
@@ -53,9 +59,9 @@ font-weight:bold;
 
 <div id="answers"></div>
 
-<p id="result"></p>
+<div id="result"></div>
 
-<button onclick="nextQuestion()">➡️ Suivant</button>
+<button class="nav" onclick="nextQuestion()">➡️ Suivant</button>
 
 <p id="score"></p>
 
@@ -65,36 +71,75 @@ font-weight:bold;
 
 const banque = [
 
-{q:"En série, que reste-t-il identique ?",a:["La tension","Le courant","La puissance"],c:1},
-{q:"En parallèle, que reste-t-il identique ?",a:["La tension","Le courant","La résistance"],c:0},
-{q:"Formule de la puissance ?",a:["P = U × I","P = E × t","P = R × I"],c:0},
-{q:"Formule de l'énergie ?",a:["E = P × t","E = U × I","E = R × I"],c:0},
-{q:"Que signifie CC ?",a:["Constant Cable","Constant Current","Current Control"],c:1},
-{q:"Que signifie CV ?",a:["Constant Voltage","Current Voltage","Cable Voltage"],c:0},
-{q:"Température 3000K ?",a:["Blanc froid","Blanc neutre","Blanc chaud"],c:2},
-{q:"Température 4000K ?",a:["Blanc neutre","Blanc chaud","Blanc froid"],c:0},
-{q:"Température 6500K ?",a:["Blanc chaud","Blanc froid","Blanc neutre"],c:1},
-{q:"Unité du flux lumineux ?",a:["Lux","Lumen","Watt"],c:1},
-{q:"Unité de l'éclairement ?",a:["Lux","Lumen","Volt"],c:0},
-{q:"Que signifie IRC ?",a:["Indice de rendu des couleurs","Indice de résistance","Indice courant"],c:0},
-{q:"Que signifie IP ?",a:["Indice de protection","Indice puissance","Indice pilotage"],c:0},
-{q:"Que signifie IK ?",a:["Résistance aux chocs","Indice Kelvin","Intensité connue"],c:0},
-{q:"Que signifie PF ?",a:["Facteur de puissance","Puissance finale","Protection fusible"],c:0},
-{q:"Que signifie THD ?",a:["Distorsion harmonique totale","Thermal Driver","Tension harmonique"],c:0},
-{q:"Montage série ?",a:["Courant identique","Tension identique","Puissance identique"],c:0},
-{q:"Montage parallèle ?",a:["Courant identique","Tension identique","Résistance identique"],c:1},
-{q:"Les tensions en série ?",a:["S'additionnent","Restent identiques","Diminuent"],c:0},
-{q:"Les courants en parallèle ?",a:["S'additionnent","Restent identiques","Diminuent"],c:0},
-{q:"Que régule un driver CC ?",a:["Le courant","La tension","La température"],c:0},
-{q:"Que régule un driver CV ?",a:["La tension","Le courant","La puissance"],c:0},
-{q:"Le blanc chaud correspond à ?",a:["3000K","4000K","6500K"],c:0},
-{q:"Le blanc neutre correspond à ?",a:["4000K","3000K","6500K"],c:0},
-{q:"Le blanc froid correspond à ?",a:["6500K","4000K","3000K"],c:0},
-{q:"Une LED ouverte provoque ?",a:["Extinction de la chaîne","Plus de lumière","Aucun effet"],c:0},
-{q:"Le courant se mesure en ?",a:["Ampère","Volt","Watt"],c:0},
-{q:"La tension se mesure en ?",a:["Volt","Ampère","Lux"],c:0},
-{q:"La puissance se mesure en ?",a:["Watt","Volt","Lux"],c:0},
-{q:"La sécurité SELV concerne ?",a:["La basse tension","La puissance","La couleur"],c:0}
+{
+q:"En série, que reste-t-il identique ?",
+a:["La tension","Le courant","La puissance"],
+c:1,
+e:"Dans un montage série, le même courant traverse tous les composants."
+},
+
+{
+q:"En parallèle, que reste-t-il identique ?",
+a:["La tension","Le courant","La résistance"],
+c:0,
+e:"Dans un montage parallèle, chaque branche reçoit la même tension."
+},
+
+{
+q:"Formule de la puissance ?",
+a:["P = U × I","P = E × t","P = R × I"],
+c:0,
+e:"La puissance est égale à la tension multipliée par le courant."
+},
+
+{
+q:"Formule de l'énergie ?",
+a:["E = P × t","E = U × I","E = R × I"],
+c:0,
+e:"L'énergie dépend de la puissance et du temps."
+},
+
+{
+q:"Que signifie CC ?",
+a:["Constant Cable","Constant Current","Current Control"],
+c:1,
+e:"CC signifie Constant Current : courant constant."
+},
+
+{
+q:"Que signifie CV ?",
+a:["Constant Voltage","Current Voltage","Cable Voltage"],
+c:0,
+e:"CV signifie Constant Voltage : tension constante."
+},
+
+{
+q:"3000K correspond à ?",
+a:["Blanc froid","Blanc neutre","Blanc chaud"],
+c:2,
+e:"3000K correspond à une lumière chaude."
+},
+
+{
+q:"4000K correspond à ?",
+a:["Blanc neutre","Blanc chaud","Blanc froid"],
+c:0,
+e:"4000K correspond à un blanc neutre."
+},
+
+{
+q:"6500K correspond à ?",
+a:["Blanc chaud","Blanc froid","Blanc neutre"],
+c:1,
+e:"6500K correspond à un blanc froid."
+},
+
+{
+q:"Que signifie IRC ?",
+a:["Indice de rendu des couleurs","Indice de résistance courant","Intensité résistive"],
+c:0,
+e:"L'IRC mesure la qualité du rendu des couleurs."
+}
 
 ];
 
@@ -105,8 +150,7 @@ let answered = false;
 
 function melanger(){
 questions = [...banque]
-.sort(() => Math.random() - 0.5)
-.slice(0,10);
+.sort(() => Math.random() - 0.5);
 }
 
 function afficherQuestion(){
@@ -133,7 +177,7 @@ ${rep}
 document.getElementById("answers").innerHTML = html;
 
 document.getElementById("score").innerHTML =
-"Question " + (current+1) + " / 10";
+"Question " + (current+1) + " / " + questions.length;
 }
 
 function verifier(index){
@@ -142,16 +186,28 @@ if(answered) return;
 
 answered = true;
 
+let bonne =
+questions[current].a[questions[current].c];
+
 if(index === questions[current].c){
 
 score++;
-document.getElementById("result").innerHTML =
-"✅ Bonne réponse";
+
+document.getElementById("result").innerHTML = `
+✅ Bonne réponse
+<br><br>
+💡 ${questions[current].e}
+`;
 
 }else{
 
-document.getElementById("result").innerHTML =
-"❌ Mauvaise réponse";
+document.getElementById("result").innerHTML = `
+❌ Mauvaise réponse
+<br><br>
+✅ Bonne réponse : <b>${bonne}</b>
+<br><br>
+💡 ${questions[current].e}
+`;
 
 }
 
@@ -168,18 +224,21 @@ if(current >= questions.length){
 let pourcentage =
 Math.round((score/questions.length)*100);
 
+let niveau = "📚 Débutant";
+
+if(score >= questions.length*0.5) niveau = "👍 Correct";
+if(score >= questions.length*0.8) niveau = "🥈 Confirmé";
+if(score === questions.length) niveau = "🥇 Expert LED3";
+
 document.querySelector(".card").innerHTML = `
-
 <h2>🎯 Résultat</h2>
-
 <h1>${score}/${questions.length}</h1>
-
 <h2>${pourcentage}%</h2>
+<h3>${niveau}</h3>
 
-<button onclick="location.reload()">
+<button class="nav" onclick="location.reload()">
 🔄 Nouveau QCM
 </button>
-
 `;
 
 return;
