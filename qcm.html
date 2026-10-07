@@ -140,7 +140,563 @@ a:["Indice de rendu des couleurs","Indice de résistance courant","Intensité r�
 c:0,
 e:"L'IRC mesure la qualité du rendu des couleurs."
 }
+{
+q:"Une chute de tension importante provoque ?",
+a:["Baisse de luminosité","Augmentation IRC","Refroidissement"],
+c:0,
+e:"La chute de tension réduit la tension disponible pour les LED."
+},
 
+{
+q:"Cause principale d'une chute de tension ?",
+a:["Longueur de câble","IRC élevé","Température couleur"],
+c:0,
+e:"Plus le câble est long, plus la résistance augmente."
+},
+
+{
+q:"Pour réduire la chute de tension il faut ?",
+a:["Augmenter la section","Réduire les LED","Changer la couleur"],
+c:0,
+e:"Une plus grande section réduit la résistance."
+},
+
+{
+q:"Une section de câble trop faible provoque ?",
+a:["Échauffement","Refroidissement","Plus de lumens"],
+c:0,
+e:"Le courant traverse plus difficilement le câble."
+},
+
+{
+q:"Le cuivre est utilisé car il est ?",
+a:["Conducteur","Isolant","Magnétique"],
+c:0,
+e:"Le cuivre possède une faible résistance."
+},
+
+{
+q:"Un connecteur desserré provoque ?",
+a:["Échauffement","Refroidissement","Gain lumineux"],
+c:0,
+e:"Le mauvais contact augmente la résistance."
+},
+
+{
+q:"Un mauvais sertissage provoque ?",
+a:["Panne intermittente","Gain puissance","Refroidissement"],
+c:0,
+e:"Le contact électrique devient instable."
+},
+
+{
+q:"Lors d'un diagnostic, première étape ?",
+a:["Observation visuelle","Changer le driver","Remplacer la LED"],
+c:0,
+e:"Toujours commencer par l'inspection visuelle."
+},
+
+{
+q:"Un point chaud indique souvent ?",
+a:["Mauvaise dissipation","Bonne ventilation","IRC élevé"],
+c:0,
+e:"La chaleur se concentre à un endroit anormal."
+},
+
+{
+q:"Une LED noire ou brunie indique ?",
+a:["Surchauffe","Sous-tension","IRC faible"],
+c:0,
+e:"La surchauffe détériore les composants."
+},
+
+{
+q:"Température de jonction élevée = ?",
+a:["Durée de vie réduite","Durée de vie augmentée","Aucun effet"],
+c:0,
+e:"La chaleur est l'ennemi principal des LED."
+},
+
+{
+q:"Rôle du dissipateur ?",
+a:["Évacuer la chaleur","Augmenter la tension","Stocker l'énergie"],
+c:0,
+e:"Le dissipateur évacue les calories."
+},
+
+{
+q:"La pâte thermique sert à ?",
+a:["Améliorer le transfert thermique","Coller les LED","Isoler"],
+c:0,
+e:"Elle améliore le contact thermique."
+},
+
+{
+q:"Une résistance thermique faible est ?",
+a:["Meilleure","Moins bonne","Sans importance"],
+c:0,
+e:"La chaleur circule plus facilement."
+},
+
+{
+q:"Le driver chauffe anormalement. Cause possible ?",
+a:["Surcharge","IRC faible","IK élevé"],
+c:0,
+e:"Une charge excessive fatigue le driver."
+},
+
+{
+q:"Un multimètre permet de mesurer ?",
+a:["Tension et courant","IRC","UGR"],
+c:0,
+e:"C'est l'outil principal du diagnostic."
+},
+
+{
+q:"La mesure sous charge permet ?",
+a:["Détecter une panne réelle","Mesurer l'IRC","Mesurer l'UGR"],
+c:0,
+e:"Les défauts apparaissent souvent en fonctionnement."
+},
+
+{
+q:"Le flux lumineux s'exprime en ?",
+a:["Lumen","Lux","Volt"],
+c:0,
+e:"Le lumen mesure la quantité de lumière."
+},
+
+{
+q:"Le lux mesure ?",
+a:["L'éclairement","La puissance","Le courant"],
+c:0,
+e:"Le lux représente la lumière reçue sur une surface."
+},
+
+{
+q:"Plus le PF est proche de 1 ?",
+a:["Mieux c'est","Pire c'est","Aucun effet"],
+c:0,
+e:"Le facteur de puissance est meilleur."
+},
+
+{
+q:"Une valeur THD faible est ?",
+a:["Préférable","Mauvaise","Dangereuse"],
+c:0,
+e:"Moins il y a d'harmoniques, mieux c'est."
+},
+
+{
+q:"IK10 signifie ?",
+a:["Très forte résistance aux chocs","Faible résistance","Protection eau"],
+c:0,
+e:"IK mesure la résistance mécanique."
+},
+
+{
+q:"IP65 protège contre ?",
+a:["Poussières et jets d'eau","Immersion totale","Chocs"],
+c:0,
+e:"IP65 est courant en extérieur."
+},
+
+{
+q:"SELV signifie ?",
+a:["Très basse tension de sécurité","Haute tension","Protection thermique"],
+c:0,
+e:"SELV protège les utilisateurs."
+},
+
+{
+q:"Un ruban LED est généralement alimenté en ?",
+a:["Tension constante","Courant constant","230V direct"],
+c:0,
+e:"Les rubans utilisent souvent du 12V ou 24V CV."
+},
+
+{
+q:"24V présente quel avantage ?",
+a:["Moins de chute de tension","Plus de chaleur","Moins de sécurité"],
+c:0,
+e:"Le 24V réduit les pertes."
+},
+
+{
+q:"Une LED qui clignote indique souvent ?",
+a:["Driver défectueux","IRC élevé","Bon fonctionnement"],
+c:0,
+e:"Le driver est souvent en cause."
+},
+
+{
+q:"Un montage parallèle possède ?",
+a:["Plusieurs branches","Une seule branche","Aucune branche"],
+c:0,
+e:"Chaque branche reçoit la même tension."
+},
+
+{
+q:"Dans un montage série les tensions ?",
+a:["S'additionnent","Se divisent","Disparaissent"],
+c:0,
+e:"Les tensions individuelles se cumulent."
+},
+
+{
+q:"Dans un montage série-parallèle il faut ?",
+a:["Équilibrer les branches","Supprimer les drivers","Augmenter l'IRC"],
+c:0,
+e:"Le partage du courant doit être homogène."
+}
+{
+q:"Rôle principal d'un driver LED ?",
+a:["Alimenter correctement la LED","Refroidir la LED","Mesurer le flux"],
+c:0,
+e:"Le driver fournit la tension ou le courant adapté."
+},
+
+{
+q:"Une LED produit également ?",
+a:["De la chaleur","Du son","Du mouvement"],
+c:0,
+e:"Une partie de l'énergie est dissipée sous forme de chaleur."
+},
+
+{
+q:"Cause fréquente d'une LED qui ne s'allume plus ?",
+a:["Circuit ouvert","IRC faible","IK faible"],
+c:0,
+e:"Une coupure du circuit empêche le passage du courant."
+},
+
+{
+q:"Un dissipateur en aluminium est utilisé car ?",
+a:["Très bon conducteur thermique","Très léger uniquement","Isolant thermique"],
+c:0,
+e:"L'aluminium évacue efficacement la chaleur."
+},
+
+{
+q:"Plus la température augmente ?",
+a:["La durée de vie diminue","La durée de vie augmente","Aucun effet"],
+c:0,
+e:"La chaleur accélère le vieillissement des LED."
+},
+
+{
+q:"Un ruban LED 24V est préférable pour ?",
+a:["Longues distances","Courtes distances uniquement","Aucune différence"],
+c:0,
+e:"Le 24V limite les pertes en ligne."
+},
+
+{
+q:"Le courant électrique circule dans ?",
+a:["Un circuit fermé","Un circuit ouvert","Une résistance coupée"],
+c:0,
+e:"Le circuit doit être fermé pour fonctionner."
+},
+
+{
+q:"Un fusible sert à ?",
+a:["Protéger le circuit","Augmenter la lumière","Refroidir le driver"],
+c:0,
+e:"Le fusible coupe en cas de surintensité."
+},
+
+{
+q:"Une LED haute puissance nécessite souvent ?",
+a:["Un dissipateur","Une batterie","Un transformateur 400V"],
+c:0,
+e:"La chaleur doit être évacuée."
+},
+
+{
+q:"Que mesure une pince ampèremétrique ?",
+a:["Le courant","La température","Le flux lumineux"],
+c:0,
+e:"Elle permet de mesurer l'intensité sans couper le circuit."
+},
+
+{
+q:"Un point de mesure essentiel lors d'un diagnostic ?",
+a:["Sortie driver","Couleur du câble","Marque du luminaire"],
+c:0,
+e:"La sortie du driver permet de vérifier son fonctionnement."
+},
+
+{
+q:"Une LED qui s'éteint après quelques minutes indique souvent ?",
+a:["Surchauffe","Bon fonctionnement","IRC faible"],
+c:0,
+e:"Une protection thermique peut se déclencher."
+},
+
+{
+q:"Le rendement lumineux se mesure généralement en ?",
+a:["lm/W","Lux","Volt"],
+c:0,
+e:"Le rendement correspond aux lumens produits par watt."
+},
+
+{
+q:"Une alimentation surdimensionnée est généralement ?",
+a:["Acceptable","Dangereuse automatiquement","Impossible"],
+c:0,
+e:"À condition de respecter la tension ou le courant requis."
+},
+
+{
+q:"La résistance électrique s'exprime en ?",
+a:["Ohm","Volt","Lux"],
+c:0,
+e:"L'unité de résistance est l'ohm (Ω)."
+},
+
+{
+q:"Un câble chauffant anormalement indique ?",
+a:["Surintensité ou section insuffisante","IRC élevé","Bonne installation"],
+c:0,
+e:"La résistance du câble provoque l'échauffement."
+},
+
+{
+q:"La jonction LED est ?",
+a:["La zone qui produit la lumière","Le dissipateur","Le connecteur"],
+c:0,
+e:"La lumière est créée dans la jonction semi-conductrice."
+},
+
+{
+q:"Une mesure de tension se fait ?",
+a:["En parallèle","En série","Au hasard"],
+c:0,
+e:"Le voltmètre se branche en parallèle."
+},
+
+{
+q:"Une mesure de courant se fait ?",
+a:["En série","En parallèle","Sur le dissipateur"],
+c:0,
+e:"L'ampèremètre doit être traversé par le courant."
+},
+
+{
+q:"Un luminaire LED qui scintille peut être dû à ?",
+a:["THD élevée ou driver défectueux","IRC élevé","IP élevé"],
+c:0,
+e:"Les perturbations ou un mauvais driver peuvent provoquer le scintillement."
+},
+
+{
+q:"Quel est l'ennemi principal d'une LED ?",
+a:["La chaleur","La lumière","Le cuivre"],
+c:0,
+e:"La chaleur réduit fortement la durée de vie."
+},
+
+{
+q:"Une bonne interface thermique permet ?",
+a:["Un meilleur transfert de chaleur","Plus de tension","Plus d'IRC"],
+c:0,
+e:"Elle réduit la résistance thermique."
+},
+
+{
+q:"La résistance thermique s'exprime souvent en ?",
+a:["°C/W","Volt","Lux"],
+c:0,
+e:"Elle représente l'élévation de température par watt."
+},
+
+{
+q:"Un module LED remplacé doit respecter ?",
+a:["Les caractéristiques électriques","La couleur du câble","La marque du tournevis"],
+c:0,
+e:"La compatibilité électrique est indispensable."
+},
+
+{
+q:"Une chute de tension importante est visible par ?",
+a:["Une baisse de luminosité","Une hausse d'IRC","Une baisse d'IP"],
+c:0,
+e:"La LED reçoit moins de tension."
+},
+
+{
+q:"Le diagnostic doit être basé sur ?",
+a:["Des mesures","Des suppositions","Le hasard"],
+c:0,
+e:"Les mesures permettent d'identifier la vraie panne."
+},
+
+{
+q:"Plus la section augmente ?",
+a:["La chute de tension diminue","La chute de tension augmente","Aucun effet"],
+c:0,
+e:"Une plus grosse section réduit la résistance."
+},
+
+{
+q:"Une LED alimentée au mauvais courant risque ?",
+a:["D'être endommagée","D'améliorer son rendement","De refroidir"],
+c:0,
+e:"Un courant excessif réduit sa durée de vie."
+},
+
+{
+q:"Le rôle d'un connecteur est ?",
+a:["Assurer la continuité électrique","Refroidir le circuit","Augmenter les lumens"],
+c:0,
+e:"Un bon contact électrique est essentiel."
+},
+
+{
+q:"Une bonne méthode de dépannage est ?",
+a:["Observer, mesurer, conclure","Remplacer au hasard","Changer tout le système"],
+c:0,
+e:"Le diagnostic suit une méthode logique."
+},
+{
+q:"Que représente la tension ?",
+a:["Une différence de potentiel","Une puissance","Une énergie"],
+c:0,
+e:"La tension est la force qui pousse les électrons dans le circuit."
+},
+
+{
+q:"Que représente le courant ?",
+a:["Le débit d'électrons","La chaleur","La résistance"],
+c:0,
+e:"Le courant correspond à la circulation des électrons."
+},
+
+{
+q:"L'unité de l'énergie est ?",
+a:["Wh","Lux","Ampère"],
+c:0,
+e:"L'énergie électrique est souvent exprimée en Wh ou kWh."
+},
+
+{
+q:"1 kWh correspond à ?",
+a:["1000 Wh","100 Wh","10 Wh"],
+c:0,
+e:"1 kilowattheure = 1000 wattheures."
+},
+
+{
+q:"Une alimentation CV fournit ?",
+a:["Une tension fixe","Un courant fixe","Une puissance fixe"],
+c:0,
+e:"CV = Constant Voltage."
+},
+
+{
+q:"Un driver CC fournit ?",
+a:["Un courant fixe","Une tension fixe","Une résistance fixe"],
+c:0,
+e:"CC = Constant Current."
+},
+
+{
+q:"Dans un circuit série, le courant est ?",
+a:["Identique partout","Différent partout","Nul"],
+c:0,
+e:"Le même courant traverse tous les composants."
+},
+
+{
+q:"Dans un circuit parallèle, la tension est ?",
+a:["Identique sur chaque branche","Différente partout","Nulle"],
+c:0,
+e:"Chaque branche reçoit la même tension."
+},
+
+{
+q:"Trois LED de 3V montées en série nécessitent environ ?",
+a:["9V","3V","12V"],
+c:0,
+e:"Les tensions s'additionnent en série."
+},
+
+{
+q:"Trois branches de 350mA en parallèle consomment ?",
+a:["1050mA","350mA","700mA"],
+c:0,
+e:"Les courants s'additionnent en parallèle."
+},
+
+{
+q:"Pourquoi utiliser un montage série ?",
+a:["Même courant partout","Même tension partout","Plus de chaleur"],
+c:0,
+e:"Toutes les LED reçoivent le même courant."
+},
+
+{
+q:"Pourquoi utiliser un montage parallèle ?",
+a:["Même tension sur chaque branche","Même courant sur chaque branche","Moins de lumière"],
+c:0,
+e:"Chaque branche reçoit la même tension."
+},
+
+{
+q:"Une LED alimentée directement en 230V ?",
+a:["Impossible sans électronique adaptée","Toujours possible","Recommandé"],
+c:0,
+e:"Un driver est nécessaire."
+},
+
+{
+q:"Le symbole U désigne ?",
+a:["La tension","Le courant","La puissance"],
+c:0,
+e:"U = tension électrique."
+},
+
+{
+q:"Le symbole I désigne ?",
+a:["Le courant","La tension","La résistance"],
+c:0,
+e:"I = intensité du courant."
+},
+
+{
+q:"Le symbole P désigne ?",
+a:["La puissance","La tension","Le flux lumineux"],
+c:0,
+e:"P = puissance."
+},
+
+{
+q:"Si une LED série est coupée ?",
+a:["Toute la chaîne s'éteint","Rien ne change","Les autres brillent plus"],
+c:0,
+e:"Le circuit est ouvert."
+},
+
+{
+q:"Le principal avantage des LED est ?",
+a:["Faible consommation","Forte chaleur","Poids élevé"],
+c:0,
+e:"Les LED ont un excellent rendement."
+},
+
+{
+q:"Un module LED doit être compatible avec ?",
+a:["Le driver","La peinture","Le support mural"],
+c:0,
+e:"La compatibilité électrique est essentielle."
+},
+
+{
+q:"Un mauvais choix de driver peut provoquer ?",
+a:["Une panne","Un meilleur rendement","Aucun effet"],
+c:0,
+e:"Le courant ou la tension peuvent être inadaptés."
+},
 ];
 
 let questions = [];
