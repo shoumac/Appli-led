@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
-<title>Cas pratiques</title>
+<title>Cas Pratiques LED3</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
 <a href="index.html" class="btn-retour">⬅ Retour</a>
-<h1>🔧 Cas Pratiques</h1>
+
+<h1>🔧 Cas Pratiques LED3</h1>
 
 <div class="card">
 
-<h2>Ruban LED qui clignote</h2>
+<h2>📍 Cas n°1 : Ruban LED qui clignote</h2>
+
+<p>Le client signale qu'un ruban LED 24V clignote régulièrement.</p>
 
 <ul>
 <li>Driver défectueux</li>
@@ -21,11 +27,29 @@
 <li>Chute de tension</li>
 </ul>
 
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+1. Vérifier la sortie du driver.<br>
+2. Contrôler les connexions.<br>
+3. Vérifier la longueur du ruban.<br>
+4. Contrôler la chute de tension.
+</p>
+
+<p>
+💡 Cause fréquente : driver défectueux ou chute de tension.
+</p>
+
+</details>
+
 </div>
 
 <div class="card">
 
-<h2>LED ne s'allume pas</h2>
+<h2>📍 Cas n°2 : LED ne s'allume pas</h2>
+
+<p>Le luminaire reste complètement éteint.</p>
 
 <ul>
 <li>Polarité inversée</li>
@@ -33,6 +57,227 @@
 <li>Câble coupé</li>
 <li>LED défectueuse</li>
 </ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+Toujours commencer par mesurer la sortie du driver.
+</p>
+
+<p>
+💡 Vérifier ensuite le câblage et la continuité du circuit.
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°3 : Luminaire faible en bout de ligne</h2>
+
+<p>Le début éclaire normalement mais la fin beaucoup moins.</p>
+
+<ul>
+<li>Chute de tension</li>
+<li>IRC faible</li>
+<li>THD élevée</li>
+<li>IK faible</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Diagnostic : chute de tension.
+</p>
+
+<ul>
+<li>Augmenter la section du câble</li>
+<li>Réduire la longueur</li>
+<li>Alimenter des deux côtés</li>
+</ul>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°4 : Driver qui chauffe</h2>
+
+<p>Le driver devient brûlant après quelques minutes.</p>
+
+<ul>
+<li>Surcharge</li>
+<li>Mauvaise ventilation</li>
+<li>Compatibilité incorrecte</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Vérifier la puissance totale du système LED.
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°5 : LED qui s'éteint après 10 minutes</h2>
+
+<p>La LED fonctionne puis s'éteint progressivement.</p>
+
+<ul>
+<li>Surchauffe</li>
+<li>Dissipateur insuffisant</li>
+<li>Protection thermique</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Diagnostic : problème thermique.
+</p>
+
+<ul>
+<li>Vérifier le dissipateur</li>
+<li>Contrôler la pâte thermique</li>
+<li>Améliorer la ventilation</li>
+</ul>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°6 : Module LED complètement éteint</h2>
+
+<p>Le driver fonctionne mais aucun éclairage n'est visible.</p>
+
+<ul>
+<li>LED coupée</li>
+<li>Connecteur débranché</li>
+<li>Piste endommagée</li>
+<li>Mauvais câblage</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Une LED ouverte dans une chaîne série coupe tout le circuit.
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°7 : Connecteur qui chauffe</h2>
+
+<p>Le luminaire fonctionne mais un connecteur devient très chaud.</p>
+
+<ul>
+<li>Mauvais serrage</li>
+<li>Oxydation</li>
+<li>Section insuffisante</li>
+<li>Surcharge</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Un mauvais contact augmente la résistance et provoque un échauffement.
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°8 : Driver qui se met en sécurité</h2>
+
+<p>Le luminaire s'allume puis s'éteint quelques secondes plus tard.</p>
+
+<ul>
+<li>Surcharge</li>
+<li>Court-circuit</li>
+<li>Surchauffe</li>
+<li>Module incompatible</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Vérifier la puissance totale et la compatibilité du système.
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°9 : Éclairage trop faible</h2>
+
+<p>Le client trouve que le luminaire éclaire moins qu'avant.</p>
+
+<ul>
+<li>Vieillissement LED</li>
+<li>Surchauffe</li>
+<li>Driver dégradé</li>
+<li>Encrassement optique</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Mesurer le courant et vérifier les températures.
+</p>
+
+</details>
+
+</div>
+
+<div class="card">
+
+<h2>📍 Cas n°10 : Chute de tension importante</h2>
+
+<p>La première LED éclaire normalement mais les dernières sont faibles.</p>
+
+<ul>
+<li>Câble trop long</li>
+<li>Section trop faible</li>
+<li>Courant trop élevé</li>
+<li>Toutes les réponses</li>
+</ul>
+
+<details>
+<summary>✅ Voir la correction</summary>
+
+<p>
+💡 Bonne réponse : Toutes les réponses.
+</p>
+
+<ul>
+<li>Augmenter la section</li>
+<li>Réduire la longueur</li>
+<li>Alimenter des deux côtés</li>
+</ul>
+
+</details>
 
 </div>
 
