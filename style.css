@@ -176,5 +176,22 @@ padding:14px;
 .container{
 grid-template-columns:1fr;
 }
+/* ===== LOGO LED3 ===== */
 
+.logo-led3{
+width:180px;
+display:block;
+margin:20px auto;
+background:white;
+padding:15px;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.slogan{
+text-align:center;
+font-size:18px;
+color:#38bdf8;
+margin-bottom:20px;
+}
 }
