@@ -785,6 +785,32 @@ if(!answered) return;
 
 current++;
 
+/* Pause toutes les 5 questions */
+
+if(current > 0 && current % 5 === 0 && current < questions.length){
+
+document.querySelector(".card").innerHTML = `
+
+<h2>📚 Fin du bloc</h2>
+
+<h1>${score}/${current}</h1>
+
+<p>
+Tu viens de terminer 5 questions.
+</p>
+
+<button class="nav" onclick="reprendreQCM()">
+➡️ Continuer
+</button>
+
+`;
+
+return;
+
+}
+
+/* Fin du QCM */
+
 if(current >= questions.length){
 
 let pourcentage =
@@ -792,19 +818,29 @@ Math.round((score/questions.length)*100);
 
 let niveau = "📚 Débutant";
 
-if(score >= questions.length*0.5) niveau = "👍 Correct";
-if(score >= questions.length*0.8) niveau = "🥈 Confirmé";
-if(score === questions.length) niveau = "🥇 Expert LED3";
+if(pourcentage >= 50)
+niveau = "👍 Correct";
+
+if(pourcentage >= 80)
+niveau = "🥈 Confirmé";
+
+if(pourcentage === 100)
+niveau = "🥇 Expert LED3";
 
 document.querySelector(".card").innerHTML = `
-<h2>🎯 Résultat</h2>
+
+<h2>🎯 Résultat Final</h2>
+
 <h1>${score}/${questions.length}</h1>
+
 <h2>${pourcentage}%</h2>
+
 <h3>${niveau}</h3>
 
 <button class="nav" onclick="location.reload()">
 🔄 Nouveau QCM
 </button>
+
 `;
 
 return;
@@ -814,8 +850,29 @@ afficherQuestion();
 
 }
 
-melanger();
+function reprendreQCM(){
+
+document.querySelector(".card").innerHTML = `
+
+<h1>✅ QCM LED3</h1>
+
+<h2 id="question"></h2>
+
+<div id="answers"></div>
+
+<div id="result"></div>
+
+<button class="nav" onclick="nextQuestion()">
+➡️ Suivant
+</button>
+
+<p id="score"></p>
+
+`;
+
 afficherQuestion();
+
+}
 
 </script>
 
