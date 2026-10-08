@@ -197,3 +197,16 @@ font-size:18px;
 color:#38bdf8;
 margin-bottom:20px;
 }
+.card{
+backdrop-filter:blur(10px);
+}
+
+.card h2{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
