@@ -1,231 +1,366 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0f172a">
+
 <title>Examen Blanc LED3</title>
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial,sans-serif;
+padding:20px;
+text-align:center;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+max-width:700px;
+margin:auto;
+}
+
+.rep{
+display:block;
+width:100%;
+margin:10px 0;
+padding:12px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.nav{
+padding:12px 20px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+}
+
+.btn-retour{
+display:inline-block;
+padding:10px 15px;
+background:#38bdf8;
+color:white;
+text-decoration:none;
+border-radius:10px;
+margin-bottom:20px;
+font-weight:bold;
+}
+
+.selected{
+outline:3px solid #38bdf8;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<a class="card" href="index.html">⬅ Retour</a>
-
-<h1>🎯 Examen Blanc LED3</h1>
-
-<div class="card">
-<h2>⚡ Partie 1 - Électricité</h2>
-
-<p>1. Loi d'Ohm ?</p>
-<ul>
-<li>U = R × I ✅</li>
-<li>U = P × I</li>
-<li>U = R ÷ I</li>
-</ul>
-
-<p>2. Unité du courant ?</p>
-<ul>
-<li>Volt</li>
-<li>Ampère ✅</li>
-<li>Watt</li>
-</ul>
-
-<p>3. Unité de puissance ?</p>
-<ul>
-<li>Watt ✅</li>
-<li>Lux</li>
-<li>Lumen</li>
-</ul>
-
-<p>4. Formule puissance ?</p>
-<ul>
-<li>P = U × I ✅</li>
-<li>P = U ÷ I</li>
-<li>P = R × U</li>
-</ul>
-
-<p>5. Unité résistance ?</p>
-<ul>
-<li>Ohm ✅</li>
-<li>Volt</li>
-<li>Lux</li>
-</ul>
-
-</div>
+<a href="index.html" class="btn-retour">
+⬅ Retour
+</a>
 
 <div class="card">
 
-<h2>💡 Partie 2 - LED & Drivers</h2>
+<h1>🎓 Examen Blanc LED3</h1>
 
-<p>6. Driver CC signifie ?</p>
-<ul>
-<li>Constant Current ✅</li>
-<li>Constant Color</li>
-<li>Current Control</li>
-</ul>
+<p>25 questions aléatoires</p>
 
-<p>7. Driver CV signifie ?</p>
-<ul>
-<li>Constant Voltage ✅</li>
-<li>Current Voltage</li>
-<li>Control Voltage</li>
-</ul>
+<h2 id="question"></h2>
 
-<p>8. Fonction du driver ?</p>
-<ul>
-<li>Alimenter les LED ✅</li>
-<li>Refroidir les LED</li>
-<li>Mesurer la température</li>
-</ul>
+<div id="answers"></div>
 
-<p>9. Température 3000K ?</p>
-<ul>
-<li>Blanc chaud ✅</li>
-<li>Blanc froid</li>
-<li>Bleu</li>
-</ul>
+<button class="nav" onclick="valider()">
+✅ Valider
+</button>
 
-<p>10. Température 6500K ?</p>
-<ul>
-<li>Blanc froid ✅</li>
-<li>Blanc chaud</li>
-<li>Orange</li>
-</ul>
+<p id="progression"></p>
 
 </div>
 
-<div class="card">
+<script>
 
-<h2>📏 Partie 3 - Câblage</h2>
+const banque = [
 
-<p>11. En série :</p>
-<ul>
-<li>Courant identique ✅</li>
-<li>Tension identique</li>
-<li>Courant nul</li>
-</ul>
+{
+q:"Loi d'Ohm ?",
+a:["U = R × I","U = P × I","U = R ÷ I"],
+c:0
+},
 
-<p>12. En parallèle :</p>
-<ul>
-<li>Même tension ✅</li>
-<li>Même courant</li>
-<li>Aucune tension</li>
-</ul>
+{
+q:"Unité du courant ?",
+a:["Volt","Ampère","Watt"],
+c:1
+},
 
-<p>13. Une LED ouverte en série :</p>
-<ul>
-<li>Coupe la chaîne ✅</li>
-<li>Double la tension</li>
-<li>Ne change rien</li>
-</ul>
+{
+q:"Unité de puissance ?",
+a:["Watt","Lux","Lumen"],
+c:0
+},
 
-<p>14. La résistance augmente avec :</p>
-<ul>
-<li>La longueur ✅</li>
-<li>La section</li>
-<li>Le refroidissement</li>
-</ul>
+{
+q:"Formule de la puissance ?",
+a:["P = U × I","P = U ÷ I","P = R × U"],
+c:0
+},
 
-<p>15. La résistance diminue avec :</p>
-<ul>
-<li>La section ✅</li>
-<li>La longueur</li>
-<li>La température</li>
-</ul>
+{
+q:"Unité de résistance ?",
+a:["Ohm","Volt","Lux"],
+c:0
+},
 
-</div>
+{
+q:"Que signifie CC ?",
+a:["Constant Current","Constant Color","Current Control"],
+c:0
+},
 
-<div class="card">
+{
+q:"Que signifie CV ?",
+a:["Constant Voltage","Current Voltage","Control Voltage"],
+c:0
+},
 
-<h2>🌡️ Partie 4 - Thermique</h2>
+{
+q:"Rôle du driver ?",
+a:["Alimenter la LED","Refroidir la LED","Mesurer la température"],
+c:0
+},
 
-<p>16. Tj signifie :</p>
-<ul>
-<li>Température de jonction ✅</li>
-<li>Température du câble</li>
-<li>Température driver</li>
-</ul>
+{
+q:"3000K correspond à ?",
+a:["Blanc chaud","Blanc froid","Bleu"],
+c:0
+},
 
-<p>17. Rôle dissipateur ?</p>
-<ul>
-<li>Évacuer la chaleur ✅</li>
-<li>Alimenter la LED</li>
-<li>Créer de la lumière</li>
-</ul>
+{
+q:"6500K correspond à ?",
+a:["Blanc froid","Blanc chaud","Orange"],
+c:0
+},
 
-<p>18. Une poche d'air :</p>
-<ul>
-<li>Dégrade le transfert thermique ✅</li>
-<li>L'améliore</li>
-<li>Ne change rien</li>
-</ul>
+{
+q:"En série le courant est ?",
+a:["Identique","Différent","Nul"],
+c:0
+},
 
-<p>19. Conduction :</p>
-<ul>
-<li>Transfert dans un solide ✅</li>
-<li>Transfert dans l'air</li>
-<li>Transfert lumineux</li>
-</ul>
+{
+q:"En parallèle la tension est ?",
+a:["Identique","Différente","Nulle"],
+c:0
+},
 
-<p>20. Rayonnement :</p>
-<ul>
-<li>Mode de transfert thermique ✅</li>
-<li>Mode électrique</li>
-<li>Mode optique</li>
-</ul>
+{
+q:"Une LED coupée en série ?",
+a:["Coupe toute la chaîne","Ne change rien","Double la tension"],
+c:0
+},
 
-</div>
+{
+q:"La résistance augmente avec ?",
+a:["La longueur","La section","Le refroidissement"],
+c:0
+},
 
-<div class="card">
+{
+q:"La résistance diminue avec ?",
+a:["La section","La longueur","La température"],
+c:0
+},
 
-<h2>🔧 Partie 5 - Diagnostic</h2>
+{
+q:"Tj signifie ?",
+a:["Température de jonction","Température du câble","Température driver"],
+c:0
+},
 
-<p>21. Une mesure à vide :</p>
-<ul>
-<li>Ne garantit rien ✅</li>
-<li>Garantit le fonctionnement</li>
-<li>Double le courant</li>
-</ul>
+{
+q:"Rôle du dissipateur ?",
+a:["Évacuer la chaleur","Créer la lumière","Alimenter la LED"],
+c:0
+},
 
-<p>22. Mesure recommandée :</p>
-<ul>
-<li>Sous charge ✅</li>
-<li>Hors tension uniquement</li>
-<li>Au hasard</li>
-</ul>
+{
+q:"Une poche d'air provoque ?",
+a:["Mauvais transfert thermique","Meilleur transfert","Aucun effet"],
+c:0
+},
 
-<p>23. Point chaud :</p>
-<ul>
-<li>Échauffement local ✅</li>
-<li>Refroidissement</li>
-<li>Coupure réseau</li>
-</ul>
+{
+q:"La conduction est ?",
+a:["Un transfert dans un solide","Un transfert lumineux","Un transfert électrique"],
+c:0
+},
 
-<p>24. Cause possible d'un clignotement :</p>
-<ul>
-<li>Driver défectueux ✅</li>
-<li>Température de couleur</li>
-<li>IRC élevé</li>
-</ul>
+{
+q:"Le rayonnement est ?",
+a:["Un mode de transfert thermique","Une tension","Une résistance"],
+c:0
+},
 
-<p>25. Première étape du diagnostic :</p>
-<ul>
-<li>Vérifier l'alimentation ✅</li>
-<li>Changer toutes les LED</li>
-<li>Changer le dissipateur</li>
-</ul>
+{
+q:"Mesure recommandée ?",
+a:["Sous charge","À vide","Au hasard"],
+c:0
+},
 
-</div>
+{
+q:"Point chaud = ?",
+a:["Échauffement local","Refroidissement","Panne réseau"],
+c:0
+},
 
-<div class="card">
+{
+q:"Cause fréquente d'un clignotement ?",
+a:["Driver défectueux","IRC élevé","Couleur chaude"],
+c:0
+},
 
-<h2>🏆 Barème</h2>
+{
+q:"Première étape du diagnostic ?",
+a:["Observer","Remplacer","Démonter"],
+c:0
+},
 
-<p>22 à 25 : Expert LED3</p>
-<p>18 à 21 : Très bon niveau</p>
-<p>14 à 17 : Niveau correct</p>
-<p>Moins de 14 : Révision recommandée</p>
+{
+q:"Ennemi principal des LED ?",
+a:["La chaleur","Le cuivre","La lumière"],
+c:0
+}
 
-</div>
+];
+
+let examen = [...banque]
+.sort(() => Math.random() - 0.5)
+.slice(0,25);
+
+let current = 0;
+let score = 0;
+let choix = null;
+
+function afficherQuestion(){
+
+document.getElementById("question").innerHTML =
+examen[current].q;
+
+let html = "";
+
+examen[current].a.forEach((rep,index)=>{
+
+html += `
+<button class="rep"
+onclick="selectionner(${index},this)">
+${rep}
+</button>
+`;
+
+});
+
+document.getElementById("answers").innerHTML = html;
+
+document.getElementById("progression").innerHTML =
+"Question " + (current+1) + " / 25";
+
+}
+
+function selectionner(index,element){
+
+choix = index;
+
+document.querySelectorAll(".rep").forEach(btn=>{
+btn.classList.remove("selected");
+});
+
+element.classList.add("selected");
+
+}
+
+function valider(){
+
+if(choix === null){
+
+alert("Choisis une réponse");
+
+return;
+
+}
+
+if(choix === examen[current].c){
+
+score++;
+
+}
+
+choix = null;
+
+current++;
+
+if(current >= 25){
+
+finExamen();
+
+return;
+
+}
+
+afficherQuestion();
+
+}
+
+function finExamen(){
+
+let pourcentage =
+Math.round((score/25)*100);
+
+let niveau = "📚 À retravailler";
+
+if(pourcentage >= 50)
+niveau = "👍 Correct";
+
+if(pourcentage >= 70)
+niveau = "🥈 Bon niveau";
+
+if(pourcentage >= 85)
+niveau = "🥇 Prêt LED3";
+
+document.querySelector(".card").innerHTML = `
+
+<h1>🎯 Résultat Final</h1>
+
+<h2>${score}/25</h2>
+
+<h2>${pourcentage}%</h2>
+
+<h3>${niveau}</h3>
+
+<button class="nav"
+onclick="location.reload()">
+🔄 Refaire l'examen
+</button>
+
+`;
+
+}
+
+afficherQuestion();
+
+</script>
 
 </body>
 </html>
