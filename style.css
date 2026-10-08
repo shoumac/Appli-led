@@ -181,14 +181,14 @@ grid-template-columns:1fr;
 
 /* ===== LOGO ===== */
 
-.logo-3{
-width:180px;
-display:block;
-margin:20px auto;
+.logo-led3{
+width:80px;
+position:absolute;
+top:15px;
+right:15px;
 background:white;
-padding:15px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(0,0,0,0.3);
+padding:5px;
+border-radius:10px;
 }
 
 .slogan{
