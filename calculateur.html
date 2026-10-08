@@ -1,20 +1,115 @@
-<h2>Calculateur de puissance</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-Tension (V)
-<input type="number" id="u">
+<title>Calculateur de Puissance</title>
 
-Courant (A)
-<input type="number" id="i">
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#0f172a;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.card{
+background:#1e293b;
+max-width:600px;
+margin:auto;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+.btn-retour{
+display:inline-block;
+margin-bottom:20px;
+padding:10px 20px;
+background:#38bdf8;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;
+}
+
+input{
+width:90%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+font-size:16px;
+text-align:center;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+font-weight:bold;
+background:#22c55e;
+color:white;
+}
+
+#resultat{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" class="btn-retour">⬅ Retour</a>
+
+<div class="card">
+
+<h1>⚡ Calculateur de Puissance</h1>
+
+<p>P = U × I</p>
+
+<input type="number" id="u" placeholder="Tension (V)">
+
+<input type="number" id="i" placeholder="Courant (A)">
 
 <button onclick="calcul()">Calculer</button>
 
 <p id="resultat"></p>
 
+</div>
+
 <script>
+
 function calcul(){
-let u=parseFloat(document.getElementById('u').value);
-let i=parseFloat(document.getElementById('i').value);
-document.getElementById('resultat').innerHTML =
-"Puissance : " + (u*i) + " W";
+
+let u = parseFloat(document.getElementById("u").value);
+let i = parseFloat(document.getElementById("i").value);
+
+if(isNaN(u) || isNaN(i)){
+
+document.getElementById("resultat").innerHTML =
+"❌ Remplissez tous les champs";
+
+return;
+
 }
+
+let puissance = u * i;
+
+document.getElementById("resultat").innerHTML =
+"⚡ Puissance : <b>" + puissance.toFixed(2) + " W</b>";
+
+}
+
 </script>
+
+</body>
+</html>
