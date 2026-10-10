@@ -224,7 +224,6 @@ a {
         gap: 14px;
         margin-top: 20px;
     }
-}
 
 /* ACCESSIBILITÉ */
 
@@ -234,5 +233,24 @@ a {
     *::after {
         scroll-behavior: auto !important;
         transition: none !important;
+    }
+}
+
+/* LOGO AVEC ANGLES ARRONDIS */
+
+.logo-led3 {
+    border-radius: 20px;
+    object-fit: contain;
+    overflow: hidden;
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* EFFET AU SURVOL */
+
+@media (hover: hover) {
+    .logo-led3:hover {
+        transform: scale(1.04);
+        box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
     }
 }
