@@ -3,895 +3,1625 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QCM LED3</title>
+
+<title>QCM LED3 Academy</title>
 
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#0f172a;
-color:white;
-text-align:center;
-padding:20px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --fond: #080d1b;
+    --carte: #111a2e;
+    --carte-claire: #18243d;
+    --texte: #f4f7ff;
+    --secondaire: #a9b7d0;
+    --bleu: #4387ff;
+    --violet: #8b5cf6;
+    --vert: #22c55e;
+    --rouge: #ef4444;
+    --bordure: rgba(255,255,255,0.10);
 }
 
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-max-width:700px;
-margin:auto;
+* {
+    box-sizing: border-box;
 }
 
-.rep{
-display:block;
-width:100%;
-margin:10px 0;
-padding:12px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-size:16px;
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    color: var(--texte);
+    background:
+        radial-gradient(ellipse at top left, #172c52 0%, transparent 45%),
+        radial-gradient(ellipse at bottom right, #251547 0%, transparent 40%),
+        var(--fond);
 }
 
-.nav{
-padding:12px 20px;
-margin-top:15px;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-size:16px;
+button {
+    font-family: inherit;
 }
 
-#result{
-margin-top:15px;
-font-size:18px;
+.page {
+    max-width: 850px;
+    margin: auto;
+}
+
+.entete {
+    text-align: center;
+    padding: 20px 0 25px;
+}
+
+.logo {
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+
+.entete h1 {
+    font-size: clamp(25px, 5vw, 38px);
+    margin: 0;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ffffff, #7daaff, #b99aff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.entete p {
+    color: var(--secondaire);
+    margin-top: 8px;
+    font-size: 14px;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.badge {
+    background: rgba(67,135,255,0.12);
+    border: 1px solid rgba(67,135,255,0.25);
+    padding: 8px 13px;
+    border-radius: 30px;
+    color: #c9dcff;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.carte {
+    background: rgba(17,26,46,0.95);
+    border: 1px solid var(--bordure);
+    border-radius: 22px;
+    padding: clamp(18px, 4vw, 30px);
+    margin-bottom: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+}
+
+h2 {
+    font-size: 22px;
+    margin-top: 0;
+}
+
+.texte-secondaire {
+    color: var(--secondaire);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.bouton {
+    border: none;
+    border-radius: 12px;
+    padding: 13px 19px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.bouton:hover {
+    transform: translateY(-2px);
+}
+
+.bouton:disabled {
+    cursor: default;
+    opacity: 0.8;
+    transform: none;
+}
+
+.principal {
+    color: white;
+    background: linear-gradient(135deg, var(--bleu), var(--violet));
+}
+
+.secondaire {
+    color: white;
+    background: var(--carte-claire);
+    border: 1px solid var(--bordure);
+}
+
+.bouton-retour {
+    display: inline-block;
+    color: var(--secondaire);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+.bouton-retour:hover {
+    color: white;
+}
+
+.barre-infos {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    color: var(--secondaire);
+    font-size: 12px;
+    margin-bottom: 13px;
+}
+
+.progression {
+    height: 8px;
+    background: #26324a;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 25px;
+}
+
+.progression-interne {
+    height: 100%;
+    width: 0%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, var(--bleu), var(--violet));
+    transition: width 0.3s;
+}
+
+.numero-question {
+    color: #8eb7ff;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.question {
+    font-size: clamp(18px, 3vw, 23px);
+    line-height: 1.5;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.reponses {
+    display: grid;
+    gap: 12px;
+}
+
+.reponse {
+    width: 100%;
+    text-align: left;
+    background: #172239;
+    color: var(--texte);
+    border: 1px solid rgba(255,255,255,0.10);
+    padding: 16px;
+    border-radius: 13px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.6;
+    transition: background 0.2s, border 0.2s;
+}
+
+.reponse:hover:not(:disabled) {
+    background: #223352;
+    border-color: var(--bleu);
+}
+
+.reponse.correcte {
+    background: rgba(34,197,94,0.13);
+    border-color: var(--vert);
+}
+
+.reponse.incorrecte {
+    background: rgba(239,68,68,0.13);
+    border-color: var(--rouge);
+}
+
+.reponse:disabled {
+    cursor: default;
+}
+
+.lettre {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 29px;
+    height: 29px;
+    margin-right: 10px;
+    border-radius: 9px;
+    background: rgba(255,255,255,0.08);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.correction {
+    display: none;
+    margin-top: 20px;
+    padding: 17px;
+    border-radius: 13px;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+.correction.visible {
+    display: block;
+}
+
+.correction.ok {
+    background: rgba(34,197,94,0.10);
+    border: 1px solid rgba(34,197,94,0.30);
+}
+
+.correction.erreur {
+    background: rgba(239,68,68,0.10);
+    border: 1px solid rgba(239,68,68,0.30);
+}
+
+.correction strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 22px;
+}
+
+.actions .bouton {
+    flex: 1;
+    min-width: 130px;
+}
+
+.centre {
+    text-align: center;
+}
+
+.icone-resultat {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+.score-final {
+    font-size: 55px;
+    font-weight: 800;
+    margin: 12px 0;
+    background: linear-gradient(90deg, #6ba2ff, #b99aff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.stat {
+    padding: 17px 8px;
+    border: 1px solid var(--bordure);
+    background: #172239;
+    border-radius: 13px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 23px;
+}
+
+.stat span {
+    display: block;
+    font-size: 11px;
+    color: var(--secondaire);
+    margin-top: 5px;
+}
+
+.bloc-titre {
+    color: #9bbdff;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.masque {
+    display: none;
+}
+
+.pied {
+    text-align: center;
+    color: #7787a3;
+    font-size: 11px;
+    padding: 10px 0 25px;
+}
+
+@media (max-width: 550px) {
+    body {
+        padding: 12px;
+    }
+
+    .carte {
+        border-radius: 17px;
+    }
+
+    .stats {
+        gap: 7px;
+    }
+
+    .stat strong {
+        font-size: 19px;
+    }
+
+    .stat span {
+        font-size: 10px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions .bouton {
+        width: 100%;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<a href="index.html" class="btn-retour">⬅ Retour</a>
+<div class="page">
 
-<div class="card">
+    <a href="index.html" class="bouton-retour">← Retour à l'accueil</a>
 
-<h1>✅ QCM LED3</h1>
+    <header class="entete">
+        <div class="logo">⚡</div>
+        <h1>LED3 ACADEMY</h1>
+        <p>Entraîne-toi, comprends et progresse vers ta certification.</p>
 
-<h2 id="question"></h2>
+        <div class="badges">
+            <span class="badge">📚 90 questions</span>
+            <span class="badge">🎯 Réponses aléatoires</span>
+            <span class="badge">💡 Corrections expliquées</span>
+        </div>
+    </header>
 
-<div id="answers"></div>
+    <!-- ÉCRAN D'ACCUEIL -->
 
-<div id="result"></div>
+    <section id="accueil" class="carte centre">
+        <h2>🚀 Prêt à t'entraîner ?</h2>
 
-<button class="nav" onclick="nextQuestion()">➡️ Suivant</button>
+        <p class="texte-secondaire">
+            Teste tes connaissances sur les systèmes LED, les alimentations,
+            les calculs électriques, les unités photométriques, les protections
+            et le dépannage.
+        </p>
 
-<p id="score"></p>
+        <p class="texte-secondaire">
+            Le QCM contient 90 questions. Une correction apparaît après
+            chaque réponse et une pause est proposée toutes les 5 questions.
+        </p>
 
-</div>
-<div class="card">
+        <p class="texte-secondaire">
+            Prends le temps de lire les explications : le but est de comprendre,
+            pas seulement de retenir les réponses.
+        </p>
 
-<h1>✅ QCM LED3</h1>
+        <button class="bouton principal" onclick="demarrerQCM()">
+            Commencer le QCM ⚡
+        </button>
+    </section>
 
-<h2 id="question"></h2>
+    <!-- ÉCRAN QUESTION -->
 
-<div id="answers"></div>
+    <section id="zoneQCM" class="carte masque">
 
-<div id="result"></div>
+        <div class="barre-infos">
+            <span id="compteur">Question 1 / 90</span>
+            <span id="scoreActuel">Score : 0</span>
+        </div>
 
-<button class="nav" onclick="nextQuestion()">➡️ Suivant</button>
+        <div class="progression">
+            <div id="barreProgression" class="progression-interne"></div>
+        </div>
 
-<p id="score"></p>
+        <div id="blocTitre" class="bloc-titre">Bloc 1</div>
+
+        <div id="numeroQuestion" class="numero-question">
+            QUESTION 1
+        </div>
+
+        <div id="question" class="question"></div>
+
+        <div id="reponses" class="reponses"></div>
+
+        <div id="correction" class="correction"></div>
+
+        <div class="actions">
+            <button
+                id="boutonSuivant"
+                class="bouton principal"
+                onclick="questionSuivante()"
+                disabled>
+                Valider et continuer →
+            </button>
+        </div>
+
+    </section>
+
+    <!-- ÉCRAN PAUSE -->
+
+    <section id="zonePause" class="carte centre masque">
+        <div class="icone-resultat">☕</div>
+        <h2 id="titrePause">Bien joué !</h2>
+
+        <p id="textePause" class="texte-secondaire"></p>
+
+        <div class="stats">
+            <div class="stat">
+                <strong id="pauseBonnes">0</strong>
+                <span>Bonnes réponses</span>
+            </div>
+
+            <div class="stat">
+                <strong id="pauseErreurs">0</strong>
+                <span>Erreurs</span>
+            </div>
+
+            <div class="stat">
+                <strong id="pausePourcentage">0%</strong>
+                <span>Réussite</span>
+            </div>
+        </div>
+
+        <button
+            id="boutonReprendre"
+            class="bouton principal"
+            onclick="reprendreQCM()">
+            Continuer le QCM →
+        </button>
+    </section>
+
+    <!-- ÉCRAN FINAL -->
+
+    <section id="zoneFinale" class="carte centre masque">
+        <div class="icone-resultat" id="iconeFinale">🏆</div>
+
+        <h2>QCM terminé !</h2>
+
+        <p class="texte-secondaire" id="messageFinal"></p>
+
+        <div class="score-final" id="scoreFinal">0 / 90</div>
+
+        <div id="pourcentageFinal" class="texte-secondaire"></div>
+
+        <div class="stats">
+            <div class="stat">
+                <strong id="finalBonnes">0</strong>
+                <span>Bonnes réponses</span>
+            </div>
+
+            <div class="stat">
+                <strong id="finalErreurs">0</strong>
+                <span>Erreurs</span>
+            </div>
+
+            <div class="stat">
+                <strong id="finalTaux">0%</strong>
+                <span>Réussite</span>
+            </div>
+        </div>
+
+        <div id="bilanErreurs" style="text-align:left"></div>
+
+        <div class="actions">
+            <button class="bouton principal" onclick="recommencerQCM()">
+                🔄 Recommencer
+            </button>
+
+            <a
+                href="index.html"
+                class="bouton secondaire"
+                style="text-decoration:none;display:flex;align-items:center;justify-content:center">
+                🏠 Accueil
+            </a>
+        </div>
+    </section>
+
+    <footer class="pied">
+        ⚡ LED3 Academy — Apprendre, réviser, progresser.
+    </footer>
 
 </div>
 
 <script>
 
+/* =========================================================
+   BANQUE DE 90 QUESTIONS
+   c = index de la bonne réponse dans le tableau a
+   Les réponses sont ensuite mélangées automatiquement.
+   ========================================================= */
+
 const banque = [
 
 {
-q:"En série, que reste-t-il identique ?",
-a:["La tension","Le courant","La puissance"],
+q:"Quel est le rôle principal d'une LED ?",
+a:["Transformer l'énergie électrique en lumière","Transformer la lumière en courant alternatif","Stocker l'électricité"],
+c:0,
+e:"Une LED est une diode électroluminescente qui émet de la lumière lorsqu'elle est parcourue par un courant adapté."
+},
+
+{
+q:"Que représente la tension électrique ?",
+a:["La quantité de lumière émise","La différence de potentiel électrique entre deux points","La résistance d'un conducteur"],
 c:1,
-e:"Dans un montage série, le même courant traverse tous les composants."
+e:"La tension représente une différence de potentiel électrique. Elle se mesure en volts (V)."
 },
 
 {
-q:"En parallèle, que reste-t-il identique ?",
-a:["La tension","Le courant","La résistance"],
+q:"Quelle est l'unité de l'intensité du courant électrique ?",
+a:["Le watt","L'ohm","L'ampère"],
+c:2,
+e:"L'intensité du courant se mesure en ampères (A)."
+},
+
+{
+q:"Quelle est l'unité de la résistance électrique ?",
+a:["L'ohm","Le volt","Le lumen"],
 c:0,
-e:"Dans un montage parallèle, chaque branche reçoit la même tension."
+e:"La résistance électrique se mesure en ohms (Ω)."
 },
 
 {
-q:"Formule de la puissance ?",
-a:["P = U × I","P = E × t","P = R × I"],
-c:0,
-e:"La puissance est égale à la tension multipliée par le courant."
-},
-
-{
-q:"Formule de l'énergie ?",
-a:["E = P × t","E = U × I","E = R × I"],
-c:0,
-e:"L'énergie dépend de la puissance et du temps."
-},
-
-{
-q:"Que signifie CC ?",
-a:["Constant Cable","Constant Current","Current Control"],
+q:"Quelle formule correspond à la loi d'Ohm ?",
+a:["P = U × I","U = R × I","E = P × t"],
 c:1,
-e:"CC signifie Constant Current : courant constant."
+e:"La loi d'Ohm s'écrit U = R × I, avec U en volts, R en ohms et I en ampères."
 },
 
 {
-q:"Que signifie CV ?",
-a:["Constant Voltage","Current Voltage","Cable Voltage"],
+q:"Quelle formule permet de calculer la puissance électrique ?",
+a:["P = U × I","P = U + I","P = R ÷ I"],
 c:0,
-e:"CV signifie Constant Voltage : tension constante."
+e:"La puissance électrique se calcule en multipliant la tension par l'intensité : P = U × I."
 },
 
 {
-q:"3000K correspond à ?",
-a:["Blanc froid","Blanc neutre","Blanc chaud"],
-c:2,
-e:"3000K correspond à une lumière chaude."
-},
-
-{
-q:"4000K correspond à ?",
-a:["Blanc neutre","Blanc chaud","Blanc froid"],
+q:"Quelle est l'unité de la puissance électrique ?",
+a:["Le lux","Le watt","Le kelvin"],
 c:1,
-e:"4000K correspond à un blanc neutre."
+e:"La puissance électrique s'exprime en watts (W)."
 },
 
 {
-q:"6500K correspond à ?",
-a:["Blanc chaud","Blanc froid","Blanc neutre"],
+q:"Un équipement fonctionne sous 24 V et consomme 2 A. Quelle est sa puissance ?",
+a:["12 W","48 W","26 W"],
 c:1,
-e:"6500K correspond à un blanc froid."
+e:"P = U × I = 24 × 2 = 48 W."
 },
 
 {
-q:"Que signifie IRC ?",
-a:["Indice de rendu des couleurs","Indice de résistance courant","Intensité résistive"],
+q:"Quelle formule permet de calculer l'énergie consommée ?",
+a:["E = P × t","E = U ÷ I","E = R × t"],
 c:0,
-e:"L'IRC mesure la qualité du rendu des couleurs."
+e:"L'énergie se calcule en multipliant la puissance par la durée. En kWh, on multiplie les kW par les heures."
 },
+
 {
-q:"Une chute de tension importante provoque ?",
-a:["Baisse de luminosité","Augmentation IRC","Refroidissement"],
+q:"Un appareil de 100 W fonctionne pendant 5 heures. Quelle énergie consomme-t-il ?",
+a:["500 kWh","5 kWh","0,5 kWh"],
+c:2,
+e:"100 W = 0,1 kW. Énergie = 0,1 × 5 = 0,5 kWh."
+},
+
+{
+q:"Quelle différence existe entre le courant alternatif et le courant continu ?",
+a:["Le courant alternatif change périodiquement de sens, le courant continu conserve sa polarité","Le courant continu est toujours plus puissant","Il n'existe aucune différence"],
+c:0,
+e:"En courant alternatif, la tension et le courant varient périodiquement. En courant continu, la polarité reste constante."
+},
+
+{
+q:"Quel symbole est généralement utilisé pour le courant continu ?",
+a:["~","⎓","Ω"],
 c:1,
-e:"La chute de tension réduit la tension disponible pour les LED."
+e:"Le symbole ⎓ désigne le courant continu. Le symbole ~ est associé au courant alternatif."
 },
 
 {
-q:"Cause principale d'une chute de tension ?",
-a:["Longueur de câble","IRC élevé","Température couleur"],
+q:"Quel symbole est généralement associé au courant alternatif ?",
+a:["~","⎓","A"],
 c:0,
-e:"Plus le câble est long, plus la résistance augmente."
+e:"Le symbole ~ indique généralement le courant alternatif."
 },
 
 {
-q:"Pour réduire la chute de tension il faut ?",
-a:["Augmenter la section","Réduire les LED","Changer la couleur"],
-c:0,
-e:"Une plus grande section réduit la résistance."
-},
-
-{
-q:"Une section de câble trop faible provoque ?",
-a:["Échauffement","Refroidissement","Plus de lumens"],
-c:0,
-e:"Le courant traverse plus difficilement le câble."
-},
-
-{
-q:"Le cuivre est utilisé car il est ?",
-a:["Conducteur","Isolant","Magnétique"],
-c:0,
-e:"Le cuivre possède une faible résistance."
-},
-
-{
-q:"Un connecteur desserré provoque ?",
-a:["Échauffement","Refroidissement","Gain lumineux"],
-c:0,
-e:"Le mauvais contact augmente la résistance."
-},
-
-{
-q:"Un mauvais sertissage provoque ?",
-a:["Panne intermittente","Gain puissance","Refroidissement"],
-c:3,
-e:"Le contact électrique devient instable."
-},
-
-{
-q:"Lors d'un diagnostic, première étape ?",
-a:["Observation visuelle","Changer le driver","Remplacer la LED"],
-c:0,
-e:"Toujours commencer par l'inspection visuelle."
-},
-
-{
-q:"Un point chaud indique souvent ?",
-a:["Mauvaise dissipation","Bonne ventilation","IRC élevé"],
+q:"Que risque-t-on si l'on inverse la polarité d'une LED qui ne tolère pas cette inversion ?",
+a:["Elle produit toujours deux fois plus de lumière","Elle peut ne pas fonctionner ou être endommagée","Sa puissance devient automatiquement nulle sans risque"],
 c:1,
-e:"La chaleur se concentre à un endroit anormal."
+e:"Une polarité incorrecte peut empêcher le fonctionnement et, selon la LED et la tension appliquée, endommager le composant."
 },
 
 {
-q:"Une LED noire ou brunie indique ?",
-a:["Surchauffe","Sous-tension","IRC faible"],
+q:"Quel est le rôle principal d'un driver LED ?",
+a:["Réguler l'alimentation électrique adaptée au module LED","Augmenter systématiquement la température de couleur","Remplacer tous les câbles de l'installation"],
 c:0,
-e:"La surchauffe détériore les composants."
+e:"Le driver fournit une alimentation adaptée aux caractéristiques électriques du système LED."
 },
 
 {
-q:"Température de jonction élevée = ?",
-a:["Durée de vie réduite","Durée de vie augmentée","Aucun effet"],
-c:0,
-e:"La chaleur est l'ennemi principal des LED."
-},
-
-{
-q:"Rôle du dissipateur ?",
-a:["Évacuer la chaleur","Augmenter la tension","Stocker l'énergie"],
+q:"Que signifie CC sur un driver LED ?",
+a:["Courant continu uniquement","Commande centralisée","Courant constant"],
 c:2,
-e:"Le dissipateur évacue les calories."
+e:"CC signifie Constant Current, c'est-à-dire courant constant."
 },
 
 {
-q:"La pâte thermique sert à ?",
-a:["Améliorer le transfert thermique","Coller les LED","Isoler"],
-c:0,
-e:"Elle améliore le contact thermique."
-},
-
-{
-q:"Une résistance thermique faible est ?",
-a:["Meilleure","Moins bonne","Sans importance"],
-c:0,
-e:"La chaleur circule plus facilement."
-},
-
-{
-q:"Le driver chauffe anormalement. Cause possible ?",
-a:["Surcharge","IRC faible","IK élevé"],
-c:0,
-e:"Une charge excessive fatigue le driver."
-},
-
-{
-q:"Un multimètre permet de mesurer ?",
-a:["Tension et courant","IRC","UGR"],
-c:3,
-e:"C'est l'outil principal du diagnostic."
-},
-
-{
-q:"La mesure sous charge permet ?",
-a:["Détecter une panne réelle","Mesurer l'IRC","Mesurer l'UGR"],
-c:0,
-e:"Les défauts apparaissent souvent en fonctionnement."
-},
-
-{
-q:"Le flux lumineux s'exprime en ?",
-a:["Lumen","Lux","Volt"],
+q:"Que signifie CV sur une alimentation LED ?",
+a:["Courant variable obligatoire","Tension constante","Commande de vitesse"],
 c:1,
-e:"Le lumen mesure la quantité de lumière."
+e:"CV signifie Constant Voltage, ou tension constante."
 },
 
 {
-q:"Le lux mesure ?",
-a:["L'éclairement","La puissance","Le courant"],
+q:"Un module LED est conçu pour fonctionner à courant constant. Quel type de driver faut-il privilégier ?",
+a:["Un driver à courant constant adapté au module","N'importe quelle alimentation 230 V","Une alimentation dont la tension est toujours la plus élevée possible"],
 c:0,
-e:"Le lux représente la lumière reçue sur une surface."
+e:"Il faut respecter les spécifications du fabricant et utiliser un driver à courant constant adapté au courant et à la plage de tension du module."
 },
 
 {
-q:"Plus le PF est proche de 1 ?",
-a:["Mieux c'est","Pire c'est","Aucun effet"],
-c:0,
-e:"Le facteur de puissance est meilleur."
-},
-
-{
-q:"Une valeur THD faible est ?",
-a:["Préférable","Mauvaise","Dangereuse"],
-c:2,
-e:"Moins il y a d'harmoniques, mieux c'est."
-},
-
-{
-q:"IK10 signifie ?",
-a:["Très forte résistance aux chocs","Faible résistance","Protection eau"],
-c:0,
-e:"IK mesure la résistance mécanique."
-},
-
-{
-q:"IP65 protège contre ?",
-a:["Poussières et jets d'eau","Immersion totale","Chocs"],
-c:3,
-e:"IP65 est courant en extérieur."
-},
-
-{
-q:"SELV signifie ?",
-a:["Très basse tension de sécurité","Haute tension","Protection thermique"],
-c:0,
-e:"SELV protège les utilisateurs."
-},
-
-{
-q:"Un ruban LED est généralement alimenté en ?",
-a:["Tension constante","Courant constant","230V direct"],
-c:0,
-e:"Les rubans utilisent souvent du 12V ou 24V CV."
-},
-
-{
-q:"24V présente quel avantage ?",
-a:["Moins de chute de tension","Plus de chaleur","Moins de sécurité"],
-c:2,
-e:"Le 24V réduit les pertes."
-},
-
-{
-q:"Une LED qui clignote indique souvent ?",
-a:["Driver défectueux","IRC élevé","Bon fonctionnement"],
-c:0,
-e:"Le driver est souvent en cause."
-},
-
-{
-q:"Un montage parallèle possède ?",
-a:["Plusieurs branches","Une seule branche","Aucune branche"],
+q:"Pour un ruban LED prévu pour une alimentation 24 V, quel type d'alimentation est généralement utilisé ?",
+a:["Une alimentation 230 V directement sur le ruban","Une alimentation 24 V à tension constante, correctement dimensionnée","Un driver à courant constant choisi sans vérifier les caractéristiques"],
 c:1,
-e:"Chaque branche reçoit la même tension."
+e:"Les rubans LED 24 V conçus pour tension constante utilisent généralement une alimentation 24 V adaptée à leur puissance."
 },
 
 {
-q:"Dans un montage série les tensions ?",
-a:["S'additionnent","Se divisent","Disparaissent"],
-c:0,
-e:"Les tensions individuelles se cumulent."
-},
-
-{
-q:"Dans un montage série-parallèle il faut ?",
-a:["Équilibrer les branches","Supprimer les drivers","Augmenter l'IRC"],
-c:0,
-e:"Le partage du courant doit être homogène."
-},
-{
-q:"Rôle principal d'un driver LED ?",
-a:["Alimenter correctement la LED","Refroidir la LED","Mesurer le flux"],
+q:"Que peut-il se passer si un driver est sous-dimensionné par rapport à la charge ?",
+a:["Il devient forcément plus efficace","Il transforme automatiquement les LED en 12 V","Il peut se mettre en protection, surchauffer ou fonctionner incorrectement"],
 c:2,
-e:"Le driver fournit la tension ou le courant adapté."
+e:"Une alimentation sous-dimensionnée peut subir une surcharge et ne pas alimenter correctement le système."
 },
 
 {
-q:"Une LED produit également ?",
-a:["De la chaleur","Du son","Du mouvement"],
-c:0,
-e:"Une partie de l'énergie est dissipée sous forme de chaleur."
-},
-
-{
-q:"Cause fréquente d'une LED qui ne s'allume plus ?",
-a:["Circuit ouvert","IRC faible","IK faible"],
+q:"Que faut-il vérifier avant d'associer un driver à un module LED ?",
+a:["Uniquement la couleur du boîtier","Le type de sortie, le courant, la plage de tension et la puissance admissible","Uniquement la longueur du câble"],
 c:1,
-e:"Une coupure du circuit empêche le passage du courant."
+e:"La compatibilité électrique est essentielle : courant, tension de sortie, puissance, type de régulation et conditions d'utilisation."
 },
 
 {
-q:"Un dissipateur en aluminium est utilisé car ?",
-a:["Très bon conducteur thermique","Très léger uniquement","Isolant thermique"],
+q:"Dans un montage en série, que se passe-t-il généralement pour le courant traversant les composants ?",
+a:["Le même courant traverse chaque composant","Chaque composant reçoit forcément un courant différent","Le courant est toujours nul"],
 c:0,
-e:"L'aluminium évacue efficacement la chaleur."
+e:"Dans une même branche en série, le courant est identique à travers les composants."
 },
 
 {
-q:"Plus la température augmente ?",
-a:["La durée de vie diminue","La durée de vie augmente","Aucun effet"],
-c:3,
-e:"La chaleur accélère le vieillissement des LED."
-},
-
-{
-q:"Un ruban LED 24V est préférable pour ?",
-a:["Longues distances","Courtes distances uniquement","Aucune différence"],
-c:0,
-e:"Le 24V limite les pertes en ligne."
-},
-
-{
-q:"Le courant électrique circule dans ?",
-a:["Un circuit fermé","Un circuit ouvert","Une résistance coupée"],
+q:"Dans un montage en parallèle, que retrouve-t-on généralement aux bornes de chaque branche ?",
+a:["Des tensions toujours différentes","La même tension entre les bornes communes","Une tension nécessairement nulle"],
 c:1,
-e:"Le circuit doit être fermé pour fonctionner."
+e:"Les branches en parallèle sont connectées aux mêmes deux nœuds et ont donc la même tension."
 },
 
 {
-q:"Un fusible sert à ?",
-a:["Protéger le circuit","Augmenter la lumière","Refroidir le driver"],
+q:"Dans un circuit en série, comment se répartit la tension totale ?",
+a:["Elle disparaît dans le premier composant","Elle est toujours identique sur chaque composant","Elle se répartit entre les composants selon leurs caractéristiques"],
 c:2,
-e:"Le fusible coupe en cas de surintensité."
+e:"La tension totale se répartit entre les composants en série. La répartition dépend notamment de leurs caractéristiques électriques."
 },
 
 {
-q:"Une LED haute puissance nécessite souvent ?",
-a:["Un dissipateur","Une batterie","Un transformateur 400V"],
+q:"Pourquoi faut-il respecter le courant nominal d'une LED ?",
+a:["Pour éviter notamment une surchauffe et une dégradation prématurée","Pour augmenter systématiquement sa température de couleur","Pour supprimer le besoin d'un driver"],
 c:0,
-e:"La chaleur doit être évacuée."
+e:"Un courant excessif peut augmenter la température de jonction et réduire la durée de vie de la LED."
 },
 
 {
-q:"Que mesure une pince ampèremétrique ?",
-a:["Le courant","La température","Le flux lumineux"],
-c:3,
-e:"Elle permet de mesurer l'intensité sans couper le circuit."
-},
-
-{
-q:"Un point de mesure essentiel lors d'un diagnostic ?",
-a:["Sortie driver","Couleur du câble","Marque du luminaire"],
-c:2,
-e:"La sortie du driver permet de vérifier son fonctionnement."
-},
-
-{
-q:"Une LED qui s'éteint après quelques minutes indique souvent ?",
-a:["Surchauffe","Bon fonctionnement","IRC faible"],
-c:3,
-e:"Une protection thermique peut se déclencher."
-},
-
-{
-q:"Le rendement lumineux se mesure généralement en ?",
-a:["lm/W","Lux","Volt"],
-c:0,
-e:"Le rendement correspond aux lumens produits par watt."
-},
-
-{
-q:"Une alimentation surdimensionnée est généralement ?",
-a:["Acceptable","Dangereuse automatiquement","Impossible"],
-c:2,
-e:"À condition de respecter la tension ou le courant requis."
-},
-
-{
-q:"La résistance électrique s'exprime en ?",
-a:["Ohm","Volt","Lux"],
-c:0,
-e:"L'unité de résistance est l'ohm (Ω)."
-},
-
-{
-q:"Un câble chauffant anormalement indique ?",
-a:["Surintensité ou section insuffisante","IRC élevé","Bonne installation"],
-c:0,
-e:"La résistance du câble provoque l'échauffement."
-},
-
-{
-q:"La jonction LED est ?",
-a:["La zone qui produit la lumière","Le dissipateur","Le connecteur"],
-c:0,
-e:"La lumière est créée dans la jonction semi-conductrice."
-},
-
-{
-q:"Une mesure de tension se fait ?",
-a:["En parallèle","En série","Au hasard"],
+q:"Que signifie la température de couleur exprimée en kelvins ?",
+a:["La consommation électrique exacte","L'aspect de la lumière, du chaud au froid","La quantité de lumière mesurée en lux"],
 c:1,
-e:"Le voltmètre se branche en parallèle."
+e:"La température de couleur corrélée (CCT) caractérise l'apparence de la lumière, notamment chaude, neutre ou froide."
 },
 
 {
-q:"Une mesure de courant se fait ?",
-a:["En série","En parallèle","Sur le dissipateur"],
-c:0,
-e:"L'ampèremètre doit être traversé par le courant."
-},
-
-{
-q:"Un luminaire LED qui scintille peut être dû à ?",
-a:["THD élevée ou driver défectueux","IRC élevé","IP élevé"],
-c:0,
-e:"Les perturbations ou un mauvais driver peuvent provoquer le scintillement."
-},
-
-{
-q:"Quel est l'ennemi principal d'une LED ?",
-a:["La chaleur","La lumière","Le cuivre"],
+q:"Quelle température de couleur correspond généralement à une lumière chaude ?",
+a:["6500 K","5000 K","2700 K"],
 c:2,
-e:"La chaleur réduit fortement la durée de vie."
+e:"Une lumière autour de 2700 K est généralement perçue comme chaude et légèrement jaune."
 },
 
 {
-q:"Une bonne interface thermique permet ?",
-a:["Un meilleur transfert de chaleur","Plus de tension","Plus d'IRC"],
+q:"Quelle température de couleur est souvent considérée comme une lumière neutre ?",
+a:["4000 K","1800 K","9000 K"],
 c:0,
-e:"Elle réduit la résistance thermique."
+e:"Une lumière autour de 4000 K est généralement qualifiée de blanc neutre."
 },
 
 {
-q:"La résistance thermique s'exprime souvent en ?",
-a:["°C/W","Volt","Lux"],
-c:3,
-e:"Elle représente l'élévation de température par watt."
-},
-
-{
-q:"Un module LED remplacé doit respecter ?",
-a:["Les caractéristiques électriques","La couleur du câble","La marque du tournevis"],
-c:0,
-e:"La compatibilité électrique est indispensable."
-},
-
-{
-q:"Une chute de tension importante est visible par ?",
-a:["Une baisse de luminosité","Une hausse d'IRC","Une baisse d'IP"],
-c:0,
-e:"La LED reçoit moins de tension."
-},
-
-{
-q:"Le diagnostic doit être basé sur ?",
-a:["Des mesures","Des suppositions","Le hasard"],
-c:2,
-e:"Les mesures permettent d'identifier la vraie panne."
-},
-
-{
-q:"Plus la section augmente ?",
-a:["La chute de tension diminue","La chute de tension augmente","Aucun effet"],
-c:0,
-e:"Une plus grosse section réduit la résistance."
-},
-
-{
-q:"Une LED alimentée au mauvais courant risque ?",
-a:["D'être endommagée","D'améliorer son rendement","De refroidir"],
-c:0,
-e:"Un courant excessif réduit sa durée de vie."
-},
-
-{
-q:"Le rôle d'un connecteur est ?",
-a:["Assurer la continuité électrique","Refroidir le circuit","Augmenter les lumens"],
-c:3,
-e:"Un bon contact électrique est essentiel."
-},
-
-{
-q:"Une bonne méthode de dépannage est ?",
-a:["Observer, mesurer, conclure","Remplacer au hasard","Changer tout le système"],
-c:0,
-e:"Le diagnostic suit une méthode logique."
-},
-{
-q:"Que représente la tension ?",
-a:["Une différence de potentiel","Une puissance","Une énergie"],
-c:2,
-e:"La tension est la force qui pousse les électrons dans le circuit."
-},
-
-{
-q:"Que représente le courant ?",
-a:["Le débit d'électrons","La chaleur","La résistance"],
+q:"Quelle température de couleur correspond généralement à une lumière froide ?",
+a:["2200 K","6500 K","2700 K"],
 c:1,
-e:"Le courant correspond à la circulation des électrons."
+e:"Une lumière autour de 6500 K est généralement perçue comme froide, avec une apparence plus bleutée."
 },
 
 {
-q:"L'unité de l'énergie est ?",
-a:["Wh","Lux","Ampère"],
-c:3,
-e:"L'énergie électrique est souvent exprimée en Wh ou kWh."
-},
-
-{
-q:"1 kWh correspond à ?",
-a:["1000 Wh","100 Wh","10 Wh"],
-c:0,
-e:"1 kilowattheure = 1000 wattheures."
-},
-
-{
-q:"Une alimentation CV fournit ?",
-a:["Une tension fixe","Un courant fixe","Une puissance fixe"],
-c:3,
-e:"CV = Constant Voltage."
-},
-
-{
-q:"Un driver CC fournit ?",
-a:["Un courant fixe","Une tension fixe","Une résistance fixe"],
+q:"Que signifie IRC dans le domaine de l'éclairage ?",
+a:["Indice de résistance du courant","Intensité réelle de consommation","Indice de rendu des couleurs"],
 c:2,
-e:"CC = Constant Current."
+e:"L'IRC indique la capacité d'une source lumineuse à restituer les couleurs par comparaison avec une référence."
 },
 
 {
-q:"Dans un circuit série, le courant est ?",
-a:["Identique partout","Différent partout","Nul"],
+q:"Un IRC élevé indique généralement :",
+a:["Une meilleure restitution des couleurs","Une consommation électrique forcément plus faible","Une température de couleur toujours plus chaude"],
+c:0,
+e:"Un IRC élevé indique généralement une restitution plus fidèle des couleurs, sans garantir à lui seul tous les aspects de la qualité lumineuse."
+},
+
+{
+q:"Quelle unité mesure le flux lumineux ?",
+a:["Le lux","Le lumen","Le watt"],
 c:1,
-e:"Le même courant traverse tous les composants."
+e:"Le lumen (lm) mesure le flux lumineux émis par une source."
 },
 
 {
-q:"Dans un circuit parallèle, la tension est ?",
-a:["Identique sur chaque branche","Différente partout","Nulle"],
-c:0,
-e:"Chaque branche reçoit la même tension."
-},
-
-{
-q:"Trois LED de 3V montées en série nécessitent environ ?",
-a:["9V","3V","12V"],
+q:"Quelle unité mesure l'éclairement lumineux sur une surface ?",
+a:["Le lumen","Le kelvin","Le lux"],
 c:2,
-e:"Les tensions s'additionnent en série."
+e:"Le lux (lx) correspond à un lumen par mètre carré."
 },
 
 {
-q:"Trois branches de 350mA en parallèle consomment ?",
-a:["1050mA","350mA","700mA"],
-c:3,
-e:"Les courants s'additionnent en parallèle."
-},
-
-{
-q:"Pourquoi utiliser un montage série ?",
-a:["Même courant partout","Même tension partout","Plus de chaleur"],
-c:2,
-e:"Toutes les LED reçoivent le même courant."
-},
-
-{
-q:"Pourquoi utiliser un montage parallèle ?",
-a:["Même tension sur chaque branche","Même courant sur chaque branche","Moins de lumière"],
+q:"Quelle différence existe entre lumens et lux ?",
+a:["Le lumen mesure le flux lumineux, le lux mesure l'éclairement reçu par une surface","Le lux mesure uniquement la consommation électrique","Le lumen mesure la résistance d'un câble"],
 c:0,
-e:"Chaque branche reçoit la même tension."
+e:"Le flux lumineux est exprimé en lumens. L'éclairement reçu sur une surface est exprimé en lux."
 },
 
 {
-q:"Une LED alimentée directement en 230V ?",
-a:["Impossible sans électronique adaptée","Toujours possible","Recommandé"],
-c:0,
-e:"Un driver est nécessaire."
-},
-
-{
-q:"Le symbole U désigne ?",
-a:["La tension","Le courant","La puissance"],
+q:"Que représente le rendement lumineux exprimé en lm/W ?",
+a:["La température maximale d'une LED","Le flux lumineux produit par watt électrique consommé","La résistance électrique du driver"],
 c:1,
-e:"U = tension électrique."
+e:"Le rendement lumineux exprime le flux lumineux produit pour chaque watt consommé."
 },
 
 {
-q:"Le symbole I désigne ?",
-a:["Le courant","La tension","La résistance"],
+q:"À quoi sert principalement un indice IP ?",
+a:["À déterminer la température de couleur","À mesurer le flux lumineux","À caractériser la protection contre l'intrusion de solides et d'eau"],
 c:2,
-e:"I = intensité du courant."
+e:"L'indice IP caractérise les niveaux de protection contre l'accès aux parties dangereuses, les corps solides et l'eau."
 },
 
 {
-q:"Le symbole P désigne ?",
-a:["La puissance","La tension","Le flux lumineux"],
-c:3,
-e:"P = puissance."
-},
-
-{
-q:"Si une LED série est coupée ?",
-a:["Toute la chaîne s'éteint","Rien ne change","Les autres brillent plus"],
-c:2,
-e:"Le circuit est ouvert."
-},
-
-{
-q:"Le principal avantage des LED est ?",
-a:["Faible consommation","Forte chaleur","Poids élevé"],
-c:1,
-e:"Les LED ont un excellent rendement."
-},
-
-{
-q:"Un module LED doit être compatible avec ?",
-a:["Le driver","La peinture","Le support mural"],
-c:3,
-e:"La compatibilité électrique est essentielle."
-},
-
-{
-q:"Un mauvais choix de driver peut provoquer ?",
-a:["Une panne","Un meilleur rendement","Aucun effet"],
+q:"Que représente le premier chiffre de l'indice IP ?",
+a:["La protection contre les corps solides et l'accès aux parties dangereuses","La protection contre les chocs mécaniques","La température de fonctionnement"],
 c:0,
-e:"Le courant ou la tension peuvent être inadaptés."
+e:"Le premier chiffre de l'indice IP concerne la protection contre l'accès aux parties dangereuses et l'entrée de corps solides."
+},
+
+{
+q:"Que représente le deuxième chiffre de l'indice IP ?",
+a:["La puissance électrique maximale","La protection contre l'eau","La température de couleur"],
+c:1,
+e:"Le deuxième chiffre indique le niveau de protection contre les effets de la pénétration de l'eau."
+},
+
+{
+q:"À quoi correspond l'indice IK ?",
+a:["Au rendement lumineux","À la température de couleur","À la résistance aux chocs mécaniques"],
+c:2,
+e:"L'indice IK caractérise la résistance d'une enveloppe aux impacts mécaniques selon les conditions normalisées."
+},
+
+{
+q:"Que signifie généralement IP65 pour un équipement ?",
+a:["Protection totale contre la poussière et protection contre les jets d'eau selon les conditions prévues par la norme","Immersion permanente garantie dans toutes les conditions","Résistance à tous les chocs mécaniques"],
+c:0,
+e:"IP6X correspond à une protection contre la poussière. IPX5 correspond à une protection contre les jets d'eau selon les conditions d'essai. Cela ne signifie pas une aptitude générale à l'immersion."
+},
+
+{
+q:"Pourquoi faut-il vérifier la température de fonctionnement d'un luminaire LED ?",
+a:["Parce qu'elle détermine uniquement sa couleur","Parce qu'une température excessive peut dégrader ses performances et sa durée de vie","Parce que les LED ne produisent aucune chaleur"],
+c:1,
+e:"Même si la LED convertit une partie importante de l'énergie en lumière, elle produit aussi de la chaleur qu'il faut évacuer."
+},
+
+{
+q:"À quoi sert un dissipateur thermique sur un luminaire LED ?",
+a:["À modifier obligatoirement le courant alternatif en courant continu","À augmenter la résistance du câble","À évacuer la chaleur produite par le système LED"],
+c:2,
+e:"Le dissipateur aide à transférer la chaleur vers l'environnement pour maintenir la LED dans une plage thermique adaptée."
+},
+
+{
+q:"Quel effet peut avoir une mauvaise dissipation thermique ?",
+a:["Une réduction possible de la durée de vie et du flux lumineux","Une disparition de toute consommation électrique","Une amélioration garantie du rendement"],
+c:0,
+e:"Une température excessive peut accélérer le vieillissement et réduire les performances du système LED."
+},
+
+{
+q:"Quel est l'intérêt d'un ruban LED dimmable ?",
+a:["Il fonctionne toujours sans alimentation","Il permet de régler le niveau lumineux avec une commande compatible","Il ne produit jamais de chaleur"],
+c:1,
+e:"Un système dimmable permet de régler le flux lumineux à condition que le ruban, le driver et la commande soient compatibles."
+},
+
+{
+q:"Pourquoi un ruban LED peut-il présenter une baisse de luminosité en bout de ligne ?",
+a:["Parce que les LED cessent toujours de fonctionner après quelques mètres","Parce que la température de couleur augmente automatiquement","À cause notamment de la chute de tension dans les conducteurs et les pistes"],
+c:2,
+e:"La résistance des conducteurs provoque une chute de tension sous charge. Elle peut créer une différence de luminosité, notamment sur les longues longueurs."
+},
+
+{
+q:"Comment peut-on limiter la chute de tension sur une installation LED basse tension ?",
+a:["En dimensionnant correctement les conducteurs et les points d'alimentation","En utilisant systématiquement le câble le plus fin","En augmentant la longueur des câbles sans calcul"],
+c:0,
+e:"Le choix de la section, la longueur des conducteurs et le positionnement des alimentations influencent la chute de tension."
+},
+
+{
+q:"Pourquoi la section d'un câble est-elle importante ?",
+a:["Elle détermine directement la température de couleur","Elle influence la résistance, l'échauffement et la chute de tension","Elle remplace le dispositif de protection"],
+c:1,
+e:"Une section adaptée permet de respecter les exigences de courant admissible, de chute de tension et de sécurité."
+},
+
+{
+q:"Avant de choisir une section de câble, que faut-il prendre en compte ?",
+a:["Uniquement la couleur du câble","Uniquement le prix du câble","Le courant, la longueur, le mode de pose et les conditions d'installation"],
+c:2,
+e:"Le dimensionnement doit tenir compte du courant, de la longueur, de la pose, de la température, des protections et des règles applicables."
+},
+
+{
+q:"À quoi sert un multimètre ?",
+a:["À mesurer différentes grandeurs électriques selon le mode et les bornes utilisés","À mesurer uniquement le flux lumineux","À remplacer automatiquement les protections électriques"],
+c:0,
+e:"Un multimètre peut mesurer notamment la tension, la résistance et, selon le modèle et le branchement, l'intensité."
+},
+
+{
+q:"Comment mesure-t-on habituellement une tension avec un multimètre ?",
+a:["En plaçant le multimètre en série uniquement","En branchant le multimètre en parallèle aux bornes concernées","En reliant directement les deux bornes du multimètre sans tenir compte du mode"],
+c:1,
+e:"La tension se mesure en parallèle. Il faut sélectionner le bon mode et la bonne plage de mesure."
+},
+
+{
+q:"Comment mesure-t-on habituellement un courant avec un multimètre classique ?",
+a:["En le plaçant en parallèle comme pour une tension","En reliant directement les bornes sans vérifier les connexions","En l'insérant en série dans le circuit, avec le branchement et le calibre adaptés"],
+c:2,
+e:"Pour mesurer le courant avec un multimètre classique, il faut l'insérer en série, choisir la borne et le calibre appropriés et respecter les limites de l'appareil."
+},
+
+{
+q:"Pourquoi ne faut-il jamais mesurer une résistance sur un circuit sous tension ?",
+a:["Parce que la mesure peut être fausse et endommager l'appareil ou créer un danger","Parce que la résistance se mesure uniquement dans l'obscurité","Parce que toutes les résistances deviennent infinies"],
+c:0,
+e:"Il faut mettre le circuit hors tension et vérifier l'absence de tension avant une mesure de résistance."
+},
+
+{
+q:"Avant d'intervenir sur une installation électrique, quelle est la priorité ?",
+a:["Commencer immédiatement le démontage","Mettre en œuvre les mesures de prévention, de mise en sécurité et de vérification adaptées","Toucher les conducteurs pour savoir s'ils sont sous tension"],
+c:1,
+e:"La sécurité prime : identifier les sources, mettre en sécurité l'installation, appliquer les procédures adaptées et vérifier l'absence de tension lorsque cela est requis."
+},
+
+{
+q:"Que faut-il faire avant de remplacer un driver LED ?",
+a:["Le remplacer par le premier modèle disponible","Augmenter la puissance sans calcul","Mettre l'installation en sécurité et vérifier la compatibilité du remplacement"],
+c:2,
+e:"Il faut appliquer les procédures de sécurité et vérifier les caractéristiques électriques, les connexions et les conditions de fonctionnement."
+},
+
+{
+q:"Pourquoi un driver LED peut-il clignoter ou se mettre en protection ?",
+a:["À cause notamment d'une surcharge, d'une incompatibilité, d'une mauvaise connexion ou d'une panne","Uniquement parce que la pièce est trop lumineuse","Parce que tous les drivers doivent clignoter"],
+c:0,
+e:"Le clignotement peut avoir plusieurs causes. Il faut vérifier l'alimentation, la charge, les connexions, la compatibilité et les protections."
+},
+
+{
+q:"Une LED ne s'allume plus. Quel contrôle est pertinent en premier lieu, après mise en sécurité adaptée ?",
+a:["Augmenter directement la tension au maximum","Contrôler l'alimentation, les connexions et les caractéristiques du circuit","Remplacer systématiquement tous les luminaires"],
+c:1,
+e:"Un diagnostic méthodique commence par les vérifications simples : alimentation, connexions, polarité et compatibilité, en respectant les règles de sécurité."
+},
+
+{
+q:"Pourquoi faut-il respecter la puissance maximale d'une alimentation ?",
+a:["Pour augmenter le courant sans limite","Pour supprimer les protections","Pour éviter les surcharges et assurer un fonctionnement adapté"],
+c:2,
+e:"La charge totale doit rester dans les limites prévues par le fabricant, en tenant compte des conditions de fonctionnement."
+},
+
+{
+q:"Que signifie généralement le facteur de puissance, ou PF ?",
+a:["Le rapport entre puissance active et puissance apparente en régime alternatif","La température de couleur d'un luminaire","La longueur maximale d'un ruban LED"],
+c:0,
+e:"Le facteur de puissance est lié au rapport entre puissance active et puissance apparente. Son interprétation dépend du type de charge et de la forme du courant."
+},
+
+{
+q:"Que désigne le THD en électricité ?",
+a:["Le temps d'allumage d'une LED","Le taux de distorsion harmonique","La tension de sortie nominale"],
+c:1,
+e:"Le THD, ou taux de distorsion harmonique, quantifie la contribution des harmoniques par rapport à la composante fondamentale selon la grandeur mesurée."
+},
+
+{
+q:"Pourquoi le facteur de puissance d'un équipement LED peut-il être important dans une installation ?",
+a:["Il détermine directement l'IRC","Il remplace le calcul de section des câbles","Il influence notamment le rapport entre puissance active et puissance apparente"],
+c:2,
+e:"Le facteur de puissance intervient dans les caractéristiques électriques de l'installation et peut influencer le courant appelé pour une puissance active donnée."
+},
+
+{
+q:"Quel est le rôle d'une protection contre les surintensités ?",
+a:["Protéger les conducteurs et les circuits contre certaines surcharges et certains courts-circuits","Améliorer directement le rendu des couleurs","Régler la température de couleur"],
+c:0,
+e:"Les protections doivent être choisies et coordonnées avec les conducteurs et l'installation selon les règles applicables."
+},
+
+{
+q:"Pourquoi faut-il vérifier la compatibilité d'un variateur avec un driver LED ?",
+a:["Parce que tous les variateurs fonctionnent avec tous les drivers","Parce qu'une incompatibilité peut provoquer scintillement, plage de variation réduite ou mauvais fonctionnement","Parce que le variateur augmente toujours la puissance nominale"],
+c:1,
+e:"La compatibilité dépend notamment de la méthode de variation, du driver et de la charge."
+},
+
+{
+q:"Quel est l'intérêt d'un éclairage LED bien dimensionné ?",
+a:["Garantir une consommation nulle","Éviter toute maintenance pour toujours","Adapter le niveau lumineux aux besoins tout en maîtrisant consommation et confort"],
+c:2,
+e:"Le dimensionnement doit viser un éclairement approprié, une bonne qualité de lumière, une consommation maîtrisée et le respect des contraintes du lieu."
+},
+
+{
+q:"Que signifie UGR dans le domaine de l'éclairage ?",
+a:["Unified Glare Rating, un indice d'évaluation de l'éblouissement inconfortable","Unité générale de résistance","Une unité de puissance électrique"],
+c:0,
+e:"L'UGR est un indice utilisé pour évaluer l'éblouissement inconfortable dans certaines conditions d'observation."
+},
+
+{
+q:"Pourquoi l'éblouissement doit-il être pris en compte lors de la conception d'un éclairage ?",
+a:["Parce qu'il augmente toujours le rendement","Parce qu'il peut gêner la vision et réduire le confort visuel","Parce qu'il remplace l'indice IP"],
+c:1,
+e:"Le confort visuel dépend notamment de la luminance des sources, de leur position, du contraste et de la géométrie de la pièce."
+},
+
+{
+q:"Que représente la durée de vie annoncée d'une LED ?",
+a:["Une garantie de fonctionnement sans aucune perte de flux","Une durée identique pour tous les luminaires","Une estimation définie selon des critères et des conditions de mesure"],
+c:2,
+e:"La durée de vie dépend de critères déclarés, des conditions thermiques et électriques, ainsi que du système complet."
+},
+
+{
+q:"Que signifie une valeur L70 dans les données de durée de vie d'une LED ?",
+a:["Le moment où le flux lumineux atteint 70 % de sa valeur initiale selon les conditions de référence","Une puissance de 70 watts obligatoire","Une température de 70 kelvins"],
+c:0,
+e:"L70 désigne le point où le flux lumineux est tombé à 70 % de sa valeur initiale, selon la méthode de déclaration utilisée."
+},
+
+{
+q:"Pourquoi la qualité du driver influence-t-elle la fiabilité d'un luminaire LED ?",
+a:["Elle détermine uniquement la forme du luminaire","Le driver fait partie des composants électriques pouvant limiter la fiabilité du système","Le driver n'a aucun effet sur le fonctionnement"],
+c:1,
+e:"Le driver doit fournir une alimentation stable et adaptée. Sa qualité, sa température et ses conditions de fonctionnement influencent la fiabilité."
+},
+
+{
+q:"Quelle précaution faut-il prendre avant de connecter un ruban LED ?",
+a:["Le connecter à n'importe quelle tension disponible","Le plier fortement sur les composants","Vérifier la tension nominale, la polarité et la puissance totale"],
+c:2,
+e:"Il faut respecter les spécifications du ruban, sa polarité, la tension et la capacité de l'alimentation."
+},
+
+{
+q:"Pourquoi certains rubans LED ne doivent-ils être coupés qu'à des emplacements précis ?",
+a:["Parce que les circuits et les pistes sont conçus pour être coupés à des points définis","Parce que toute coupe améliore la puissance","Parce que les rubans ne contiennent aucun circuit électrique"],
+c:0,
+e:"Les repères de coupe indiquent où séparer les segments sans endommager le circuit prévu."
+},
+
+{
+q:"Pourquoi faut-il éviter de dépasser le rayon de courbure prévu pour un ruban LED ?",
+a:["Pour augmenter son indice IRC","Pour éviter d'endommager les pistes, les composants ou les connexions","Pour diminuer automatiquement la tension"],
+c:1,
+e:"Une courbure excessive peut provoquer des fissures, des ruptures de pistes ou des dommages aux composants."
+},
+
+{
+q:"Quel est l'intérêt d'un profilé en aluminium pour certains rubans LED ?",
+a:["Il remplace systématiquement le driver","Il rend tout ruban étanche","Il peut contribuer à la dissipation thermique et à la protection mécanique"],
+c:2,
+e:"Un profilé adapté peut améliorer l'évacuation de la chaleur et protéger le ruban. Le résultat dépend de sa conception et de l'installation."
+},
+
+{
+q:"Que faut-il vérifier pour installer un luminaire LED dans un environnement humide ?",
+a:["L'indice de protection requis et l'adéquation du matériel au lieu d'installation","Uniquement la température de couleur","Uniquement le nombre de lumens"],
+c:0,
+e:"Il faut choisir du matériel adapté aux conditions réelles, aux risques d'eau, à l'emplacement et aux exigences électriques applicables."
+},
+
+{
+q:"Pourquoi un luminaire extérieur doit-il être choisi selon son environnement ?",
+a:["Parce que tous les luminaires ont la même résistance","Parce que l'humidité, la poussière, les UV et les températures peuvent influencer son fonctionnement","Parce que les LED ne fonctionnent qu'à l'intérieur"],
+c:1,
+e:"L'environnement impose des contraintes de protection, de température, de corrosion et de durabilité."
+},
+
+{
+q:"Quelle information permet de comparer le flux lumineux annoncé de deux sources ?",
+a:["Le poids de leur emballage","La longueur du câble","Leur flux lumineux en lumens, en tenant compte des conditions de mesure"],
+c:2,
+e:"Le lumen donne une indication du flux lumineux total, mais la distribution de lumière et les conditions d'utilisation restent importantes."
+},
+
+{
+q:"Deux luminaires ont le même flux lumineux. Éclairent-ils nécessairement une surface de la même façon ?",
+a:["Non, leur optique et leur distribution lumineuse peuvent produire des éclairements différents","Oui, obligatoirement","Oui, si leurs boîtiers ont la même couleur"],
+c:0,
+e:"L'optique, l'orientation, la hauteur et la distribution lumineuse influencent l'éclairement sur une surface."
+},
+
+{
+q:"À quoi sert une optique dans un luminaire LED ?",
+a:["À mesurer directement le courant","À diriger ou répartir la lumière selon l'objectif recherché","À remplacer l'isolation électrique"],
+c:1,
+e:"Les lentilles et réflecteurs modifient la distribution de la lumière pour répondre aux besoins d'éclairage."
+},
+
+{
+q:"Pourquoi faut-il tenir compte de la hauteur de montage lors d'une étude d'éclairage ?",
+a:["Elle ne change jamais l'éclairement","Elle détermine uniquement la consommation électrique","Elle influence la distribution de lumière et l'éclairement reçu sur les surfaces"],
+c:2,
+e:"La distance entre la source et la surface ainsi que la distribution lumineuse influencent l'éclairement obtenu."
+},
+
+{
+q:"Quel est l'objectif d'une étude d'éclairage ?",
+a:["Déterminer les besoins lumineux et choisir une solution adaptée au lieu","Installer systématiquement le maximum de luminaires","Choisir uniquement la source la moins chère"],
+c:0,
+e:"Une étude tient compte de l'usage, des niveaux d'éclairement, de l'uniformité, de l'éblouissement, de l'efficacité et des contraintes d'installation."
+},
+
+{
+q:"Pourquoi faut-il distinguer puissance électrique et flux lumineux ?",
+a:["Parce qu'ils désignent exactement la même grandeur","Parce que la puissance mesure l'énergie par unité de temps tandis que le flux décrit la lumière émise","Parce que le flux lumineux se mesure en ampères"],
+c:1,
+e:"La puissance électrique s'exprime en watts et le flux lumineux en lumens. Deux sources de même puissance peuvent produire des flux différents."
+},
+
+{
+q:"Deux sources LED consomment chacune 10 W. Peut-on conclure qu'elles produisent le même flux lumineux ?",
+a:["Oui, toujours","Oui, si elles sont de la même couleur","Non, leur efficacité lumineuse peut être différente"],
+c:2,
+e:"Le rendement lumineux varie selon la technologie, la conception, la température et les conditions de fonctionnement."
+},
+
+{
+q:"Quel facteur peut contribuer à une baisse du flux lumineux pendant le fonctionnement ?",
+a:["Une température de jonction trop élevée","Une valeur de tension toujours parfaitement adaptée","Une fixation mécanique correcte"],
+c:0,
+e:"La température de jonction, le courant et le vieillissement peuvent influencer le flux lumineux."
+},
+
+{
+q:"À quoi sert une fiche technique de luminaire ?",
+a:["À remplacer toutes les vérifications sur chantier","À connaître les caractéristiques, les limites et les conditions d'utilisation du produit","À garantir que le produit convient à toutes les installations"],
+c:1,
+e:"La fiche technique fournit des données utiles pour vérifier la compatibilité, le dimensionnement et les conditions d'installation."
+},
+
+{
+q:"Quelle est la bonne démarche si les caractéristiques d'un driver sont inconnues ?",
+a:["Le connecter directement et observer le résultat","Augmenter progressivement la tension sans mesure","Rechercher la documentation ou identifier précisément le modèle avant de le connecter"],
+c:2,
+e:"Il faut identifier le matériel et vérifier ses caractéristiques avant toute connexion."
+},
+
+{
+q:"Que faire si la puissance totale d'un ruban dépasse la capacité de son alimentation ?",
+a:["Choisir une alimentation correctement dimensionnée et vérifier la compatibilité du système","Ajouter une charge supplémentaire","Ignorer les limites inscrites sur l'alimentation"],
+c:0,
+e:"L'alimentation doit pouvoir fournir la puissance demandée dans les conditions prévues par le fabricant."
+},
+
+{
+q:"Pourquoi faut-il prendre en compte les conditions de ventilation autour d'un driver ?",
+a:["Pour augmenter sa température de couleur","Pour permettre l'évacuation de la chaleur et respecter ses conditions de fonctionnement","Pour faire varier automatiquement la tension"],
+c:1,
+e:"Un environnement trop chaud ou une ventilation insuffisante peut augmenter la température du driver et réduire sa fiabilité."
+},
+
+{
+q:"Quel est le rôle d'un connecteur adapté dans une installation LED ?",
+a:["Modifier la température de couleur","Multiplier la puissance sans alimentation","Assurer une connexion électrique et mécanique appropriée"],
+c:2,
+e:"Un connecteur adapté aux conducteurs, au courant, à la tension et à l'environnement contribue à la fiabilité de la connexion."
+},
+
+{
+q:"Pourquoi faut-il vérifier le serrage des connexions électriques selon les prescriptions du fabricant ?",
+a:["Un mauvais serrage peut créer une résistance de contact, de l'échauffement ou une connexion instable","Le serrage modifie toujours le flux lumineux","Le serrage remplace les protections électriques"],
+c:0,
+e:"Les connexions doivent être réalisées selon les prescriptions afin de limiter les risques de mauvais contact et d'échauffement."
+},
+
+{
+q:"Pourquoi les connexions électriques doivent-elles être protégées dans un environnement adapté ?",
+a:["Pour augmenter le rendement lumineux","Pour limiter les risques de contact, de détérioration et de pénétration d'éléments indésirables","Pour remplacer le choix du bon câble"],
+c:1,
+e:"La protection des connexions dépend du lieu, des risques mécaniques et environnementaux, ainsi que des exigences de sécurité."
+},
+
+{
+q:"Quel est le bon réflexe face à un luminaire qui chauffe anormalement ?",
+a:["Continuer à l'utiliser sans contrôle","Augmenter immédiatement le courant du driver","Mettre en sécurité si nécessaire et rechercher la cause selon une procédure adaptée"],
+c:2,
+e:"Une chauffe anormale peut indiquer un défaut de dissipation, une surcharge, une connexion défectueuse ou un composant en panne."
+},
+
+{
+q:"Pourquoi faut-il éviter de choisir un driver uniquement à partir de sa puissance annoncée ?",
+a:["Il faut aussi vérifier le type de régulation, la tension, le courant et les autres caractéristiques","La puissance annoncée n'a jamais d'importance","Tous les drivers ont les mêmes sorties"],
+c:0,
+e:"La puissance est un critère important, mais elle ne suffit pas à assurer la compatibilité électrique."
+},
+
+{
+q:"Que signifie généralement SELV dans le domaine électrique ?",
+a:["Une alimentation sans aucune limite de courant","Une très basse tension de sécurité répondant à des exigences de conception et de séparation","Un indice de rendu des couleurs"],
+c:1,
+e:"SELV désigne un système à très basse tension de sécurité répondant à des exigences spécifiques. Il ne faut pas se fier uniquement à la valeur de tension pour déclarer une installation conforme."
+},
+
+{
+q:"Pourquoi un système basse tension LED nécessite-t-il malgré tout des précautions ?",
+a:["Parce que la basse tension supprime tous les risques","Parce que les câbles ne peuvent jamais chauffer","Parce que les courants peuvent être importants et que l'alimentation peut présenter des risques côté secteur"],
+c:2,
+e:"La basse tension ne supprime pas les risques liés aux courants élevés, aux courts-circuits, à l'échauffement ou à la partie secteur de l'alimentation."
+},
+
+{
+q:"Lors d'un dépannage, pourquoi est-il utile de procéder étape par étape ?",
+a:["Pour identifier la cause sans remplacer inutilement des composants","Pour multiplier les erreurs de branchement","Pour éviter de consulter les caractéristiques du matériel"],
+c:0,
+e:"Une méthode structurée permet de vérifier les hypothèses, de réduire les risques et d'éviter les remplacements inutiles."
+},
+
+{
+q:"Quel document faut-il consulter pour connaître le courant nominal d'un module LED ?",
+a:["Une fiche produit sans référence au modèle","La fiche technique ou la documentation correspondant exactement au module","Un document concernant un luminaire totalement différent"],
+c:1,
+e:"Il faut utiliser les informations du fabricant correspondant au modèle et à la version réellement installés."
+},
+
+{
+q:"Quel est le but d'un essai après installation, réalisé dans les conditions de sécurité appropriées ?",
+a:["Modifier systématiquement les réglages au hasard","Dépasser les limites de fonctionnement","Vérifier le fonctionnement et le résultat de l'installation par rapport aux attentes"],
+c:2,
+e:"Les contrôles de fin de chantier permettent de vérifier le fonctionnement, les réglages et les résultats attendus."
+},
+
+{
+q:"Quelle approche est la plus pertinente pour améliorer l'efficacité d'un éclairage existant ?",
+a:["Analyser les besoins, mesurer si nécessaire et choisir une solution adaptée","Remplacer toutes les sources sans étude","Augmenter systématiquement la puissance"],
+c:0,
+e:"L'amélioration doit tenir compte des besoins réels, de la qualité lumineuse, de la consommation et des contraintes du site."
+},
+
+{
+q:"Pourquoi la maintenance d'un système LED reste-t-elle nécessaire ?",
+a:["Parce que toutes les LED doivent être remplacées chaque mois","Parce que les drivers, connexions, optiques et conditions d'installation peuvent nécessiter des contrôles","Parce que les LED ne peuvent pas tomber en panne"],
+c:1,
+e:"Même si les LED peuvent avoir une longue durée de vie, le système complet peut nécessiter nettoyage, inspection ou remplacement de composants."
+},
+
+{
+q:"Quel est le meilleur réflexe avant de modifier une installation existante ?",
+a:["Débrancher un fil au hasard","Se fier uniquement à la couleur des conducteurs","Identifier le circuit, consulter les informations disponibles et appliquer les procédures de sécurité"],
+c:2,
+e:"L'identification du circuit et l'application des procédures de sécurité sont indispensables avant une modification."
 }
+
 ];
+
+/* =========================================================
+   VARIABLES DU QCM
+   ========================================================= */
 
 let questions = [];
 let current = 0;
 let score = 0;
 let answered = false;
 
-function melanger(){
+let reponsesMelangees = [];
+let questionsRatees = [];
+let questionsRepondues = 0;
 
-questions = [...banque];
+/* Mélange uniforme de Fisher-Yates */
 
-for(let i = questions.length - 1; i > 0; i--){
+function melangerTableau(tableau) {
+    const copie = [...tableau];
 
-let j = Math.floor(Math.random() * (i + 1));
+    for (let i = copie.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copie[i], copie[j]] = [copie[j], copie[i]];
+    }
 
-[questions[i], questions[j]] =
-[questions[j], questions[i]];
-
+    return copie;
 }
 
+/* Afficher ou masquer les écrans */
+
+function afficherEcran(id) {
+    document.getElementById("accueil").classList.add("masque");
+    document.getElementById("zoneQCM").classList.add("masque");
+    document.getElementById("zonePause").classList.add("masque");
+    document.getElementById("zoneFinale").classList.add("masque");
+
+    document.getElementById(id).classList.remove("masque");
 }
 
-function afficherQuestion(){
+/* Démarrer le QCM */
 
-answered = false;
+function demarrerQCM() {
+    questions = melangerTableau(banque);
+    current = 0;
+    score = 0;
+    answered = false;
+    questionsRatees = [];
+    questionsRepondues = 0;
 
-document.getElementById("result").innerHTML = "";
-
-document.getElementById("question").innerHTML =
-questions[current].q;
-
-let html = "";
-
-questions[current].a.forEach((rep,index)=>{
-
-html += `
-<button class="rep" onclick="verifier(${index})">
-${rep}
-</button>
-`;
-
-});
-
-document.getElementById("answers").innerHTML = html;
-
-document.getElementById("score").innerHTML =
-"Question " + (current+1) + " / " + questions.length;
+    afficherEcran("zoneQCM");
+    afficherQuestion();
 }
 
-function verifier(index){
+/* Afficher une question */
 
-if(answered) return;
+function afficherQuestion() {
+    if (current >= questions.length) {
+        terminerQCM();
+        return;
+    }
 
-answered = true;
+    answered = false;
 
-let bonne =
-questions[current].a[questions[current].c];
+    const question = questions[current];
 
-if(index === questions[current].c){
+    /*
+       Chaque réponse est associée à son statut correct/incorrect.
+       Le mélange déplace les réponses et leur statut ensemble.
+       La correction reste donc juste, même après mélange.
+    */
 
-score++;
+    reponsesMelangees = melangerTableau(
+        question.a.map((texte, index) => ({
+            texte: texte,
+            correcte: index === question.c
+        }))
+    );
 
-document.getElementById("result").innerHTML = `
-✅ Bonne réponse
-<br><br>
-💡 ${questions[current].e}
-`;
+    document.getElementById("compteur").textContent =
+        "Question " + (current + 1) + " / " + questions.length;
 
-}else{
+    document.getElementById("scoreActuel").textContent =
+        "Score : " + score;
 
-document.getElementById("result").innerHTML = `
-❌ Mauvaise réponse
-<br><br>
-✅ Bonne réponse : <b>${bonne}</b>
-<br><br>
-💡 ${questions[current].e}
-`;
+    document.getElementById("barreProgression").style.width =
+        (current / questions.length * 100) + "%";
 
+    document.getElementById("blocTitre").textContent =
+        "Bloc " + (Math.floor(current / 5) + 1);
+
+    document.getElementById("numeroQuestion").textContent =
+        "QUESTION " + (current + 1);
+
+    document.getElementById("question").textContent = question.q;
+
+    const zoneReponses = document.getElementById("reponses");
+    zoneReponses.innerHTML = "";
+
+    reponsesMelangees.forEach((reponse, index) => {
+        const bouton = document.createElement("button");
+
+        bouton.type = "button";
+        bouton.className = "reponse";
+
+        const lettre = document.createElement("span");
+        lettre.className = "lettre";
+        lettre.textContent = String.fromCharCode(65 + index);
+
+        bouton.appendChild(lettre);
+        bouton.appendChild(document.createTextNode(reponse.texte));
+
+        bouton.addEventListener("click", () => verifierReponse(index));
+
+        zoneReponses.appendChild(bouton);
+    });
+
+    const correction = document.getElementById("correction");
+    correction.className = "correction";
+    correction.innerHTML = "";
+
+    const boutonSuivant = document.getElementById("boutonSuivant");
+    boutonSuivant.disabled = true;
+    boutonSuivant.textContent = "Valider et continuer →";
 }
 
+/* Vérifier la réponse sélectionnée */
+
+function verifierReponse(index) {
+    if (answered) return;
+
+    answered = true;
+    questionsRepondues++;
+
+    const question = questions[current];
+    const reponseChoisie = reponsesMelangees[index];
+    const boutons = document.querySelectorAll(".reponse");
+
+    const bonneReponse = reponsesMelangees.find(
+        reponse => reponse.correcte
+    );
+
+    boutons.forEach((bouton, i) => {
+        bouton.disabled = true;
+
+        if (reponsesMelangees[i].correcte) {
+            bouton.classList.add("correcte");
+        }
+    });
+
+    const correction = document.getElementById("correction");
+
+    if (reponseChoisie.correcte) {
+        score++;
+
+        correction.className = "correction visible ok";
+        correction.innerHTML =
+            "<strong>✅ Bonne réponse !</strong>" +
+            "<div>💡 " + question.e + "</div>";
+
+    } else {
+        boutons[index].classList.add("incorrecte");
+
+        questionsRatees.push({
+            numero: current + 1,
+            question: question.q,
+            choisie: reponseChoisie.texte,
+            correcte: bonneReponse.texte,
+            explication: question.e
+        });
+
+        correction.className = "correction visible erreur";
+        correction.innerHTML =
+            "<strong>❌ Ce n'est pas la bonne réponse.</strong>" +
+            "<div>Ta réponse : " + echapperHTML(reponseChoisie.texte) + "</div>" +
+            "<div>✅ Bonne réponse : <strong>" +
+            echapperHTML(bonneReponse.texte) +
+            "</strong></div>" +
+            "<div>💡 " + echapperHTML(question.e) + "</div>";
+    }
+
+    document.getElementById("scoreActuel").textContent =
+        "Score : " + score;
+
+    const boutonSuivant = document.getElementById("boutonSuivant");
+    boutonSuivant.disabled = false;
+
+    if (current === questions.length - 1) {
+        boutonSuivant.textContent = "Voir mon résultat 🏆";
+    } else {
+        boutonSuivant.textContent = "Question suivante →";
+    }
 }
 
-function nextQuestion(){
+/* Sécuriser l'affichage du texte dans les corrections */
 
-if(!answered) return;
-
-current++;
-
-/* Pause toutes les 5 questions */
-
-if(current === 5){
-
-document.querySelector(".card").innerHTML = `
-
-<h2>📚 Fin du bloc</h2>
-
-<h1>${score}/${current}</h1>
-
-<p>
-Tu viens de terminer 5 questions.
-</p>
-
-<button class="nav" onclick="reprendreQCM()">
-➡️ Continuer
-</button>
-
-`;
-
-return;
-
+function echapperHTML(texte) {
+    return String(texte)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
-/* Fin du QCM */
+/* Passer à la question suivante */
 
-if(current >= questions.length){
+function questionSuivante() {
+    if (!answered) return;
 
-let pourcentage =
-Math.round((score/questions.length)*100);
+    current++;
 
-let niveau = "📚 Débutant";
+    /* Toutes les 5 questions, sauf à la fin */
 
-if(pourcentage >= 50)
-niveau = "👍 Correct";
+    if (current > 0 && current % 5 === 0 && current < questions.length) {
+        afficherPause();
+        return;
+    }
 
-if(pourcentage >= 80)
-niveau = "🥈 Confirmé";
+    if (current >= questions.length) {
+        terminerQCM();
+        return;
+    }
 
-if(pourcentage === 100)
-niveau = "🥇 Expert LED3";
-
-document.querySelector(".card").innerHTML = `
-
-<h2>🎯 Résultat Final</h2>
-
-<h1>${score}/${questions.length}</h1>
-
-<h2>${pourcentage}%</h2>
-
-<h3>${niveau}</h3>
-
-<button class="nav" onclick="location.reload()">
-🔄 Nouveau QCM
-</button>
-
-`;
-
-return;
+    afficherQuestion();
 }
 
-afficherQuestion();
+/* Écran de pause toutes les 5 questions */
 
+function afficherPause() {
+    afficherEcran("zonePause");
+
+    const taux = Math.round((score / questionsRepondues) * 100);
+
+    document.getElementById("titrePause").textContent =
+        "Bloc terminé ! ⚡";
+
+    document.getElementById("textePause").textContent =
+        "Tu as répondu à " + questionsRepondues +
+        " questions sur " + questions.length +
+        ". Prends quelques secondes pour retenir les explications avant de continuer.";
+
+    document.getElementById("pauseBonnes").textContent = score;
+
+    document.getElementById("pauseErreurs").textContent =
+        questionsRepondues - score;
+
+    document.getElementById("pausePourcentage").textContent =
+        taux + "%";
+
+    document.getElementById("boutonReprendre").textContent =
+        "Continuer avec la question " + (current + 1) + " →";
 }
 
-function reprendreQCM(){
+/* Reprendre après la pause */
 
-document.querySelector(".card").innerHTML = `
+function reprendreQCM() {
+    if (current >= questions.length) {
+        terminerQCM();
+        return;
+    }
 
-<h1>✅ QCM LED3</h1>
-
-<h2 id="question"></h2>
-
-<div id="answers"></div>
-
-<div id="result"></div>
-
-<button class="nav" onclick="nextQuestion()">
-➡️ Suivant
-</button>
-
-<p id="score"></p>
-
-`;
-
-afficherQuestion();
-
+    afficherEcran("zoneQCM");
+    afficherQuestion();
 }
-melanger();
-afficherQuestion();
+
+/* Résultat final */
+
+function terminerQCM() {
+    afficherEcran("zoneFinale");
+
+    const total = questions.length;
+    const erreurs = total - score;
+    const pourcentage = Math.round((score / total) * 100);
+
+    document.getElementById("scoreFinal").textContent =
+        score + " / " + total;
+
+    document.getElementById("pourcentageFinal").textContent =
+        pourcentage + "% de bonnes réponses";
+
+    document.getElementById("finalBonnes").textContent = score;
+    document.getElementById("finalErreurs").textContent = erreurs;
+    document.getElementById("finalTaux").textContent = pourcentage + "%";
+
+    let message = "";
+    let icone = "";
+
+    if (pourcentage >= 90) {
+        icone = "🏆";
+        message = "Excellent résultat ! Tu maîtrises très bien ces notions.";
+    } else if (pourcentage >= 75) {
+        icone = "🔥";
+        message = "Très bon résultat ! Continue à consolider tes connaissances.";
+    } else if (pourcentage >= 60) {
+        icone = "💪";
+        message = "Bon travail ! Quelques révisions supplémentaires te permettront de progresser.";
+    } else if (pourcentage >= 40) {
+        icone = "📚";
+        message = "Tu avances ! Reprends les explications et révise les notions difficiles.";
+    } else {
+        icone = "⚡";
+        message = "C'est le moment de reprendre les bases et de refaire le QCM pour progresser.";
+    }
+
+    document.getElementById("iconeFinale").textContent = icone;
+    document.getElementById("messageFinal").textContent = message;
+
+    const bilan = document.getElementById("bilanErreurs");
+    bilan.innerHTML = "";
+
+    if (questionsRatees.length > 0) {
+        const titre = document.createElement("h3");
+        titre.textContent = "📌 Questions à revoir";
+        bilan.appendChild(titre);
+
+        const introduction = document.createElement("p");
+        introduction.className = "texte-secondaire";
+        introduction.textContent =
+            "Voici les questions auxquelles tu as répondu incorrectement.";
+        bilan.appendChild(introduction);
+
+        questionsRatees.forEach(erreur => {
+            const bloc = document.createElement("div");
+
+            bloc.style.padding = "15px";
+            bloc.style.marginBottom = "12px";
+            bloc.style.borderRadius = "12px";
+            bloc.style.background = "#172239";
+            bloc.style.border = "1px solid rgba(255,255,255,0.08)";
+
+            const q = document.createElement("strong");
+            q.textContent = "Question " + erreur.numero + " : " + erreur.question;
+
+            const taReponse = document.createElement("p");
+            taReponse.style.color = "#ff9999";
+            taReponse.textContent = "Ta réponse : " + erreur.choisie;
+
+            const bonne = document.createElement("p");
+            bonne.style.color = "#86efac";
+            bonne.textContent = "Bonne réponse : " + erreur.correcte;
+
+            const explication = document.createElement("p");
+            explication.className = "texte-secondaire";
+            explication.textContent = "💡 " + erreur.explication;
+
+            bloc.appendChild(q);
+            bloc.appendChild(taReponse);
+            bloc.appendChild(bonne);
+            bloc.appendChild(explication);
+
+            bilan.appendChild(bloc);
+        });
+
+    } else {
+        const felicitations = document.createElement("p");
+        felicitations.textContent =
+            "🎉 Sans faute ! Tu as répondu correctement à toutes les questions.";
+        bilan.appendChild(felicitations);
+    }
+
+    document.getElementById("barreProgression").style.width = "100%";
+}
+
+/* Recommencer avec un nouvel ordre de questions et de réponses */
+
+function recommencerQCM() {
+    demarrerQCM();
+}
+
 </script>
 
 </body>
