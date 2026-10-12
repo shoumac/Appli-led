@@ -1,41 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<title>Glossaire LED</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f172a">
+<title>Glossaire LED3 Academy</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#0f172a;--panel:#172338;--panel2:#1e293b;--text:#f1f5f9;--muted:#b7c4d8;--accent:#38bdf8;--line:#334155}
+*{box-sizing:border-box}body{margin:0;padding:22px 16px 40px;background:radial-gradient(circle at top,#1e3a5f 0,#0f172a 42%);color:var(--text);font-family:'Poppins',Arial,sans-serif;line-height:1.6}.wrap{max-width:1050px;margin:auto}.btn-retour{display:inline-block;color:#e0f2fe;text-decoration:none;border:1px solid #475569;background:#172338;padding:9px 14px;border-radius:12px;margin-bottom:14px}h1{text-align:center;font-size:clamp(1.8rem,4vw,2.6rem);margin:8px 0}.intro{text-align:center;color:var(--muted);margin:0 auto 22px;max-width:720px}.toolbar{position:sticky;top:8px;z-index:5;background:rgba(15,23,42,.94);backdrop-filter:blur(10px);padding:12px;border:1px solid var(--line);border-radius:16px;margin:18px 0 24px;box-shadow:0 10px 28px #0002}.search{width:100%;padding:13px 15px;border-radius:11px;border:1px solid #475569;background:#0b1220;color:var(--text);font:inherit;outline:none}.search:focus{border-color:var(--accent);box-shadow:0 0 0 3px #38bdf833}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.filter{border:1px solid #475569;background:var(--panel2);color:var(--text);padding:7px 11px;border-radius:999px;cursor:pointer;font:inherit;font-size:.84rem}.filter.active,.filter:hover{background:#075985;border-color:var(--accent)}.count{font-size:.9rem;color:var(--muted);margin:0 0 12px}.group{margin:24px 0}.group h2{font-size:1.15rem;color:#7dd3fc;border-bottom:1px solid var(--line);padding-bottom:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,285px),1fr));gap:12px}.term{background:linear-gradient(145deg,var(--panel),#111c2f);border:1px solid var(--line);border-radius:14px;padding:14px 15px;min-height:105px}.term h3{font-size:1rem;margin:0 0 5px;color:#f8fafc}.term p{margin:0;color:var(--muted);font-size:.92rem}.term .tag{display:inline-block;color:#7dd3fc;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}.empty{display:none;text-align:center;padding:30px;color:var(--muted);background:var(--panel);border-radius:14px}.note{margin-top:26px;padding:14px;border-left:3px solid var(--accent);background:#10243a;border-radius:8px;color:var(--muted);font-size:.9rem}footer{text-align:center;color:#94a3b8;font-size:.8rem;margin-top:30px}
+</style>
 </head>
-
 <body>
-<a href="index.html" class="btn-retour">⬅ Retour</a>
-<h1>📖 Glossaire</h1>
-
-<div class="card">
-AC = Courant alternatif
+<div class="wrap">
+<a href="index.html" class="btn-retour">⬅ Retour à l’accueil</a>
+<h1>📖 Glossaire LED3</h1>
+<p class="intro">Les mots-clés de l’éclairage LED, de l’électricité et du diagnostic terrain. Recherche un terme ou filtre par thème pour réviser plus vite.</p>
+<div class="toolbar">
+<input id="search" class="search" type="search" placeholder="🔎 Rechercher : IRC, driver, lux, IP, tension…" aria-label="Rechercher un terme">
+<div class="filters" id="filters" aria-label="Filtrer par catégorie">
+<button class="filter active" data-filter="Tout">Tout</button>
+<button class="filter" data-filter="Électricité">⚡ Électricité</button>
+<button class="filter" data-filter="LED & alimentation">💡 LED & alimentation</button>
+<button class="filter" data-filter="Photométrie">🔆 Photométrie</button>
+<button class="filter" data-filter="Qualité & normes">🛡️ Qualité & normes</button>
+<button class="filter" data-filter="Installation & diagnostic">🧰 Installation & diagnostic</button>
 </div>
-
-<div class="card">
-DC = Courant continu
 </div>
-
-<div class="card">
-IRC = Indice de rendu des couleurs
+<p class="count" id="count" aria-live="polite"></p>
+<div id="glossary"></div>
+<div id="empty" class="empty">Aucun terme trouvé. Essaie un autre mot ou une autre catégorie.</div>
+<div class="note"><strong>À retenir :</strong> les valeurs limites et exigences d’installation dépendent du matériel, du contexte et des normes applicables. En cas d’intervention électrique, respecte les habilitations, la consignation et les procédures de sécurité.</div>
+<footer>⚡ LED3 Academy • Glossaire de révision</footer>
 </div>
-
-<div class="card">
-UGR = Unified Glare Rating
-</div>
-
-<div class="card">
-SELV = Safety Extra Low Voltage
-</div>
-
-<div class="card">
-PCB = Circuit imprimé
-</div>
-
-<div class="card">
-Driver = Alimentation LED
-</div>
-
+<script>
+const terms = [
+// Électricité
+['AC','Électricité','Courant alternatif. Le sens du courant varie périodiquement ; c’est la forme de courant distribuée par le réseau électrique.'],
+['DC','Électricité','Courant continu. Le courant circule dans un seul sens, comme à la sortie de nombreuses alimentations ou d’une batterie.'],
+['Tension (U)','Électricité','Différence de potentiel électrique entre deux points. Elle s’exprime en volts (V).'],
+['Courant (I)','Électricité','Débit de charges électriques dans un circuit. Il s’exprime en ampères (A).'],
+['Résistance (R)','Électricité','Grandeur qui s’oppose au passage du courant. Elle s’exprime en ohms (Ω).'],
+['Puissance (P)','Électricité','Énergie transférée ou consommée par unité de temps. Elle s’exprime en watts (W). En continu, P = U × I.'],
+['Énergie (E)','Électricité','Quantité d’énergie consommée sur une durée. Elle s’exprime souvent en wattheures (Wh) ou kilowattheures (kWh).'],
+['Loi d’Ohm','Électricité','Relation entre tension, courant et résistance : U = R × I, pour un dipôle ohmique dans les conditions adaptées.'],
+['Volt (V)','Électricité','Unité de tension électrique.'],
+['Ampère (A)','Électricité','Unité d’intensité du courant électrique.'],
+['Ohm (Ω)','Électricité','Unité de résistance électrique.'],
+['Watt (W)','Électricité','Unité de puissance. 1 kW = 1 000 W.'],
+['Wattheure (Wh)','Électricité','Unité d’énergie correspondant à une puissance de 1 W consommée pendant 1 heure.'],
+['Facteur de puissance (PF)','Électricité','Indicateur de l’utilisation efficace de la puissance électrique en alternatif. Il se situe entre 0 et 1 dans le cas usuel ; plus il est proche de 1, mieux la puissance apparente est convertie en puissance active.'],
+['THD','Électricité','Taux de distorsion harmonique. Il caractérise la présence d’harmoniques dans un courant ou une tension.'],
+['Harmonique','Électricité','Composante sinusoïdale dont la fréquence est un multiple entier de la fréquence fondamentale.'],
+['Rendement','Électricité','Rapport entre la puissance utile délivrée et la puissance absorbée. Il s’exprime en pourcentage.'],
+['Chute de tension','Électricité','Diminution de tension le long d’un câble ou d’un conducteur, liée notamment au courant, à la longueur et à la section.'],
+['Polarité','Électricité','Identification des bornes positives et négatives en courant continu. Une inversion peut empêcher le fonctionnement ou endommager certains équipements.'],
+['Mise à la terre','Électricité','Connexion de parties conductrices prévues à cet effet au système de terre pour contribuer à la protection contre les défauts électriques.'],
+['Court-circuit','Électricité','Connexion accidentelle de points à potentiels différents par une très faible impédance, pouvant provoquer un courant important.'],
+['Multimètre','Électricité','Appareil de mesure permettant, selon son modèle et son réglage, de mesurer notamment tension, courant ou résistance.'],
+['Continuité','Électricité','Vérification qu’un chemin électrique est bien établi entre deux points, circuit mis hors tension selon la procédure adaptée.'],
+// LED & alimentation
+['LED','LED & alimentation','Diode électroluminescente : composant qui émet de la lumière lorsqu’il est parcouru par un courant dans le sens prévu.'],
+['Driver','LED & alimentation','Alimentation électronique qui fournit aux LED le courant ou la tension requis, dans les limites prévues par le fabricant.'],
+['Driver à courant constant (CC)','LED & alimentation','Alimentation qui régule son courant de sortie. Le module LED doit être compatible avec ce courant et sa plage de tension.'],
+['Alimentation à tension constante (CV)','LED & alimentation','Alimentation qui maintient une tension de sortie déterminée. Elle est couramment utilisée avec des rubans ou modules conçus pour cette tension.'],
+['Courant constant (CC)','LED & alimentation','Mode de régulation où le courant de sortie reste contrôlé malgré les variations de charge, dans la plage de fonctionnement spécifiée.'],
+['Tension constante (CV)','LED & alimentation','Mode de régulation où la tension de sortie reste contrôlée dans les conditions prévues.'],
+['Module LED','LED & alimentation','Ensemble intégrant une ou plusieurs LED et éventuellement un circuit imprimé, des optiques ou d’autres composants.'],
+['PCB','LED & alimentation','Printed Circuit Board : circuit imprimé servant de support mécanique et de connexion électrique aux composants.'],
+['Flux lumineux nominal','LED & alimentation','Flux lumineux annoncé par le fabricant dans des conditions de mesure spécifiées. Il peut varier avec la température et le courant.'],
+['Efficacité lumineuse','LED & alimentation','Rapport du flux lumineux émis à la puissance électrique consommée, généralement exprimé en lm/W.'],
+['Gradation / dimming','LED & alimentation','Variation contrôlée du niveau lumineux. Elle nécessite une compatibilité entre driver, commande et module LED.'],
+['PWM','LED & alimentation','Modulation de largeur d’impulsion : technique qui règle la puissance moyenne en faisant varier le rapport cyclique d’un signal.'],
+['Flicker','LED & alimentation','Variation temporelle de la lumière émise. Selon sa fréquence et son amplitude, elle peut être visible ou avoir d’autres effets.'],
+['Température de jonction','LED & alimentation','Température interne de la zone semi-conductrice de la LED. Elle influence le flux, la couleur et la durée de vie.'],
+['Dissipateur thermique','LED & alimentation','Élément conçu pour transférer la chaleur du composant vers l’environnement.'],
+['Gestion thermique','LED & alimentation','Ensemble des moyens permettant de limiter la température des LED et de leurs alimentations.'],
+['Durée de vie L70','LED & alimentation','Durée au terme de laquelle le flux lumineux d’un produit LED atteint 70 % de sa valeur initiale selon les conditions de référence. Ce n’est pas nécessairement une durée avant panne.'],
+['Binning','LED & alimentation','Tri des LED selon des plages de caractéristiques, par exemple flux, couleur ou tension directe, pour améliorer la cohérence des lots.'],
+['Tension directe (Vf)','LED & alimentation','Tension aux bornes d’une LED lorsqu’elle conduit dans les conditions considérées. Elle varie selon le composant, le courant et la température.'],
+['SELV / TBTS','LED & alimentation','SELV signifie Safety Extra-Low Voltage ; en français, très basse tension de sécurité (TBTS). La conformité dépend de la conception et des conditions de protection du circuit.'],
+// Photométrie
+['Flux lumineux (lm)','Photométrie','Quantité totale de lumière visible émise par une source, pondérée selon la sensibilité visuelle humaine. Unité : lumen (lm).'],
+['Lumen (lm)','Photométrie','Unité du flux lumineux. Elle décrit la quantité de lumière émise, pas la lumière reçue par une surface.'],
+['Éclairement (lux)','Photométrie','Flux lumineux reçu par unité de surface. Unité : lux (lx), avec 1 lx = 1 lm/m².'],
+['Lux (lx)','Photométrie','Unité de l’éclairement lumineux. Il se mesure au niveau du plan considéré avec un luxmètre.'],
+['Candela (cd)','Photométrie','Unité d’intensité lumineuse dans une direction donnée.'],
+['Intensité lumineuse','Photométrie','Flux lumineux émis dans une direction par unité d’angle solide ; elle s’exprime en candelas.'],
+['Angle de faisceau','Photométrie','Angle caractérisant l’ouverture du faisceau lumineux selon la convention de mesure du fabricant.'],
+['Optique','Photométrie','Élément comme une lentille ou un réflecteur qui façonne la distribution de la lumière.'],
+['Distribution photométrique','Photométrie','Répartition de l’intensité lumineuse selon les directions autour du luminaire.'],
+['Uniformité','Photométrie','Mesure de la régularité de l’éclairement sur une surface, souvent évaluée par un rapport entre éclairement minimal et moyen.'],
+['Température de couleur (CCT)','Photométrie','Aspect visuel de la lumière blanche, exprimé en kelvins (K). En général, 2700–3000 K paraît chaud, 4000 K neutre et 6000–6500 K froid.'],
+['Kelvin (K)','Photométrie','Unité utilisée pour exprimer la température de couleur corrélée d’une source blanche.'],
+['IRC / CRI','Photométrie','Indice de rendu des couleurs : indique comment une source restitue les couleurs par rapport à une référence. Il est généralement noté Ra ou CRI.'],
+['R9','Photométrie','Indice spécifique lié au rendu des rouges saturés. Il complète l’IRC général Ra, qui ne décrit pas à lui seul toutes les couleurs.'],
+['SDCM / MacAdam','Photométrie','Mesure de l’écart de chromaticité perceptible entre sources. Un nombre de pas plus faible indique généralement une meilleure cohérence de couleur.'],
+['Efficacité lumineuse (lm/W)','Photométrie','Quantité de flux lumineux produite par watt électrique consommé. À comparer dans des conditions et périmètres identiques.'],
+['Courbe photométrique','Photométrie','Graphique représentant la répartition de l’intensité lumineuse d’un luminaire selon les directions.'],
+// Qualité & normes
+['UGR','Qualité & normes','Unified Glare Rating : méthode d’évaluation de l’éblouissement inconfortable dans certaines installations intérieures. La valeur dépend notamment du luminaire, de la pièce et de la position d’observation.'],
+['Éblouissement','Qualité & normes','Inconfort ou gêne visuelle causée par une luminance trop forte ou un contraste excessif dans le champ de vision.'],
+['Indice IP','Qualité & normes','Indice de protection contre l’accès aux parties dangereuses, les corps solides et l’eau. Les deux chiffres ont des significations distinctes.'],
+['IP20','Qualité & normes','Exemple d’indice IP : protection contre l’accès avec un doigt et absence de protection déclarée contre l’eau. Vérifier la signification normative exacte et l’usage prévu.'],
+['Indice IK','Qualité & normes','Indice de résistance d’une enveloppe aux impacts mécaniques externes. Il est exprimé par un code IK.'],
+['Classe électrique I','Qualité & normes','Matériel dont la protection contre les chocs électriques repose notamment sur l’isolation principale et la connexion des parties conductrices accessibles à la terre.'],
+['Classe électrique II','Qualité & normes','Matériel utilisant une isolation double ou renforcée, sans dépendre d’une connexion de protection à la terre pour cette protection.'],
+['Classe électrique III','Qualité & normes','Matériel dont la protection contre les chocs électriques repose sur l’alimentation en très basse tension de sécurité selon les règles applicables.'],
+['Marquage CE','Qualité & normes','Marquage par lequel le fabricant déclare que le produit satisfait aux exigences européennes applicables. Ce n’est pas, à lui seul, un label de qualité.'],
+['Directive / réglementation','Qualité & normes','Texte établissant des exigences légales. Les règles applicables dépendent du produit, du lieu et de son usage.'],
+['Sécurité photobiologique','Qualité & normes','Évaluation des risques potentiels liés au rayonnement optique d’une source, selon les méthodes et limites applicables.'],
+['Groupe de risque photobiologique','Qualité & normes','Classification issue d’une évaluation des risques du rayonnement optique dans des conditions définies. Consulter les données du fabricant et les conditions de mesure.'],
+['IP vs IK','Qualité & normes','IP concerne notamment les corps solides et l’eau ; IK concerne la résistance aux impacts mécaniques. Ces indices ne sont pas interchangeables.'],
+// Installation & diagnostic
+['Bornier','Installation & diagnostic','Dispositif de connexion permettant de raccorder des conducteurs électriques. Le serrage et la section admissible doivent respecter les instructions fabricant.'],
+['Connecteur','Installation & diagnostic','Élément servant à établir une connexion électrique démontable ou permanente selon sa conception. Vérifier la polarité, le courant et la compatibilité.'],
+['Série','Installation & diagnostic','Montage dans lequel les composants sont traversés par le même courant. Les tensions s’additionnent.'],
+['Parallèle','Installation & diagnostic','Montage dans lequel les branches partagent la même tension. Le courant total se répartit entre les branches.'],
+['Consignation','Installation & diagnostic','Procédure de mise en sécurité visant à empêcher une remise sous tension ou une libération d’énergie pendant l’intervention.'],
+['VAT','Installation & diagnostic','Vérification d’absence de tension, réalisée avec un dispositif adapté et selon la procédure de sécurité applicable.'],
+['Habilitation électrique','Installation & diagnostic','Reconnaissance par l’employeur de la capacité d’une personne à effectuer des opérations électriques déterminées, dans un périmètre défini.'],
+['Diagnostic','Installation & diagnostic','Démarche méthodique visant à identifier une cause de dysfonctionnement à partir des symptômes, de mesures et de vérifications.'],
+['Panne ouverte','Installation & diagnostic','Défaut où le chemin électrique est interrompu, par exemple à cause d’un conducteur coupé ou d’une connexion défaite.'],
+['Surchauffe','Installation & diagnostic','Élévation excessive de température pouvant provoquer une baisse de performance, un vieillissement accéléré ou une mise en sécurité.'],
+['Compatibilité driver/module','Installation & diagnostic','Vérification que les caractéristiques de sortie du driver correspondent aux besoins du module LED : courant ou tension, plages de fonctionnement, puissance, polarité et commande.'],
+['Dérating','Installation & diagnostic','Réduction volontaire de la puissance ou du courant pour respecter une limite thermique, électrique ou de fiabilité.'],
+['Luxmètre','Installation & diagnostic','Instrument qui mesure l’éclairement en lux sur le plan de mesure.'],
+['Pince ampèremétrique','Installation & diagnostic','Instrument qui mesure le courant en entourant un conducteur, selon le type de pince et le mode de mesure.'],
+['Maintenance préventive','Installation & diagnostic','Actions planifiées pour réduire la probabilité de panne : inspection, nettoyage, contrôle des connexions et vérification du fonctionnement.'],
+['Maintenance corrective','Installation & diagnostic','Intervention menée après détection d’un défaut afin de rétablir le fonctionnement attendu.']
+];
+const host=document.getElementById('glossary'), search=document.getElementById('search'), count=document.getElementById('count'), empty=document.getElementById('empty');
+let active='Tout';
+function render(){const q=search.value.trim().toLocaleLowerCase('fr');const found=terms.filter(t=>(active==='Tout'||t[1]===active)&&t.join(' ').toLocaleLowerCase('fr').includes(q));const cats=[...new Set(found.map(t=>t[1]))];host.innerHTML=cats.map(cat=>`<section class="group"><h2>${cat}</h2><div class="grid">${found.filter(t=>t[1]===cat).map(t=>`<article class="term"><span class="tag">${t[1]}</span><h3>${t[0]}</h3><p>${t[2]}</p></article>`).join('')}</div></section>`).join('');count.textContent=`${found.length} terme${found.length>1?'s':''} affiché${found.length>1?'s':''} sur ${terms.length}`;empty.style.display=found.length?'none':'block';}
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');active=btn.dataset.filter;render();}));search.addEventListener('input',render);render();
+</script>
 </body>
 </html>

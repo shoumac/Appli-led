@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>Session 23 — IRC et R9 | LED3 Academy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contenu-session{max-width:900px;margin:0 auto;text-align:left}
+.contenu-session .card{margin:16px 0}
+.contenu-session li{line-height:1.8;margin:8px 0}
+.session-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+.session-actions a{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:white;text-decoration:none;font-weight:700}
+summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<a href="sessions.html" class="btn-retour">⬅ Retour aux sessions</a>
+<div class="contenu-session">
+<h1>📚 Session 23</h1>
+<h2>IRC et R9</h2>
+<div class="card" id="sessionProgressCard" style="margin:16px 0;padding:16px;border:1px solid rgba(125,170,255,.25);border-radius:14px">
+  <p id="sessionProgressStatus" style="margin-top:0">📌 Progression de cette session</p>
+  <button id="sessionProgressButton" type="button" style="padding:11px 15px;border:0;border-radius:10px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:#fff;font-weight:700;cursor:pointer" onclick="toggleSessionDone()">✓ Marquer comme révisée</button>
+</div>
+
+<div class="card"><h3>🎯 Objectif</h3><p>Comprendre l&#x27;indice de rendu des couleurs et pourquoi la valeur R9 peut compléter l&#x27;IRC général.</p></div>
+<div class="card"><h3>📌 L'essentiel à retenir</h3><ul><li><strong>IRC / Ra :</strong> Indicateur du rendu des couleurs par comparaison à une source de référence, selon une méthode normalisée.</li>
+<li><strong>Interprétation :</strong> Un IRC plus élevé indique généralement une meilleure restitution des couleurs évaluées, mais ne décrit pas toute la qualité visuelle.</li>
+<li><strong>R9 :</strong> Indicateur relatif au rendu d&#x27;un rouge saturé ; il peut être important dans les commerces, soins, restauration ou applications où les rouges comptent.</li>
+<li><strong>Ne pas confondre :</strong> Un IRC général élevé ne garantit pas automatiquement un R9 élevé.</li>
+<li><strong>Choix :</strong> Consulter les données du fabricant et adapter les exigences à l&#x27;usage : CCT, IRC/Ra, R9 si pertinent et autres critères photométriques.</li></ul></div>
+<h3>🧠 Flashcards — vérifie tes connaissances</h3>
+<p>Ouvre chaque carte pour afficher sa réponse.</p>
+<details class="card"><summary>Que signifie IRC ?</summary><p>Indice de rendu des couleurs.</p></details>
+<details class="card"><summary>Que suggère un IRC élevé ?</summary><p>Un rendu plus fidèle pour les couleurs évaluées par la méthode.</p></details>
+<details class="card"><summary>Que renseigne le R9 ?</summary><p>Le rendu d&#x27;un rouge saturé.</p></details>
+<details class="card"><summary>IRC élevé garantit-il un R9 élevé ?</summary><p>Non, vérifier le R9 séparément.</p></details>
+<details class="card"><summary>Que vérifier pour un éclairage de qualité ?</summary><p>IRC/Ra, R9 si pertinent, CCT et données photométriques.</p></details>
+<div class="card"><h3>✅ Pour t'entraîner</h3><p>Retrouve les questions essentielles de cette session dans le QCM général. Les questions des sessions 17 à 24 ont été ajoutées à la banque.</p></div>
+<div class="session-actions"><a href="qcm.html">Faire le QCM</a><a href="session24.html">Session suivante →</a></div>
+</div>
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto"><a href="session22.html">← Session précédente</a><a href="session24.html">Session suivante →</a></div>
+<script>
+const SESSION_NUMBER=23;
+function getDoneSessions(){try{return JSON.parse(localStorage.getItem('led3_sessions_done')||'[]')}catch(e){return []}}
+function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NUMBER);document.getElementById('sessionProgressStatus').textContent=done?'✅ Session '+String(SESSION_NUMBER).padStart(2,'0')+' marquée comme révisée.':'📌 Session '+String(SESSION_NUMBER).padStart(2,'0')+' pas encore validée.';const b=document.getElementById('sessionProgressButton');b.textContent=done?'↩ Retirer des sessions révisées':'✓ Marquer comme révisée';b.setAttribute('aria-pressed',String(done))}
+function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
+paintSessionProgress();
+</script>
+</body>
+</html>

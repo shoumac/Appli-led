@@ -381,6 +381,10 @@ h2 {
         width: 100%;
     }
 }
+
+.select-mode{width:100%;max-width:420px;display:block;margin:0 auto 14px;padding:13px 15px;border-radius:12px;border:1px solid rgba(125,170,255,.35);background:#18243d;color:#f4f7ff;font:600 14px 'Poppins',sans-serif}
+.select-mode:focus{outline:2px solid #4387ff;outline-offset:2px}
+
 </style>
 </head>
 
@@ -396,7 +400,7 @@ h2 {
         <p>Entraîne-toi, comprends et progresse vers ta certification.</p>
 
         <div class="badges">
-            <span class="badge">📚 90 questions</span>
+            <span class="badge">📚 160 questions</span>
             <span class="badge">🎯 Réponses aléatoires</span>
             <span class="badge">💡 Corrections expliquées</span>
         </div>
@@ -414,7 +418,7 @@ h2 {
         </p>
 
         <p class="texte-secondaire">
-            Le QCM contient 90 questions. Une correction apparaît après
+            Le QCM contient 160 questions. Une correction apparaît après
             chaque réponse et une pause est proposée toutes les 5 questions.
         </p>
 
@@ -423,6 +427,13 @@ h2 {
             pas seulement de retenir les réponses.
         </p>
 
+        <label for="modeQCM" class="texte-secondaire" style="display:block;margin:18px 0 8px;font-weight:600">Choisis ton entraînement</label>
+        <select id="modeQCM" class="select-mode" aria-label="Durée du QCM">
+            <option value="20">Rapide — 20 questions</option>
+            <option value="50">Entraînement — 50 questions</option>
+            <option value="100">Intensif — 100 questions</option>
+            <option value="all">Banque complète — 160 questions</option>
+        </select>
         <button class="bouton principal" onclick="demarrerQCM()">
             Commencer le QCM ⚡
         </button>
@@ -553,7 +564,7 @@ h2 {
 <script>
 
 /* =========================================================
-   BANQUE DE 90 QUESTIONS
+   BANQUE DE 160 QUESTIONS
    c = index de la bonne réponse dans le tableau a
    Les réponses sont ensuite mélangées automatiquement.
    ========================================================= */
@@ -1252,7 +1263,131 @@ a:["Débrancher un fil au hasard","Se fier uniquement à la couleur des conducte
 c:2,
 e:"L'identification du circuit et l'application des procédures de sécurité sont indispensables avant une modification."
 }
+,
 
+/* Questions essentielles des sessions 17 à 24 : 5 par session */
+{"q": "Que signifie le premier chiffre d'un indice IP ?", "a": ["Le niveau de protection contre l'accès aux parties dangereuses et les corps solides", "La résistance aux chocs mécaniques", "La température maximale de fonctionnement"], "c": 0, "e": "Le premier chiffre caractérise la protection contre les corps solides et l'accès aux parties dangereuses."},
+
+{"q": "Que caractérise le deuxième chiffre d'un indice IP ?", "a": ["La résistance aux UV", "La protection contre l'eau", "La tenue aux vibrations"], "c": 1, "e": "Le deuxième chiffre de l'indice IP concerne la protection contre la pénétration de l'eau."},
+
+{"q": "Un indice IP élevé garantit-il à lui seul la résistance à la corrosion marine ?", "a": ["Oui, toujours", "Non, la corrosion dépend aussi des matériaux, revêtements et conditions d'exposition", "Oui, si le luminaire est extérieur"], "c": 1, "e": "IP concerne l'accès aux parties dangereuses, aux solides et à l'eau ; il ne décrit pas directement la résistance à la corrosion."},
+
+{"q": "Que faut-il vérifier avant de nettoyer un luminaire ?", "a": ["La méthode autorisée par le fabricant et la mise en sécurité", "Uniquement la couleur du luminaire", "Seulement sa puissance"], "c": 0, "e": "Le nettoyage doit respecter les instructions fabricant et les règles de sécurité, notamment électriques."},
+
+{"q": "Que signifie IP65 dans l'interprétation courante ?", "a": ["Protection poussière limitée et aucune protection à l'eau", "Enveloppe étanche à la poussière et protégée contre les jets d'eau selon les conditions normalisées", "Immersion permanente illimitée"], "c": 1, "e": "Le 6 correspond à l'étanchéité à la poussière ; le 5 à une protection contre les jets d'eau, dans les conditions de l'essai normalisé."},
+
+{"q": "Quelle est l'unité du flux lumineux ?", "a": ["Lux (lx)", "Lumen (lm)", "Candela (cd)"], "c": 1, "e": "Le flux lumineux s'exprime en lumens et décrit la quantité totale de lumière visible émise, pondérée selon la sensibilité visuelle."},
+
+{"q": "Le flux lumineux décrit principalement…", "a": ["La quantité totale de lumière émise", "La consommation électrique uniquement", "La température de jonction"], "c": 0, "e": "Le flux lumineux, en lumens, caractérise la quantité de lumière émise par une source."},
+
+{"q": "Deux luminaires de même flux donnent-ils forcément le même éclairement sur un plan ?", "a": ["Oui, dans tous les cas", "Non, cela dépend notamment de la distribution, de la distance et de la géométrie", "Oui, si leur puissance est identique"], "c": 1, "e": "L'éclairement reçu dépend du flux utile, de l'optique, de la distance et de la disposition."},
+
+{"q": "Pourquoi regarder le flux lumineux utile d'un luminaire ?", "a": ["Pour estimer la lumière réellement dirigée vers la zone visée", "Pour connaître directement son indice IP", "Pour calculer son facteur de puissance sans données"], "c": 0, "e": "Le flux utile aide à comprendre la part de lumière dirigée vers la zone d'intérêt."},
+
+{"q": "Le flux lumineux se mesure avec quel instrument adapté ?", "a": ["Un luxmètre directement pour mesurer le flux total", "Un dispositif de mesure photométrique adapté, comme une sphère intégrante ou un goniophotomètre", "Un ohmmètre"], "c": 1, "e": "La mesure du flux total nécessite un équipement photométrique adapté ; un luxmètre mesure l'éclairement en un point."},
+
+{"q": "Quelle est l'unité de l'éclairement ?", "a": ["Lumen", "Lux", "Candela"], "c": 1, "e": "L'éclairement se mesure en lux (lx), soit un lumen par mètre carré."},
+
+{"q": "Quelle grandeur s'exprime en candela ?", "a": ["L'intensité lumineuse dans une direction", "Le flux lumineux total", "La puissance électrique"], "c": 0, "e": "La candela exprime l'intensité lumineuse dans une direction donnée."},
+
+{"q": "Un lux correspond à…", "a": ["Un lumen par mètre carré", "Une candela par watt", "Un watt par mètre carré dans tous les cas"], "c": 0, "e": "Par définition, 1 lx = 1 lm/m²."},
+
+{"q": "Quel appareil utilise-t-on généralement pour mesurer l'éclairement d'un plan ?", "a": ["Un luxmètre", "Un multimètre en mode résistance", "Un thermomètre infrarouge uniquement"], "c": 0, "e": "Le luxmètre mesure l'éclairement incident au niveau du capteur."},
+
+{"q": "Pourquoi préciser la position du capteur lors d'une mesure en lux ?", "a": ["Parce que l'éclairement varie selon la position et l'orientation", "Parce que le lux dépend seulement de la couleur du câble", "Parce que la mesure n'a aucun rapport avec le plan étudié"], "c": 0, "e": "La mesure doit être faite au plan de référence et avec une orientation cohérente avec l'étude."},
+
+{"q": "Quelle est l'unité habituelle de l'efficacité lumineuse d'un luminaire ?", "a": ["lm/W", "W/lx", "cd/m²"], "c": 0, "e": "L'efficacité lumineuse s'exprime en lumens par watt."},
+
+{"q": "Comment calcule-t-on l'efficacité lumineuse à partir du flux et de la puissance ?", "a": ["Puissance ÷ flux", "Flux lumineux ÷ puissance électrique", "Tension × résistance"], "c": 1, "e": "Efficacité lumineuse = flux lumineux (lm) / puissance électrique (W)."},
+
+{"q": "À flux égal, quel luminaire est généralement le plus efficace ?", "a": ["Celui qui consomme le moins de watts", "Celui qui chauffe le plus", "Celui qui a le plus grand boîtier"], "c": 0, "e": "À flux comparable, une puissance plus faible donne une efficacité lm/W plus élevée."},
+
+{"q": "La puissance indiquée pour un luminaire comprend-elle toujours uniquement la LED ?", "a": ["Oui, jamais les pertes du driver", "Elle dépend de la convention et des données fabricant ; la puissance système inclut normalement le luminaire/driver", "Elle correspond toujours au flux lumineux"], "c": 1, "e": "Pour comparer correctement, vérifier si la puissance annoncée est celle du module LED ou du système complet."},
+
+{"q": "Pourquoi les pertes du driver comptent-elles ?", "a": ["Elles augmentent la puissance absorbée pour une puissance utile donnée", "Elles augmentent forcément le flux utile", "Elles remplacent la nécessité de dissiper la chaleur"], "c": 0, "e": "Les pertes du driver contribuent à la consommation et à l'échauffement du système."},
+
+{"q": "Quel est le rôle principal de l'optique d'un luminaire ?", "a": ["Diriger ou répartir la lumière selon les besoins", "Réguler directement le courant du driver", "Garantir l'absence de corrosion"], "c": 0, "e": "Réflecteurs, lentilles et diffuseurs modifient la distribution et le confort visuel."},
+
+{"q": "Une optique étroite est généralement utile pour…", "a": ["Concentrer la lumière sur une zone ciblée", "Éclairer uniformément toutes les directions", "Réduire toujours la puissance électrique à zéro"], "c": 0, "e": "Un faisceau étroit concentre l'intensité dans une zone plus limitée."},
+
+{"q": "Quel est l'effet possible d'un diffuseur ?", "a": ["Adoucir la luminance apparente et répartir la lumière, avec parfois des pertes de flux", "Augmenter toujours le flux total", "Changer le courant secteur en courant continu"], "c": 0, "e": "Un diffuseur peut améliorer le confort visuel mais absorbe ou disperse parfois une partie du flux."},
+
+{"q": "Que représente un diagramme photométrique polaire ?", "a": ["La distribution de l'intensité lumineuse selon les directions", "La courbe de température du driver uniquement", "Le schéma de câblage secteur"], "c": 0, "e": "Le diagramme représente l'intensité lumineuse dans différentes directions."},
+
+{"q": "Pour choisir une optique, quel critère est essentiel ?", "a": ["L'usage, la hauteur, la géométrie et le niveau d'éclairement recherché", "La seule couleur du boîtier", "Uniquement le prix du câble"], "c": 0, "e": "Le choix doit correspondre à l'application, aux distances, à l'uniformité et à la limitation de l'éblouissement."},
+
+{"q": "Que décrit la température de couleur corrélée (CCT) ?", "a": ["L'apparence chaude ou froide de la lumière blanche", "La température réelle de la jonction LED", "La consommation du driver"], "c": 0, "e": "La CCT, exprimée en kelvins, décrit l'apparence de la lumière blanche, pas la température physique du luminaire."},
+
+{"q": "Une source à 3000 K est généralement perçue comme…", "a": ["Blanc chaud", "Blanc froid bleuté", "Lumière verte"], "c": 0, "e": "3000 K correspond généralement à un blanc chaud."},
+
+{"q": "Une source à 6500 K est généralement perçue comme…", "a": ["Blanc chaud", "Blanc froid / lumière du jour", "Ambre"], "c": 1, "e": "6500 K correspond à une lumière blanche froide, proche de la lumière du jour selon les produits."},
+
+{"q": "À quoi sert le SDCM dans la spécification des LED ?", "a": ["À exprimer l'écart de chromaticité entre sources", "À mesurer la résistance aux chocs IK", "À exprimer le flux en lumens"], "c": 0, "e": "Le SDCM décrit des écarts de chromaticité ; une valeur plus faible indique généralement une meilleure cohérence de couleur."},
+
+{"q": "Deux LED de même CCT peuvent-elles avoir une teinte légèrement différente ?", "a": ["Non, jamais", "Oui, leur chromaticité peut différer malgré une CCT identique ou proche", "Seulement si elles fonctionnent en alternatif"], "c": 1, "e": "La CCT seule ne décrit pas toute la chromaticité ; le binning et le SDCM aident à qualifier la cohérence."},
+
+{"q": "Que signifie IRC ?", "a": ["Indice de rendu des couleurs", "Indice de résistance du câble", "Intensité de rayonnement continu"], "c": 0, "e": "L'IRC caractérise la capacité d'une source à restituer les couleurs par comparaison à une référence."},
+
+{"q": "Un IRC élevé signifie généralement…", "a": ["Un rendu des couleurs plus fidèle pour les échantillons concernés", "Une consommation toujours plus faible", "Une protection IP plus élevée"], "c": 0, "e": "Un IRC élevé indique un rendu plus fidèle selon la méthode d'évaluation, sans garantir tous les aspects de qualité visuelle."},
+
+{"q": "Pourquoi le R9 peut-il être important ?", "a": ["Il renseigne sur le rendu d'un rouge saturé, peu représenté par l'IRC général Ra", "Il mesure la résistance à l'eau", "Il indique la puissance en watts"], "c": 0, "e": "Le R9 complète l'information sur le rendu des rouges saturés, important dans certains usages."},
+
+{"q": "Un IRC de 90 garantit-il automatiquement un R9 élevé ?", "a": ["Oui", "Non, le R9 doit être vérifié séparément", "Oui si la CCT est de 4000 K"], "c": 1, "e": "Le Ra général et le R9 ne sont pas interchangeables ; il faut consulter les données du fabricant."},
+
+{"q": "Pour un espace où l'apparence des couleurs est essentielle, que faut-il comparer ?", "a": ["IRC/Ra, R9 si pertinent, CCT et données photométriques", "Uniquement le nombre de watts", "Uniquement l'indice IP"], "c": 0, "e": "La qualité du rendu des couleurs nécessite d'examiner plusieurs caractéristiques, en fonction de l'application."},
+
+{"q": "Que vise à évaluer l'UGR ?", "a": ["L'éblouissement d'inconfort dans certaines conditions d'observation", "La consommation énergétique annuelle", "La protection contre l'eau"], "c": 0, "e": "L'UGR est un indice utilisé pour évaluer l'éblouissement d'inconfort dans des conditions données."},
+
+{"q": "Un UGR plus faible indique généralement…", "a": ["Moins d'éblouissement d'inconfort", "Plus de flux lumineux garanti", "Une meilleure protection contre les chocs"], "c": 0, "e": "Un UGR inférieur correspond généralement à un risque d'éblouissement d'inconfort plus faible dans la configuration étudiée."},
+
+{"q": "Que décrit l'uniformité de l'éclairement ?", "a": ["La régularité de la répartition de l'éclairement sur une zone", "La couleur du driver", "Le rendement électrique uniquement"], "c": 0, "e": "L'uniformité décrit la variation des niveaux d'éclairement sur la zone étudiée."},
+
+{"q": "Pourquoi la sécurité photobiologique doit-elle être considérée ?", "a": ["Pour évaluer les risques liés à l'exposition au rayonnement optique selon l'usage et la distance", "Pour calculer l'indice IK uniquement", "Parce que toute LED est automatiquement sans risque"], "c": 0, "e": "Le risque dépend notamment du produit, de l'exposition et des conditions d'utilisation ; il faut consulter la documentation applicable."},
+
+{"q": "Quel est le meilleur réflexe face à une donnée UGR ou photobiologique ?", "a": ["Vérifier la fiche technique et les conditions d'évaluation adaptées à l'installation", "Supposer que la valeur est identique dans toutes les pièces", "Choisir uniquement d'après la puissance"], "c": 0, "e": "Ces indicateurs dépendent du produit et/ou de la configuration ; il faut utiliser les données pertinentes et les consignes du fabricant."},
+
+/* Questions de consolidation des sessions 01 à 16 */
+{"q": "Session 01 — Quel est le rôle du driver dans un système LED ?", "a": ["Fournir au module LED une alimentation adaptée", "Mesurer le lux ambiant", "Remplacer le dissipateur thermique"], "c": 0, "e": "Le driver adapte et régule l'alimentation selon les caractéristiques électriques du module LED."},
+
+{"q": "Session 02 — Quelle relation correspond à la loi d'Ohm ?", "a": ["U = R × I", "P = U ÷ I", "E = U + I"], "c": 0, "e": "La loi d'Ohm s'écrit U = R × I pour un conducteur ohmique dans les conditions usuelles."},
+
+{"q": "Session 03 — Quelle formule permet de calculer la puissance électrique en courant continu ?", "a": ["P = U × I", "P = U + I", "P = R ÷ U"], "c": 0, "e": "En courant continu, la puissance électrique se calcule par P = U × I."},
+
+{"q": "Session 04 — Que signifie AC ?", "a": ["Courant alternatif", "Courant continu", "Courant constant uniquement"], "c": 0, "e": "AC signifie Alternating Current, soit courant alternatif."},
+
+{"q": "Session 05 — Que régule principalement un driver à courant constant (CC) ?", "a": ["Le courant de sortie", "La température ambiante", "La longueur du câble"], "c": 0, "e": "Un driver CC régule le courant dans sa plage de tension de fonctionnement."},
+
+{"q": "Session 06 — Que fournit typiquement une alimentation à tension constante (CV) ?", "a": ["Une tension de sortie régulée", "Un courant identique quelle que soit la charge", "Une tension toujours nulle"], "c": 0, "e": "Une alimentation CV maintient une tension donnée dans les limites prévues."},
+
+{"q": "Session 07 — Pourquoi vérifier la compatibilité driver/module ?", "a": ["Pour respecter les plages de courant, tension et puissance du fabricant", "Pour éviter de lire la fiche technique", "Pour faire fonctionner n'importe quel module à n'importe quelle tension"], "c": 0, "e": "La compatibilité électrique est indispensable pour éviter dysfonctionnements et détériorations."},
+
+{"q": "Session 08 — De quoi dépend notamment la chute de tension dans un câble ?", "a": ["Longueur, section, matériau et courant", "Couleur de l'isolant seulement", "Indice IP du luminaire"], "c": 0, "e": "La chute de tension dépend notamment de la résistance du câble et du courant qui le traverse."},
+
+{"q": "Session 09 — Dans un montage en série, quelle grandeur est identique dans les composants ?", "a": ["Le courant", "La tension", "La puissance"], "c": 0, "e": "Dans un montage série, le même courant traverse les composants."},
+
+{"q": "Session 10 — Dans un montage en parallèle, quelle grandeur est commune aux branches ?", "a": ["La tension", "Le courant total dans chaque branche", "La résistance de chaque branche"], "c": 0, "e": "Les branches en parallèle sont soumises à la même tension."},
+
+{"q": "Session 11 — En série, comment se comporte la tension totale pour des composants récepteurs ?", "a": ["Elle est la somme des tensions aux bornes des composants", "Elle est toujours égale à zéro", "Elle est identique au courant"], "c": 0, "e": "Les tensions aux bornes des composants en série s'additionnent."},
+
+{"q": "Session 12 — Pourquoi choisir une section de câble adaptée ?", "a": ["Pour limiter la chute de tension et l'échauffement, selon les conditions de pose", "Pour augmenter volontairement la résistance", "Pour changer la CCT"], "c": 0, "e": "La section doit être dimensionnée selon le courant, la longueur, la pose et les règles applicables."},
+
+{"q": "Session 13 — Quelle est la première étape d'un diagnostic LED sérieux ?", "a": ["Recueillir les symptômes et vérifier les conditions de sécurité", "Remplacer immédiatement tous les composants", "Mesurer uniquement la température de couleur"], "c": 0, "e": "Un diagnostic méthodique commence par sécuriser, observer et recueillir les informations utiles."},
+
+{"q": "Session 14 — Pourquoi la température influence-t-elle une LED ?", "a": ["Elle peut affecter le flux, la durée de vie et la fiabilité", "Elle n'a jamais d'effet", "Elle modifie uniquement la couleur du câble"], "c": 0, "e": "Une température de jonction excessive peut dégrader les performances et accélérer le vieillissement."},
+
+{"q": "Session 15 — Que représente une résistance thermique ?", "a": ["La difficulté du transfert de chaleur entre deux points", "La résistance électrique d'un câble uniquement", "La protection contre l'eau"], "c": 0, "e": "La résistance thermique exprime l'écart de température associé à un flux thermique."},
+
+{"q": "Session 16 — Pourquoi une interface thermique doit-elle être bien réalisée ?", "a": ["Pour réduire la résistance thermique de contact et faciliter l'évacuation de chaleur", "Pour créer une poche d'air isolante", "Pour augmenter l'IRC"], "c": 0, "e": "Un contact thermique correct réduit les résistances de contact ; une couche mal appliquée ou de l'air piégé pénalisent le transfert."},
+
+{"q": "Quelle est l'unité de puissance électrique ?", "a": ["Watt (W)", "Lumen (lm)", "Lux (lx)"], "c": 0, "e": "La puissance électrique s'exprime en watts."},
+
+{"q": "Quelle est l'unité d'énergie couramment utilisée sur une facture d'électricité ?", "a": ["kWh", "Candela", "Kelvin"], "c": 0, "e": "L'énergie électrique consommée est couramment exprimée en kilowattheures."},
+
+{"q": "Pourquoi une LED a-t-elle besoin d'une gestion thermique ?", "a": ["Pour évacuer la chaleur et respecter ses limites de fonctionnement", "Pour transformer le lumen en volt", "Pour supprimer le besoin d'un driver"], "c": 0, "e": "La chaleur doit être transférée vers l'environnement afin de préserver les performances et la durée de vie."},
+
+{"q": "Que signifie Tj dans une fiche technique LED ?", "a": ["Température de jonction", "Température du réseau", "Tension de jauge"], "c": 0, "e": "Tj désigne la température de jonction du composant LED."},
+
+{"q": "Avant de mesurer un circuit électrique, que faut-il faire ?", "a": ["Identifier le circuit et appliquer les procédures de sécurité adaptées", "Toucher les conducteurs pour voir s'ils chauffent", "Se fier uniquement à la couleur des fils"], "c": 0, "e": "L'identification, la mise en sécurité et l'utilisation de l'équipement adapté sont essentielles."}
 ];
 
 /* =========================================================
@@ -1295,7 +1430,9 @@ function afficherEcran(id) {
 /* Démarrer le QCM */
 
 function demarrerQCM() {
-    questions = melangerTableau(banque);
+    const mode = document.getElementById("modeQCM")?.value || "20";
+    const melangees = melangerTableau(banque);
+    questions = mode === "all" ? melangees : melangees.slice(0, Math.min(Number(mode) || 20, melangees.length));
     current = 0;
     score = 0;
     answered = false;
@@ -1529,6 +1666,14 @@ function terminerQCM() {
 
     document.getElementById("scoreFinal").textContent =
         score + " / " + total;
+
+    // Historique local : les résultats restent sur cet appareil.
+    try {
+        const historique = JSON.parse(localStorage.getItem("led3_qcm_historique") || "[]");
+        historique.unshift({date: new Date().toISOString(), score, total, taux: pourcentage, erreurs});
+        localStorage.setItem("led3_qcm_historique", JSON.stringify(historique.slice(0, 20)));
+        localStorage.setItem("led3_qcm_dernier", JSON.stringify({date: new Date().toISOString(), score, total, taux: pourcentage, erreurs}));
+    } catch (e) { console.warn("Historique QCM non disponible", e); }
 
     document.getElementById("pourcentageFinal").textContent =
         pourcentage + "% de bonnes réponses";

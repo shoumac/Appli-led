@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>Session 19 — Lux, candela et photométrie | LED3 Academy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contenu-session{max-width:900px;margin:0 auto;text-align:left}
+.contenu-session .card{margin:16px 0}
+.contenu-session li{line-height:1.8;margin:8px 0}
+.session-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+.session-actions a{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:white;text-decoration:none;font-weight:700}
+summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<a href="sessions.html" class="btn-retour">⬅ Retour aux sessions</a>
+<div class="contenu-session">
+<h1>📚 Session 19</h1>
+<h2>Lux, candela et photométrie</h2>
+<div class="card" id="sessionProgressCard" style="margin:16px 0;padding:16px;border:1px solid rgba(125,170,255,.25);border-radius:14px">
+  <p id="sessionProgressStatus" style="margin-top:0">📌 Progression de cette session</p>
+  <button id="sessionProgressButton" type="button" style="padding:11px 15px;border:0;border-radius:10px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:#fff;font-weight:700;cursor:pointer" onclick="toggleSessionDone()">✓ Marquer comme révisée</button>
+</div>
+
+<div class="card"><h3>🎯 Objectif</h3><p>Maîtriser les grandeurs photométriques courantes et la bonne utilisation d&#x27;un luxmètre sur le terrain.</p></div>
+<div class="card"><h3>📌 L'essentiel à retenir</h3><ul><li><strong>Lumen (lm) :</strong> Mesure le flux lumineux total émis.</li>
+<li><strong>Lux (lx) :</strong> Mesure l&#x27;éclairement reçu par une surface ; 1 lx = 1 lm/m².</li>
+<li><strong>Candela (cd) :</strong> Mesure l&#x27;intensité lumineuse dans une direction donnée.</li>
+<li><strong>Luxmètre :</strong> Mesure l&#x27;éclairement au niveau de son capteur. Respecter le plan de mesure, l&#x27;orientation et les conditions de relevé.</li>
+<li><strong>Interprétation :</strong> Une mesure ponctuelle ne décrit pas toute une pièce : relever plusieurs points aide à évaluer le niveau et l&#x27;uniformité.</li></ul></div>
+<h3>🧠 Flashcards — vérifie tes connaissances</h3>
+<p>Ouvre chaque carte pour afficher sa réponse.</p>
+<details class="card"><summary>Unité de l&#x27;éclairement ?</summary><p>Lux (lx).</p></details>
+<details class="card"><summary>Unité de l&#x27;intensité lumineuse ?</summary><p>Candela (cd).</p></details>
+<details class="card"><summary>1 lux correspond à quoi ?</summary><p>1 lumen reçu par mètre carré.</p></details>
+<details class="card"><summary>Quel appareil mesure les lux ?</summary><p>Un luxmètre.</p></details>
+<details class="card"><summary>Pourquoi mesurer plusieurs points ?</summary><p>Pour évaluer les variations et l&#x27;uniformité de l&#x27;éclairement.</p></details>
+<div class="card"><h3>✅ Pour t'entraîner</h3><p>Retrouve les questions essentielles de cette session dans le QCM général. Les questions des sessions 17 à 24 ont été ajoutées à la banque.</p></div>
+<div class="session-actions"><a href="qcm.html">Faire le QCM</a><a href="session20.html">Session suivante →</a></div>
+</div>
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto"><a href="session18.html">← Session précédente</a><a href="session20.html">Session suivante →</a></div>
+<script>
+const SESSION_NUMBER=19;
+function getDoneSessions(){try{return JSON.parse(localStorage.getItem('led3_sessions_done')||'[]')}catch(e){return []}}
+function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NUMBER);document.getElementById('sessionProgressStatus').textContent=done?'✅ Session '+String(SESSION_NUMBER).padStart(2,'0')+' marquée comme révisée.':'📌 Session '+String(SESSION_NUMBER).padStart(2,'0')+' pas encore validée.';const b=document.getElementById('sessionProgressButton');b.textContent=done?'↩ Retirer des sessions révisées':'✓ Marquer comme révisée';b.setAttribute('aria-pressed',String(done))}
+function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
+paintSessionProgress();
+</script>
+</body>
+</html>

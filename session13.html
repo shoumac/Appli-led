@@ -13,6 +13,11 @@
 
 <div class="card">
 <h2>⚡ Révision Express</h2>
+<div class="card" id="sessionProgressCard" style="margin:16px 0;padding:16px;border:1px solid rgba(125,170,255,.25);border-radius:14px">
+  <p id="sessionProgressStatus" style="margin-top:0">📌 Progression de cette session</p>
+  <button id="sessionProgressButton" type="button" style="padding:11px 15px;border:0;border-radius:10px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:#fff;font-weight:700;cursor:pointer" onclick="toggleSessionDone()">✓ Marquer comme révisée</button>
+</div>
+
 
 <pre>
 Tout éteint
@@ -62,5 +67,14 @@ Ne jamais court-circuiter une LED
 </ul>
 </div>
 
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto"><a href="session12.html">← Session précédente</a><a href="session14.html">Session suivante →</a></div>
+<script>
+const SESSION_NUMBER=13;
+function getDoneSessions(){try{return JSON.parse(localStorage.getItem('led3_sessions_done')||'[]')}catch(e){return []}}
+function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NUMBER);document.getElementById('sessionProgressStatus').textContent=done?'✅ Session '+String(SESSION_NUMBER).padStart(2,'0')+' marquée comme révisée.':'📌 Session '+String(SESSION_NUMBER).padStart(2,'0')+' pas encore validée.';const b=document.getElementById('sessionProgressButton');b.textContent=done?'↩ Retirer des sessions révisées':'✓ Marquer comme révisée';b.setAttribute('aria-pressed',String(done))}
+function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
+paintSessionProgress();
+</script>
 </body>
 </html>

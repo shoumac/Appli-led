@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>Session 22 — CCT, chromaticité et SDCM | LED3 Academy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contenu-session{max-width:900px;margin:0 auto;text-align:left}
+.contenu-session .card{margin:16px 0}
+.contenu-session li{line-height:1.8;margin:8px 0}
+.session-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+.session-actions a{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:white;text-decoration:none;font-weight:700}
+summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<a href="sessions.html" class="btn-retour">⬅ Retour aux sessions</a>
+<div class="contenu-session">
+<h1>📚 Session 22</h1>
+<h2>CCT, chromaticité et SDCM</h2>
+<div class="card" id="sessionProgressCard" style="margin:16px 0;padding:16px;border:1px solid rgba(125,170,255,.25);border-radius:14px">
+  <p id="sessionProgressStatus" style="margin-top:0">📌 Progression de cette session</p>
+  <button id="sessionProgressButton" type="button" style="padding:11px 15px;border:0;border-radius:10px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:#fff;font-weight:700;cursor:pointer" onclick="toggleSessionDone()">✓ Marquer comme révisée</button>
+</div>
+
+<div class="card"><h3>🎯 Objectif</h3><p>Différencier l&#x27;apparence chaude/froide de la lumière, la chromaticité et la cohérence de couleur entre plusieurs sources.</p></div>
+<div class="card"><h3>📌 L'essentiel à retenir</h3><ul><li><strong>CCT :</strong> La température de couleur corrélée décrit l&#x27;apparence de la lumière blanche et s&#x27;exprime en kelvins (K). Ce n&#x27;est pas la température physique de la LED.</li>
+<li><strong>Repères :</strong> En général, 2700–3000 K : blanc chaud ; autour de 4000 K : blanc neutre ; autour de 6000–6500 K : blanc froid.</li>
+<li><strong>Chromaticité :</strong> Deux sources de même CCT peuvent avoir une légère différence de teinte.</li>
+<li><strong>SDCM :</strong> Les écarts de couleur peuvent être exprimés en SDCM ; plus la valeur est faible, plus la cohérence chromatique est généralement serrée.</li>
+<li><strong>Application :</strong> Pour aligner plusieurs luminaires, vérifier CCT, tolérances chromatiques et données de binning fabricant.</li></ul></div>
+<h3>🧠 Flashcards — vérifie tes connaissances</h3>
+<p>Ouvre chaque carte pour afficher sa réponse.</p>
+<details class="card"><summary>Que décrit la CCT ?</summary><p>L&#x27;apparence chaude ou froide de la lumière blanche.</p></details>
+<details class="card"><summary>3000 K correspond généralement à quoi ?</summary><p>Un blanc chaud.</p></details>
+<details class="card"><summary>4000 K correspond généralement à quoi ?</summary><p>Un blanc neutre.</p></details>
+<details class="card"><summary>À quoi sert le SDCM ?</summary><p>À exprimer les écarts de chromaticité entre sources.</p></details>
+<details class="card"><summary>Même CCT = teinte identique garantie ?</summary><p>Non, la chromaticité peut différer.</p></details>
+<div class="card"><h3>✅ Pour t'entraîner</h3><p>Retrouve les questions essentielles de cette session dans le QCM général. Les questions des sessions 17 à 24 ont été ajoutées à la banque.</p></div>
+<div class="session-actions"><a href="qcm.html">Faire le QCM</a><a href="session23.html">Session suivante →</a></div>
+</div>
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto"><a href="session21.html">← Session précédente</a><a href="session23.html">Session suivante →</a></div>
+<script>
+const SESSION_NUMBER=22;
+function getDoneSessions(){try{return JSON.parse(localStorage.getItem('led3_sessions_done')||'[]')}catch(e){return []}}
+function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NUMBER);document.getElementById('sessionProgressStatus').textContent=done?'✅ Session '+String(SESSION_NUMBER).padStart(2,'0')+' marquée comme révisée.':'📌 Session '+String(SESSION_NUMBER).padStart(2,'0')+' pas encore validée.';const b=document.getElementById('sessionProgressButton');b.textContent=done?'↩ Retirer des sessions révisées':'✓ Marquer comme révisée';b.setAttribute('aria-pressed',String(done))}
+function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
+paintSessionProgress();
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>Session 24 — UGR, uniformité et sécurité photobiologique | LED3 Academy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contenu-session{max-width:900px;margin:0 auto;text-align:left}
+.contenu-session .card{margin:16px 0}
+.contenu-session li{line-height:1.8;margin:8px 0}
+.session-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+.session-actions a{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:white;text-decoration:none;font-weight:700}
+summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<a href="sessions.html" class="btn-retour">⬅ Retour aux sessions</a>
+<div class="contenu-session">
+<h1>📚 Session 24</h1>
+<h2>UGR, uniformité et sécurité photobiologique</h2>
+<div class="card" id="sessionProgressCard" style="margin:16px 0;padding:16px;border:1px solid rgba(125,170,255,.25);border-radius:14px">
+  <p id="sessionProgressStatus" style="margin-top:0">📌 Progression de cette session</p>
+  <button id="sessionProgressButton" type="button" style="padding:11px 15px;border:0;border-radius:10px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:#fff;font-weight:700;cursor:pointer" onclick="toggleSessionDone()">✓ Marquer comme révisée</button>
+</div>
+
+<div class="card"><h3>🎯 Objectif</h3><p>Identifier les notions liées à l&#x27;éblouissement, à l&#x27;uniformité de l&#x27;éclairage et aux précautions d&#x27;exposition au rayonnement optique.</p></div>
+<div class="card"><h3>📌 L'essentiel à retenir</h3><ul><li><strong>UGR :</strong> Indice utilisé pour évaluer l&#x27;éblouissement d&#x27;inconfort dans une configuration d&#x27;observation donnée.</li>
+<li><strong>Interprétation :</strong> Un UGR plus faible correspond généralement à moins d&#x27;éblouissement d&#x27;inconfort dans les conditions étudiées ; la valeur dépend de l&#x27;installation et de la géométrie.</li>
+<li><strong>Uniformité :</strong> Décrit la régularité de l&#x27;éclairement sur une zone, souvent à partir du rapport entre éclairement minimal et moyen selon la méthode utilisée.</li>
+<li><strong>Sécurité photobiologique :</strong> Évaluer les risques liés à l&#x27;exposition au rayonnement optique selon le produit et les conditions d&#x27;utilisation ; consulter les données et instructions fabricant.</li>
+<li><strong>Bon réflexe :</strong> Ne pas généraliser une valeur UGR ou une classification de risque à toutes les installations : respecter le contexte d&#x27;évaluation.</li></ul></div>
+<h3>🧠 Flashcards — vérifie tes connaissances</h3>
+<p>Ouvre chaque carte pour afficher sa réponse.</p>
+<details class="card"><summary>Que cherche à évaluer l&#x27;UGR ?</summary><p>L&#x27;éblouissement d&#x27;inconfort.</p></details>
+<details class="card"><summary>Un UGR plus faible indique généralement quoi ?</summary><p>Moins d&#x27;éblouissement d&#x27;inconfort dans la configuration étudiée.</p></details>
+<details class="card"><summary>Que décrit l&#x27;uniformité ?</summary><p>La régularité de l&#x27;éclairement sur une zone.</p></details>
+<details class="card"><summary>Pourquoi considérer la sécurité photobiologique ?</summary><p>Pour évaluer les risques liés à l&#x27;exposition au rayonnement optique.</p></details>
+<details class="card"><summary>Peut-on appliquer une valeur UGR à toute pièce ?</summary><p>Non, elle dépend notamment de la configuration et des conditions d&#x27;évaluation.</p></details>
+<div class="card"><h3>✅ Pour t'entraîner</h3><p>Retrouve les questions essentielles de cette session dans le QCM général. Les questions des sessions 17 à 24 ont été ajoutées à la banque.</p></div>
+<div class="session-actions"><a href="qcm.html">Faire le QCM</a><a href="sessions.html">Retour aux 24 sessions</a></div>
+</div>
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto"><a href="session23.html">← Session précédente</a><a href="sessions.html">Retour aux 24 sessions →</a></div>
+<script>
+const SESSION_NUMBER=24;
+function getDoneSessions(){try{return JSON.parse(localStorage.getItem('led3_sessions_done')||'[]')}catch(e){return []}}
+function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NUMBER);document.getElementById('sessionProgressStatus').textContent=done?'✅ Session '+String(SESSION_NUMBER).padStart(2,'0')+' marquée comme révisée.':'📌 Session '+String(SESSION_NUMBER).padStart(2,'0')+' pas encore validée.';const b=document.getElementById('sessionProgressButton');b.textContent=done?'↩ Retirer des sessions révisées':'✓ Marquer comme révisée';b.setAttribute('aria-pressed',String(done))}
+function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
+paintSessionProgress();
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>Session 21 — Optiques et distribution lumineuse | LED3 Academy</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.contenu-session{max-width:900px;margin:0 auto;text-align:left}
+.contenu-session .card{margin:16px 0}
+.contenu-session li{line-height:1.8;margin:8px 0}
+.session-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:22px 0}
+.session-actions a{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:white;text-decoration:none;font-weight:700}
+summary{cursor:pointer;font-weight:700}
+</style>
+</head>
+<body>
+<a href="sessions.html" class="btn-retour">⬅ Retour aux sessions</a>
+<div class="contenu-session">
+<h1>📚 Session 21</h1>
+<h2>Optiques et distribution lumineuse</h2>
+<div class="card" id="sessionProgressCard" style="margin:16px 0;padding:16px;border:1px solid rgba(125,170,255,.25);border-radius:14px">
+  <p id="sessionProgressStatus" style="margin-top:0">📌 Progression de cette session</p>
+  <button id="sessionProgressButton" type="button" style="padding:11px 15px;border:0;border-radius:10px;background:linear-gradient(135deg,#168bff,#8b5cf6);color:#fff;font-weight:700;cursor:pointer" onclick="toggleSessionDone()">✓ Marquer comme révisée</button>
+</div>
+
+<div class="card"><h3>🎯 Objectif</h3><p>Comprendre comment les lentilles, réflecteurs et diffuseurs orientent la lumière et influencent le confort visuel.</p></div>
+<div class="card"><h3>📌 L'essentiel à retenir</h3><ul><li><strong>Fonction :</strong> Une optique dirige, concentre ou répartit la lumière selon les besoins de l&#x27;application.</li>
+<li><strong>Faisceau étroit :</strong> Concentre l&#x27;intensité sur une zone plus ciblée ; utile pour l&#x27;accentuation ou certaines grandes hauteurs.</li>
+<li><strong>Faisceau large :</strong> Couvre une zone plus étendue, mais le résultat dépend de la hauteur et de la disposition.</li>
+<li><strong>Diffuseur :</strong> Peut adoucir la lumière et réduire la perception de certains points lumineux, avec des pertes possibles.</li>
+<li><strong>Étude photométrique :</strong> Utiliser les courbes ou fichiers photométriques du fabricant pour vérifier éclairement, uniformité et éblouissement.</li></ul></div>
+<h3>🧠 Flashcards — vérifie tes connaissances</h3>
+<p>Ouvre chaque carte pour afficher sa réponse.</p>
+<details class="card"><summary>Rôle d&#x27;une optique ?</summary><p>Diriger ou répartir la lumière.</p></details>
+<details class="card"><summary>Un faisceau étroit sert à quoi ?</summary><p>Concentrer la lumière sur une zone ciblée.</p></details>
+<details class="card"><summary>Un diffuseur peut-il entraîner des pertes ?</summary><p>Oui, il peut absorber ou disperser une partie du flux.</p></details>
+<details class="card"><summary>Que montre un diagramme polaire ?</summary><p>La distribution de l&#x27;intensité lumineuse selon les directions.</p></details>
+<details class="card"><summary>Quels critères guident le choix d&#x27;optique ?</summary><p>Usage, hauteur, géométrie, uniformité et confort visuel.</p></details>
+<div class="card"><h3>✅ Pour t'entraîner</h3><p>Retrouve les questions essentielles de cette session dans le QCM général. Les questions des sessions 17 à 24 ont été ajoutées à la banque.</p></div>
+<div class="session-actions"><a href="qcm.html">Faire le QCM</a><a href="session22.html">Session suivante →</a></div>
+</div>
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:24px auto"><a href="session20.html">← Session précédente</a><a href="session22.html">Session suivante →</a></div>
+<script>
+const SESSION_NUMBER=21;
+function getDoneSessions(){try{return JSON.parse(localStorage.getItem('led3_sessions_done')||'[]')}catch(e){return []}}
+function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NUMBER);document.getElementById('sessionProgressStatus').textContent=done?'✅ Session '+String(SESSION_NUMBER).padStart(2,'0')+' marquée comme révisée.':'📌 Session '+String(SESSION_NUMBER).padStart(2,'0')+' pas encore validée.';const b=document.getElementById('sessionProgressButton');b.textContent=done?'↩ Retirer des sessions révisées':'✓ Marquer comme révisée';b.setAttribute('aria-pressed',String(done))}
+function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
+paintSessionProgress();
+</script>
+</body>
+</html>
