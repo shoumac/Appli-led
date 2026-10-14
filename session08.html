@@ -49,5 +49,10 @@ function paintSessionProgress(){const done=getDoneSessions().includes(SESSION_NU
 function toggleSessionDone(){let done=getDoneSessions();done=done.includes(SESSION_NUMBER)?done.filter(n=>n!==SESSION_NUMBER):[...done,SESSION_NUMBER];localStorage.setItem('led3_sessions_done',JSON.stringify(done));paintSessionProgress()}
 paintSessionProgress();
 </script>
+
+<div id="led3-cloud-status" style="position:fixed;bottom:8px;right:8px;z-index:9999;background:#111b2d;color:#a5b4cc;border:1px solid #26344e;border-radius:8px;padding:6px 10px;font:12px system-ui">☁️ Connecte-toi pour synchroniser</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="cloud-sync.js"></script>
 </body>
 </html>

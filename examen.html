@@ -883,4 +883,9 @@ function finish(){show('result');const total=questions.length,wrong=total-score,
 function quitExam(){if(confirm('Quitter cet examen ? La tentative en cours ne sera pas enregistrée.'))showStart()}
 function renderHistory(){const el=document.getElementById('history');let h=[];try{h=JSON.parse(localStorage.getItem('led3_exam_history')||'[]')}catch(e){}if(!h.length){el.textContent='Les résultats de tes examens apparaîtront ici.';return}el.innerHTML='';h.slice(0,5).forEach(r=>{const d=document.createElement('div');d.className='history-item';const date=new Date(r.date).toLocaleString('fr-FR');d.textContent=`${date} — ${r.score}/${r.total} (${r.pct}%)`;el.append(d)})}
 renderHistory();
-</script></body></html>
+</script>
+<div id="led3-cloud-status" style="position:fixed;bottom:8px;right:8px;z-index:9999;background:#111b2d;color:#a5b4cc;border:1px solid #26344e;border-radius:8px;padding:6px 10px;font:12px system-ui">☁️ Connecte-toi pour synchroniser</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="cloud-sync.js"></script>
+</body></html>

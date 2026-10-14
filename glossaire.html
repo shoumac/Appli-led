@@ -136,5 +136,10 @@ let active='Tout';
 function render(){const q=search.value.trim().toLocaleLowerCase('fr');const found=terms.filter(t=>(active==='Tout'||t[1]===active)&&t.join(' ').toLocaleLowerCase('fr').includes(q));const cats=[...new Set(found.map(t=>t[1]))];host.innerHTML=cats.map(cat=>`<section class="group"><h2>${cat}</h2><div class="grid">${found.filter(t=>t[1]===cat).map(t=>`<article class="term"><span class="tag">${t[1]}</span><h3>${t[0]}</h3><p>${t[2]}</p></article>`).join('')}</div></section>`).join('');count.textContent=`${found.length} terme${found.length>1?'s':''} affiché${found.length>1?'s':''} sur ${terms.length}`;empty.style.display=found.length?'none':'block';}
 document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');active=btn.dataset.filter;render();}));search.addEventListener('input',render);render();
 </script>
+
+<div id="led3-cloud-status" style="position:fixed;bottom:8px;right:8px;z-index:9999;background:#111b2d;color:#a5b4cc;border:1px solid #26344e;border-radius:8px;padding:6px 10px;font:12px system-ui">☁️ Connecte-toi pour synchroniser</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="cloud-sync.js"></script>
 </body>
 </html>

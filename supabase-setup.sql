@@ -1,0 +1,10 @@
+-- LED3 Academy : tables partagées et règles RLS idempotentes
+create table if not exists public.student_snapshots (student_id uuid primary key references auth.users(id) on delete cascade,payload jsonb not null default '{}'::jsonb,updated_at timestamptz not null default now());
+create table if not exists public.trainer_student_links (trainer_id uuid not null references auth.users(id) on delete cascade,student_id uuid not null references auth.users(id) on delete cascade,created_at timestamptz not null default now(),primary key(trainer_id,student_id),check(trainer_id<>student_id));
+alter table public.student_snapshots enable row level security; alter table public.trainer_student_links enable row level security;
+drop policy if exists led3_student_read_own_snapshot on public.student_snapshots; create policy led3_student_read_own_snapshot on public.student_snapshots for select to authenticated using(auth.uid()=student_id);
+drop policy if exists led3_student_insert_own_snapshot on public.student_snapshots; create policy led3_student_insert_own_snapshot on public.student_snapshots for insert to authenticated with check(auth.uid()=student_id);
+drop policy if exists led3_student_update_own_snapshot on public.student_snapshots; create policy led3_student_update_own_snapshot on public.student_snapshots for update to authenticated using(auth.uid()=student_id) with check(auth.uid()=student_id);
+drop policy if exists led3_trainer_read_linked_snapshot on public.student_snapshots; create policy led3_trainer_read_linked_snapshot on public.student_snapshots for select to authenticated using(exists(select 1 from public.trainer_student_links l where l.trainer_id=auth.uid() and l.student_id=student_snapshots.student_id));
+drop policy if exists led3_read_own_trainer_links on public.trainer_student_links; create policy led3_read_own_trainer_links on public.trainer_student_links for select to authenticated using(auth.uid()=trainer_id or auth.uid()=student_id);
+-- Après création des comptes, un administrateur doit associer le formateur à l'élève dans cette table via le tableau de bord Supabase. Ne jamais ouvrir l'accès à tous les utilisateurs.

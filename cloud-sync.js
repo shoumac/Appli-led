@@ -1,0 +1,8 @@
+(function(){
+ const KEYS_PREFIX='led3_'; let timer;
+ function client(){if(!window.supabase||!window.LED3_SUPABASE_URL||!window.LED3_SUPABASE_PUBLISHABLE_KEY)return null;return window.led3Supabase||(window.led3Supabase=window.supabase.createClient(window.LED3_SUPABASE_URL,window.LED3_SUPABASE_PUBLISHABLE_KEY));}
+ function snapshot(){const p={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(k.startsWith(KEYS_PREFIX)||k==='progression')){try{p[k]=JSON.parse(localStorage.getItem(k))}catch(e){p[k]=localStorage.getItem(k)}}}return p;}
+ async function sync(){const c=client();if(!c)return;const {data:{session}}=await c.auth.getSession();if(!session)return;const {error}=await c.from('student_snapshots').upsert({student_id:session.user.id,payload:snapshot(),updated_at:new Date().toISOString()},{onConflict:'student_id'});const el=document.getElementById('led3-cloud-status');if(el)el.textContent=error?'Synchronisation en attente : '+error.message:'☁️ Résultats synchronisés';if(error)console.error(error);}
+ function install(){const c=client();if(!c)return;const orig=Storage.prototype.setItem;Storage.prototype.setItem=function(k,v){orig.call(this,k,v);if(k&&(k.startsWith(KEYS_PREFIX)||k==='progression')){clearTimeout(timer);timer=setTimeout(sync,800)}};c.auth.onAuthStateChange(()=>setTimeout(sync,250));window.led3SyncNow=sync;sync();}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install);else install();
+})();
