@@ -10,3 +10,8 @@ Application statique de révision LED3, compatible GitHub Pages.
 
 ## Publication
 Décompresser le contenu du ZIP puis téléverser les fichiers à la racine du dépôt GitHub Pages, en conservant les noms des fichiers et les images existantes.
+
+
+## Sessions 25 à 31 et suivi pédagogique
+
+Les sessions 25 à 31 sont intégrées avec cours et QCM de cinq questions par session. La progression est disponible dans `progression.html` avec export PDF via impression du navigateur et sauvegarde JSON. `formateur.html` fournit une synthèse locale des résultats. Sur GitHub Pages statique, les données restent locales à l’appareil ; un suivi distant sécurisé nécessite un backend avec authentification.

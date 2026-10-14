@@ -15,6 +15,43 @@ body{background:#080d1b;color:#f4f7ff;font-family:'Poppins',Arial,sans-serif;pad
 <section class="exam-card"><h3>📊 Derniers résultats enregistrés</h3><div id="history" class="muted">Les résultats de tes examens apparaîtront ici.</div></section></main>
 <script>
 const banque = [
+/* Banque ajoutée : sessions 25 à 31 */
+{q:'Le meilleur protocole de gradation dépend d’abord…',a:['des lumens seuls', 'du besoin et de l’installation', 'du nom le plus moderne'],c:1,e:'Le besoin, le câblage, les fonctions et la maintenance guident le choix.'},
+{q:'0/1-10 V est principalement…',a:['une commande analogique', 'un bus DALI', 'un flux lumineux'],c:0,e:'La tension de commande représente une consigne analogique.'},
+{q:'DALI est…',a:['un variateur de phase', 'une optique', 'un protocole numérique adressable'],c:2,e:'DALI est un système de commande numérique adressable.'},
+{q:'Leading edge coupe…',a:['au début de la demi-alternance', 'la liaison DALI', 'les lumens'],c:0,e:'Leading edge correspond à la coupure au début de la demi-alternance.'},
+{q:'Trailing edge coupe…',a:['le conducteur de terre', 'le signal DMX', 'à la fin de la demi-alternance'],c:2,e:'Trailing edge correspond à la coupure en fin de demi-alternance.'},
+{q:'La mention « dimmable » garantit-elle une compatibilité avec tous les variateurs ?',a:['oui', 'non, la compatibilité doit être vérifiée', 'uniquement à 100 %'],c:1,e:'Il faut vérifier le couple driver-variateur et les plages mini/maxi.'},
+{q:'À 0 V, un driver 0/1-10 V…',a:['passe toujours à 100 %', 'peut s’éteindre ou rester au minimum selon sa fiche', 's’éteint toujours'],c:1,e:'Le comportement à 0 V dépend du driver.'},
+{q:'Sur une commande 0/1-10 V, il faut vérifier…',a:['la polarité et les caractéristiques source/sink', 'uniquement la couleur des fils', 'uniquement l’IRC'],c:0,e:'La polarité, le courant de commande, l’isolation et le comportement OFF comptent.'},
+{q:'DALI est normalisé dans…',a:['CIE 117', 'IEC 62386', 'IEC 60529'],c:1,e:'La série IEC 62386 concerne DALI.'},
+{q:'Une adresse courte DALI permet…',a:['la commande individuelle d’un appareil', 'de mesurer directement les lux', 'de définir l’indice IP'],c:0,e:'L’adresse courte permet d’identifier et commander individuellement un appareil.'},
+{q:'Les groupes DALI servent à…',a:['refroidir les drivers', 'commander collectivement des appareils', 'terminer une ligne DMX'],c:1,e:'Les groupes permettent des commandes coordonnées.'},
+{q:'DT6 correspond à…',a:['IEC 62386-207', 'IEC 62386-209', 'ANSI E1.11'],c:0,e:'DT6 est associé à IEC 62386-207.'},
+{q:'DT8 correspond à…',a:['IEC 60529', 'CIE 13.3', 'IEC 62386-209'],c:2,e:'DT8 est associé à IEC 62386-209.'},
+{q:'DT8(Tc) sert à…',a:['terminer DMX', 'piloter un blanc variable', 'mesurer l’IP'],c:1,e:'Tc désigne la température de couleur réglable.'},
+{q:'Un univers DMX contient jusqu’à…',a:['64 adresses', '10 volts', '512 slots'],c:2,e:'Un univers DMX transporte jusqu’à 512 slots.'},
+{q:'Adresse DMX 101 en mode 8 canaux : le dernier canal est…',a:['800', '108', '109'],c:1,e:'Dernier canal = adresse de départ + empreinte − 1, soit 101 + 8 − 1 = 108.'},
+{q:'La terminaison DMX se place normalement…',a:['en fin de ligne', 'sur chaque sortie secteur', 'dans l’optique'],c:0,e:'Le terminateur se place à l’extrémité de la ligne DMX.'},
+{q:'Une étoile passive DMX est généralement…',a:['obligatoire', 'à éviter sans splitter adapté', 'un groupe DALI'],c:1,e:'La topologie doit être adaptée ; un splitter DMX peut être requis.'},
+{q:'RDM ajoute à DMX…',a:['un indice UGR', 'une communication bidirectionnelle', 'une tension constante'],c:1,e:'RDM permet des échanges bidirectionnels compatibles.'},
+{q:'RDM est défini par…',a:['ANSI E1.20', 'IEC 62471', 'EN 13032'],c:0,e:'ANSI E1.20 définit le protocole RDM.'},
+{q:'RDM donne accès à toutes les données de tous les appareils ?',a:['oui', 'non, cela dépend des fonctions implémentées', 'uniquement la puissance'],c:1,e:'Les commandes et informations disponibles dépendent du produit.'},
+{q:'Pour un bureau avec capteurs et groupes, on privilégie souvent…',a:['DALI', 'une phase sans vérification', 'aucune commande'],c:0,e:'DALI est souvent pertinent pour un éclairage de bâtiment adressable.'},
+{q:'Le choix d’un système de gradation doit prendre en compte…',a:['uniquement le prix', 'fonctions, câblage, retours et maintenance', 'uniquement la CCT'],c:1,e:'La décision doit tenir compte des besoins et de l’exploitation du projet.'},
+{q:'Le courant disponible sur le bus DALI et la chute de tension doivent-ils être vérifiés ?',a:['oui', 'non', 'seulement en DMX'],c:0,e:'Le dimensionnement du bus doit être vérifié.'},
+{q:'Un logo DALI prouve à lui seul que le driver est DT8 ?',a:['oui toujours', 'non, les fonctions exactes doivent être vérifiées', 'seulement si le boîtier est blanc'],c:1,e:'Il faut vérifier les fonctions couleur et la conformité du produit.'},
+{q:'Le symptôme de scintillement en bas niveau avec variateur de phase invite à…',a:['vérifier la compatibilité et la plage de fonctionnement', 'changer la CCT uniquement', 'ignorer le symptôme'],c:0,e:'Le comportement doit être mesuré et testé avec le couple driver-variateur.'},
+{q:'Pour un projet façade avec effets lumineux dynamiques, quel protocole peut être pertinent ?',a:['DMX/RDM', 'uniquement un bouton marche/arrêt', 'un indice IP'],c:0,e:'DMX/RDM peut convenir aux installations dynamiques et au diagnostic compatible.'},
+{q:'Une commande analogique 0/1-10 V fournit-elle nativement un adressage individuel comme DALI ?',a:['oui toujours', 'non, généralement pas nativement', 'seulement à 10 V'],c:1,e:'La commande analogique ne fournit généralement pas un adressage individuel natif.'},
+{q:'Le dernier canal occupé se calcule avec…',a:['adresse + empreinte − 1', 'adresse × puissance', 'adresse − empreinte'],c:0,e:'La formule est adresse de départ + empreinte − 1.'},
+{q:'La première étape pour choisir le protocole est…',a:['identifier les besoins et les contraintes', 'acheter le driver le plus puissant', 'choisir la couleur du luminaire'],c:0,e:'Il faut qualifier le projet avant de choisir le système.'},
+{q:'ELV dimming dans le contexte du trailing-edge désigne…',a:['une appellation de variation électronique', 'une preuve de très basse tension de sécurité', 'un indice IP'],c:0,e:'Il ne faut pas confondre l’appellation de variation et la très basse tension de sécurité.'},
+{q:'Une alimentation de bus est requise dans une architecture DALI ?',a:['oui, adaptée au bus', 'non, jamais', 'seulement avec DMX'],c:0,e:'Le système DALI utilise une alimentation de bus adaptée.'},
+{q:'Le choix DT6 ou DT8 dépend notamment…',a:['des fonctions de commande couleur nécessaires', 'du poids du carton', 'de la taille de la pièce uniquement'],c:0,e:'Il faut faire correspondre les fonctions du driver aux besoins du système.'},
+{q:'Pourquoi éviter un câble audio non caractérisé pour DMX ?',a:['la transmission et l’intégrité du signal peuvent ne pas être garanties', 'il change les lumens', 'il augmente la CCT'],c:0,e:'Une liaison DMX demande un câblage adapté aux caractéristiques de transmission.'},
+{q:'Le comportement d’un driver si le fil 0/1-10 V est ouvert doit être…',a:['supposé identique pour tous', 'vérifié dans la documentation et par essai', 'toujours l’extinction'],c:1,e:'Le comportement en circuit ouvert varie selon le driver.'},
+
 
 {
 q:"Quel est le rôle principal d'une LED ?",
