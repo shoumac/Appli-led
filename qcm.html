@@ -1464,12 +1464,32 @@ function afficherEcran(id) {
     document.getElementById(id).classList.remove("masque");
 }
 
+/* Mémoire de révision séparée des résultats existants. */
+const LED3_FAIBLES='led3_qcm_points_faibles_v1';
+const LED3_STATS='led3_qcm_competences_v1';
+function lireQCM(k, fallback){try{return JSON.parse(localStorage.getItem(k)||'null')??fallback}catch(_){return fallback}}
+function identifiantQuestion(q){return q.q}
+function sauvegarderCompetence(q,correcte){
+  const stats=lireQCM(LED3_STATS,{}),id=identifiantQuestion(q);
+  const item=stats[id]||{ok:0,ko:0}; item[correcte?'ok':'ko']++; stats[id]=item;
+  try{localStorage.setItem(LED3_STATS,JSON.stringify(stats));const faibles=lireQCM(LED3_FAIBLES,{});if(correcte){if(faibles[id]){faibles[id]--;if(faibles[id]<=0)delete faibles[id]}}else{faibles[id]=(faibles[id]||0)+1}localStorage.setItem(LED3_FAIBLES,JSON.stringify(faibles))}catch(e){console.warn('Sauvegarde des compétences impossible',e)}
+}
+function choisirQuestions(mode,taille){
+  const melangees=melangerTableau(banque),faibles=lireQCM(LED3_FAIBLES,{});
+  if(mode==='aleatoire')return melangees.slice(0,taille);
+  const ratees=melangees.filter(q=>faibles[identifiantQuestion(q)]>0).sort((a,b)=>faibles[identifiantQuestion(b)]-faibles[identifiantQuestion(a)]);
+  if(mode==='erreurs' && ratees.length)return ratees.slice(0,taille);
+  if(mode==='adaptatif' && ratees.length){const quota=Math.min(ratees.length,Math.ceil(taille*.6));const prioritaires=ratees.slice(0,quota);return melangerTableau([...prioritaires,...melangees.filter(q=>!prioritaires.includes(q)).slice(0,taille-quota)])}
+  return melangees.slice(0,taille);
+}
 /* Démarrer le QCM */
 
 function demarrerQCM() {
     const mode = document.getElementById("modeQCM")?.value || "20";
-    const melangees = melangerTableau(banque);
-    questions = mode === "all" ? melangees : melangees.slice(0, Math.min(Number(mode) || 20, melangees.length));
+    const type = document.getElementById("typeQCM")?.value || "aleatoire";
+    questions = choisirQuestions(type, Math.min(mode === "all" ? banque.length : Number(mode) || 20, banque.length));
+    const info=document.getElementById("infoEntrainement");
+    if(info)info.textContent=type==="erreurs"&&!Object.keys(lireQCM(LED3_FAIBLES,{})).length?"Aucune erreur mémorisée : questions aléatoires proposées.":"";
     current = 0;
     score = 0;
     answered = false;
@@ -1578,6 +1598,7 @@ function verifierReponse(index) {
 
     const correction = document.getElementById("correction");
 
+    sauvegarderCompetence(question,reponseChoisie.correcte);
     if (reponseChoisie.correcte) {
         score++;
 
